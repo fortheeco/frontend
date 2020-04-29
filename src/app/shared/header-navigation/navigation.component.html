@@ -1,0 +1,57 @@
+
+<!-- ============================================================== -->
+<!-- Right side toggle and nav items -->
+<!-- ============================================================== -->
+<ul class="navbar-nav float-right">
+    <li class="nav-item search-box">
+        <a (click)="showSearch = !showSearch" class="nav-link waves-effect waves-dark" href="javascript:void(0)">
+                <i class="fas fa-search font-18"></i>
+            </a>
+            <form class="app-search position-absolute" [ngClass]="{'show-search': showSearch}">
+                <input type="text" class="form-control" placeholder="Search &amp; enter">
+                <a class="srh-btn" (click)="showSearch = !showSearch">
+                    <i class="ti-close"></i>
+                </a>
+            </form>
+    </li>
+    <li class="nav-item dropdown" ngbDropdown placement="bottom-right">
+            <a ngbDropdownToggle class="nav-link dropdown-toggle waves-effect waves-dark" href="javascript:void(0)" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
+            <i class="mdi mdi-bell-outline font-24"></i>
+        </a>
+        <div class="dropdown-menu dropdown-menu-right mailbox animated bounceInDown" ngbDropdownMenu>
+            <span class="with-arrow">
+                <span class="bg-primary"></span>
+            </span>
+            <ul class="list-style-none">
+                <li>
+                    <div class="drop-title bg-primary text-white">
+                        <h4 class="m-b-0 m-t-5">4 New</h4>
+                        <span class="font-light">Notifications</span>
+                    </div>
+                </li>
+                <li>
+                    <div class="message-center notifications" [perfectScrollbar]="config">
+                        <!-- Message -->
+                        <a href="javascript:void(0)" class="message-item" *ngFor="let notification of notifications">
+                            <span class="btn btn-circle {{notification.btn}}">
+                                <i class="{{notification.icon}}"></i>
+                            </span>
+                            <span class="mail-contnet">
+                                <h5 class="message-title">{{notification.title}}</h5>
+                                <span class="mail-desc">{{notification.subject}}</span>
+                                <span class="time">{{notification.time}}</span>
+                            </span>
+                        </a>
+                    </div>
+                </li>
+                <li>
+                    <a class="nav-link text-center m-b-5" href="javascript:void(0);">
+                        <strong>Check all notifications</strong>
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </li>
+</ul>

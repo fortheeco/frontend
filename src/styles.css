@@ -1,0 +1,117 @@
+/* You can add global styles to this file, and also import other style files */
+
+@import url('https://fonts.googleapis.com/css?family=Nunito+Sans:300,400,600,700,800');
+@import "../node_modules/ng2-slim-loading-bar/style.css";
+@import '../node_modules/@angular/material/prebuilt-themes/indigo-pink.css';
+
+
+.left-sidebar{
+    box-shadow: none !important;
+}
+
+.topbar{
+    box-shadow: none !important;
+}
+
+.page-wrapper{
+    background-color: #ffffff !important;
+}
+.sidebar-nav ul .sidebar-item{
+    padding: 4px;
+    padding-left: 25px;
+    padding-right: 25px;
+}
+
+.sidebar-nav ul .sidebar-item .active{
+    background-color: #1f1f1f !important;
+}
+
+.sidebar-nav ul .sidebar-item .active i{
+    color: #ffffff !important;
+    font-size: 14px !important;
+}
+
+.sidebar-nav ul .sidebar-item i{
+    font-size: 14px !important;
+}
+
+.sidebar-nav ul .sidebar-item .sidebar-link{
+    opacity: 1 !important;
+}
+
+.sidebar-nav ul .sidebar-item.active > .sidebar-link{
+    color: #ffffff !important;
+    border-radius: 20px;
+    padding: 8px 15px;
+}
+
+.sidebar-link{
+    color: #1f1f1f !important;
+}
+
+
+.user-pic{
+    padding-left: 10%;
+}
+
+.user-profile{
+    padding-left: 40px !important;
+    padding-right: 40px !important;
+}
+.logo-text{
+    margin-left: 15%;
+}
+
+.card-title{
+    font-weight: 900 !important;
+    color: #1f1f1f !important;
+}
+
+
+.btn-rex{
+    min-width: 200px;
+    text-align: left !important;
+    border: unset;
+    background-color: #fff;
+    color: #1f1f1f;
+    border-radius: 0px;
+    padding: 16px;
+    font-weight: 800;
+    padding: 0.875rem 0.75rem !important;
+    font-size: 12px;
+}
+.rex-dark{
+    background-color: #1f1f1f;
+    color: #fff;
+}
+.btn-rex .fas{
+    display: inline-block;
+    float: right;
+    padding-top: 2%;
+}
+
+.yellow-thead {
+    background-color: #f7f1e1;
+    color: #1f1f1f;
+    border-radius: 10px !important;
+} 
+
+.action-1{
+    background-color: #1f1f1f !important;
+    padding: 0.30rem 0.30rem !important;
+    font-size: 0.45rem !important;
+}
+
+.btn-clear{
+    border: none;
+    color: #1f1f1f;
+}
+
+.btn-clear span{
+    text-decoration: underline;
+    margin-left: 5%;
+}
+
+td{
+    color: #1f1f1f;
+}

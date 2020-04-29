@@ -1,0 +1,63 @@
+.modal-header {
+    border-bottom: none;
+}
+
+.modal-footer {
+    border-top: none;
+}
+
+.modal-content{
+    border: none;
+}
+
+.sect-title{
+    font-size: 0.7em;
+    margin-bottom: 0px !important;
+    color: #1f1f1f;
+}
+
+h2{
+    color: #1f1f1f;
+}
+
+h1{
+    color: #1f1f1f;
+    text-align: center;
+}
+
+p{
+    color: #1f1f1f;
+}
+
+.btn-dark{
+    border-color: #1f1f1f;
+}
+.btn-dark:hover{
+    background-color: #1f1f1f;
+    color: #ffffff !important;
+}
+.top-section{
+    height: 20vh;
+    color: #ffffff;
+    background-color: #1f1f1f;
+    text-align: center;
+    padding-top: 10%;
+}
+
+.top-section p{
+    color: #ffffff;
+}
+
+.modal-header{
+    background-color: #1f1f1f;
+}
+.modal-body{
+    padding: 0px !important;
+}
+.cb-logo{
+    height: 40px;
+    margin-bottom: 30px;
+}
+.middle-section{
+    text-align: center;
+}

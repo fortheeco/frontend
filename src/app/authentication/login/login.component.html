@@ -1,0 +1,43 @@
+
+<div class="auth-wrapper d-flex no-block">
+    <div class="auth-box">
+        <div id="loginform" [ngClass]="{'d-none': recoverform}">
+            <div class="logo">
+                <h4 class="font-medium m-b-20"> Log In</h4>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <form [formGroup]="loginForm" class="form-horizontal m-t-20" id="loginform" (ngSubmit)="onSubmit()">
+                        <div class="input-group mb-3">
+                            <input type="text" name="email" formControlName="email" autocomplete="off" class="form-control login-input" [ngClass]="{ 'is-invalid': submitted && f.email.errors }" placeholder="Enter Email" aria-label="Email" aria-describedby="basic-addon1">
+                            <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                                <div *ngIf="f.email.errors.required">Email is required</div>
+                            </div>
+                        </div>
+                        <div class="input-group mb-3">
+                            <input type="password" name="password" formControlName="password" class="form-control login-input" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" placeholder="Enter Password" aria-label="Password" aria-describedby="basic-addon1">
+                            <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                                <div *ngIf="f.password.errors.required">Password is required</div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-xs-12 p-b-20">
+                                <button type="button" (click)="onSubmit()" class="btn btn-dark">
+                                    <img *ngIf="loading" class="pl-2" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+                                    Sign In 
+                                </button>
+
+                                <a class="btn btn-clear"  routerLink="/authentication/signup">
+                                 <span>dont have an account</span>
+                                </a>
+                            </div>
+                            <div *ngIf="error" class="alert alert-danger">{{error}}</div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="row">
+            </div>
+        </div>
+    </div>
+</div>
