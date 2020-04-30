@@ -27,4 +27,5 @@ jobs:
         - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
 
         # push to docker hub uisng login_page. trying pull ...
+        
         - docker push newecopeoplev1/web_app
