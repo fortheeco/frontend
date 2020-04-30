@@ -9,7 +9,7 @@ jobs:
       if: branch = develop
       before_install:
         - travis_wait 30
-        - docker build -t newecopeoplev1/web_app_dev ./angular-app
+        - docker build -t newecopeoplev1/web_app_dev ./
       install:
         # login to docker hub
         - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
@@ -21,10 +21,11 @@ jobs:
       if: branch = master
       before_install:
         - travis_wait 30
-        - docker build -t newecopeoplev1/web_app ./angular-app
+        - docker build -t newecopeoplev1/web_app ./
       install:
         # login to docker hub
         - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
 
-        # push to docker hub uisng login_page. trying pull
+        # push to docker hub uisng login_page. trying pull ...
+        
         - docker push newecopeoplev1/web_app

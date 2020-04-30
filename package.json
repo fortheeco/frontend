@@ -7,7 +7,8 @@
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "prod": "ng build --aot --prod"
   },
   "private": true,
   "dependencies": {
@@ -45,7 +46,6 @@
     "lodash": "^4.17.11",
     "moment": "^2.24.0",
     "ng-chartist": "^1.1.1",
-    "ng-multiselect-dropdown": "^0.2.3",
     "ng2-charts": "^1.6.0",
     "ng2-completer": "^2.0.8",
     "ng2-dragula": "^1.5.0",
