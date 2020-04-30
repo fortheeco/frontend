@@ -6,7 +6,7 @@ RUN npm install
 RUN npm install @angular/cli
 
 COPY . .
-RUN npm run prod
+RUN npm run build
 
 
 ### STAGE 2: Setup ###
