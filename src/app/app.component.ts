@@ -5,8 +5,8 @@ import { NavigationCancel,
         NavigationEnd,
         NavigationError,
         NavigationStart,
-        Router } from '@angular/router';
-import * as firebase from 'Firebase';
+        Router 
+      } from '@angular/router';
 
 
 const config = {
@@ -28,7 +28,7 @@ export class AppComponent {
     this._router.events.subscribe((event: Event) => {
       this.navigationInterceptor(event);
     });
-    firebase.initializeApp(config);
+
   }
   private navigationInterceptor(event: Event): void {
     if (event instanceof NavigationStart) {
