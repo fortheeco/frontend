@@ -7,7 +7,8 @@
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "prod": "ng build --aot --prod"
   },
   "private": true,
   "dependencies": {
@@ -54,7 +55,7 @@
     "ngx-papaparse": "^3.0.2",
     "ngx-perfect-scrollbar": "6.1.0",
     "ngx-print": "^1.2.0-beta.2",
-    "ngx-quill": "^3.1.0",
+    "ngx-quill": "3.1.0",
     "ngx-toastr": "^8.7.3",
     "pace-js": "^1.0.2",
     "rxjs": "^6.3.3",
