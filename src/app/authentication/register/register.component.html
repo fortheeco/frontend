@@ -1,3 +1,104 @@
-<p>
-  register works!
-</p>
+
+<div class="auth-wrapper d-flex no-block justify-content-center align-items-center" style="background:url(assets/images/lagos5.jpg) no-repeat center center; background-size: cover;">
+  <div class="auth-box">
+      <div>
+          <div class="logo">
+              <h5 class="font-medium m-b-20">Sign Up</h5>
+          </div>
+          <div class="row">
+              <div class="col-12">
+                  <form [formGroup]="signupForm" class="form-horizontal m-t-20" id="signupform" (ngSubmit)="onSubmit()">
+                      <div class="form-group row ">
+                          <div class="col-12 ">
+                              <input formControlName="firstName" [(ngModel)]="registerCredentials.firstName" class="form-control form-control-lg" [ngClass]="{ 'is-invalid': submitted && f.firstName.errors }" type="text" required=" " placeholder="first Name">
+                          </div>
+                          <div *ngIf="submitted && f.firstName.errors" class="invalid-feedback">
+                              <div *ngIf="f.firstName.errors.required">firstName is required</div>
+                          </div>
+                      </div>
+                      <div class="form-group row ">
+                          <div class="col-12 ">
+                              <input formControlName="lastName" [(ngModel)]="registerCredentials.lastName" class="form-control form-control-lg" [ngClass]="{ 'is-invalid': submitted && f.lastName.errors }" type="text" required=" " placeholder="lastName">
+                          </div>
+                          <div *ngIf="submitted && f.lastName.errors" class="invalid-feedback">
+                              <div *ngIf="f.lastName.errors.required">lastName is required</div>
+                          </div>
+                      </div>
+                      <div class="form-group row">
+                          <div class="col-12 ">
+                              <input formControlName="emailAddress" [(ngModel)]="registerCredentials.emailAddress"  class="form-control form-control-lg" [ngClass]="{ 'is-invalid': submitted && f.emailAddress.errors }" type="email" required=" " placeholder="Email">
+                          </div>
+                          <div *ngIf="submitted && f.emailAddress.errors" class="invalid-feedback">
+                              <div *ngIf="f.emailAddress.errors.required">Email is required</div>
+                          </div>
+                        <div *ngIf="registerCredentials.email && !validEmail()" text-center>
+                              <p style="color: red" *ngIf="registerCredentials.email && !validEmail()">Email not valid.</p>
+                        </div>
+                      </div>
+                      <!-- <div class="form-group row ">
+                          <div class="col-12 ">
+                              <input formControlName="phone" [(ngModel)]="registerCredentials.phone" class="form-control form-control-lg" [ngClass]="{ 'is-invalid': submitted && f.phone.errors }" type="text" required=" " placeholder="Phone">
+                          </div>
+                          <div *ngIf="submitted && f.phone.errors" class="invalid-feedback">
+                              <div *ngIf="f.phone.errors.required">Phone is required</div>
+                          </div>
+                      </div> -->
+                      <div class="form-group">
+                          <div class="input-group">
+                              <input class="form-control" formControlName="dateOfBirth" placeholder="yyyy-mm-dd" name="dp2" [(ngModel)]="registerCredentials.dateOfBirth"
+                                  ngbDatepicker #d3="ngbDatepicker">
+                              <div class="input-group-append">
+                                  <button class="btn btn-outline-secondary no-shadow" (click)="d3.toggle()" type="button">
+                                      <i class="fa fa-calendar"></i>
+                                  </button>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="form-group row">
+                          <div class="col-12 ">
+                              <input formControlName="password" [(ngModel)]="registerCredentials.password" class="form-control form-control-lg" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" type="password" required=" " placeholder="Password">
+                          </div>
+                          <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                              <div *ngIf="f.password.errors.required">Password is required</div>
+                          </div>
+                      </div>
+                      <div class="form-group row">
+                          <div class="col-12 ">
+                              <input formControlName="password2" [(ngModel)]="registerCredentials.password2" class="form-control form-control-lg" [ngClass]="{ 'is-invalid': submitted && f.password2.errors }" type="password" required=" " placeholder="Confirm Password">
+                          </div>
+                          <div *ngIf="submitted && f.password2.errors" class="invalid-feedback">
+                              <div *ngIf="f.password2.errors.required">Password confirmation is required</div>
+                          </div>
+                              <div *ngIf="registerCredentials.password && registerCredentials.password2 && registerCredentials.password2 !== registerCredentials.password" class="invalid-feedback">
+                                  <div>Second password does not match first password</div>
+                              </div>
+                      </div>
+                      <!-- <div class="form-group row">
+                          <div class="col-md-12 ">
+                              <div class="custom-control custom-checkbox">
+                                  <input formControlName="termscheck" type="checkbox" class="custom-control-input" [ngClass]="{ 'is-invalid': submitted && f.password2.errors }"  id="customCheck1" ngModel required>
+                                  <label class="custom-control-label" for="customCheck1">I agree to all <a href="javascript:void(0)">Terms</a></label>
+                              </div>
+                              <div *ngIf="submitted && f.termscheck.errors" class="invalid-feedback">
+                                  <div>Please check to agree</div>
+                              </div>
+                          </div>
+                      </div> -->
+                      <div class="form-group text-center ">
+                          <div class="col-xs-12 p-b-20 ">
+                              <button [disabled]="loading" class="btn btn-md btn-success " type="submit ">                                       
+                                          <img *ngIf="loading" class="pl-2" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+                              SIGN UP</button>
+                          </div>
+                      </div>
+                      <div class="form-group m-b-0 m-t-10 ">
+                          <div class="col-sm-12 text-center ">
+                              Already have an account? <a routerLink="/authentication/login" class="text-info m-l-5 "><b>Sign In</b></a>
+                          </div>
+                      </div>
+                  </form>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
