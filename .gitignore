@@ -5,6 +5,8 @@
 /output
 /tmp
 /out-tsc
+dist
+output
 
 # dependencies
 */node_modules/*
