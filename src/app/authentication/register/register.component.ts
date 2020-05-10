@@ -2,8 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { first } from 'rxjs/operators';
-
 import { AuthenticationService } from '../../_services';
+import { debounceTime } from 'rxjs/operators';
+import { Subject } from 'rxjs';
+import { Papa } from 'ngx-papaparse';
+
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -25,14 +28,27 @@ export class RegisterComponent implements OnInit {
 		password2: "",
 		dateOfBirth: "",
 	};
+
+  // End the Closeable Alert
+  // This is for the self closing alert
+  private _message = new Subject<string>();
+
+  staticAlertClosed = false;
+  uploadSuccess = false;
+  responseMessage: string;
+  messageType:any;
 	
   constructor(
         private formBuilder: FormBuilder,
         private route: ActivatedRoute,
         private router: Router,
         private authenticationService: AuthenticationService
-        ) {
+  ) {
+    // set up Alert
+      setTimeout(() => (this.staticAlertClosed = true), 20000);
 
+      this._message.subscribe(message => (this.responseMessage = message));
+      this._message.pipe(debounceTime(5000)).subscribe(() => (this.responseMessage = null));
   }
   
     ngOnInit() {
@@ -85,6 +101,9 @@ export class RegisterComponent implements OnInit {
                 error => {
                 	console.log(error);
                     // this.error = error;
+                     // send alert
+                     this.messageType = 'danger';
+                    this._message.next(`iii`);
                     this.loading = false;
                 });
     }

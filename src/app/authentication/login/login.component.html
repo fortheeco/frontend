@@ -1,24 +1,24 @@
 
 <div class="auth-wrapper d-flex no-block">
-    <div class="col-6">
+    <div class="col-6 col-xs-12">
         <span class="db"><img height="60" src="assets/images/logo.png" alt="logo" /></span>
         <h3 class="big-text">Join the ECO
             and impact
             the Society</h3>
     </div>
-    <div class="auth-box col-6">
+    <div class="auth-box col-6 col-xs-12">
         <div id="loginform" [ngClass]="{'d-none': recoverform}">
             <div class="row">
                 <div class="col-12">
                     <form [formGroup]="loginForm" class="form-horizontal m-t-20" id="loginform" (ngSubmit)="onSubmit()">
                         <div class="input-group mb-3">
-                            <input type="text" name="email" formControlName="email" autocomplete="off" class="form-control login-input" [ngClass]="{ 'is-invalid': submitted && f.email.errors }" placeholder="Enter Email" aria-label="Email" aria-describedby="basic-addon1">
+                            <input type="text" name="email" formControlName="email" autocomplete="off" class="form-control border-input" [ngClass]="{ 'is-invalid': submitted && f.email.errors }" placeholder="Enter Email" aria-label="Email" aria-describedby="basic-addon1">
                             <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
                                 <div *ngIf="f.email.errors.required">Email is required</div>
                             </div>
                         </div>
                         <div class="input-group mb-3">
-                            <input type="password" name="password" formControlName="password" class="form-control login-input" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" placeholder="Enter Password" aria-label="Password" aria-describedby="basic-addon1">
+                            <input type="password" name="password" formControlName="password" class="form-control border-input" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" placeholder="Enter Password" aria-label="Password" aria-describedby="basic-addon1">
                             <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
                                 <div *ngIf="f.password.errors.required">Password is required</div>
                             </div>
