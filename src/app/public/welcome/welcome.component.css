@@ -253,8 +253,8 @@ li, a {
     position: absolute;
     height: 60px;
     width: 60px;
-    left: 34%;
-    bottom: 70%;
+    right: 36%;
+    bottom: 58%;
     border-radius: 50%;
     z-index: 3;
 }
@@ -264,11 +264,11 @@ li, a {
     position: absolute;
     height: 100px;
     width: 150px;
-    right: 82%;
-    bottom: 63.5%;
+    right: 13%;
+    bottom: 54%;
     border-radius: 10px;
     box-shadow: 0 8px 8px 0 rgba(0,0,0,0.3);
-    z-index: 3;
+    z-index: 2;
 }
 .image-card-two::after{
     content: '';
@@ -277,7 +277,7 @@ li, a {
     height: 60px;
     width: 60px;
     left: 34%;
-    bottom: 70%;
+    bottom: 45%;
     border-radius: 50%;
     z-index: 2;
 }
@@ -288,7 +288,7 @@ li, a {
     height: 100px;
     width: 150px;
     right: 82%;
-    bottom: 63.5%;
+    bottom: 39.5%;
     border-radius: 10px;
     box-shadow: 0 8px 8px 0 rgba(0,0,0,0.3);
     z-index: 2;
@@ -299,8 +299,8 @@ li, a {
     position: absolute;
     height: 60px;
     width: 60px;
-    left: 34%;
-    bottom: 70%;
+    right: 35%;
+    bottom: 32%;
     border-radius: 50%;
     z-index: 2;
 }
@@ -310,8 +310,8 @@ li, a {
     position: absolute;
     height: 100px;
     width: 150px;
-    right: 82%;
-    bottom: 63.5%;
+    right: 10%;
+    bottom: 29%;
     border-radius: 10px;
     box-shadow: 0 8px 8px 0 rgba(0,0,0,0.3);
     z-index: 2;
