@@ -6,7 +6,7 @@ nav {
 }
 
 li, a {
-    color: rgb(51, 192, 51);
+    color: #33DB60;
     text-decoration: none;
     list-style: none;
     font-weight: 500;
@@ -24,7 +24,7 @@ li, a {
 }
 
 .btn{
-    background-color: rgba(51, 192, 51, 1) ;
+    background-color: #33DB60 ;
     color: whitesmoke;
     border: none;
     border-radius: 10px;
@@ -34,7 +34,7 @@ li, a {
 .btn-one{
     margin-right: 2rem;
     padding: 10px;
-    background-color: rgba(51, 192, 51, 1) ;
+    background-color: #33DB60 ;
     color: whitesmoke;
     border: none;
     border-radius: 10px;
@@ -44,9 +44,9 @@ li, a {
 .btn-two{
     padding: 10px;
     background: whitesmoke ;
-    color: rgba(51, 192, 51, 1);
+    color: #33DB60;
     border: 2px solid;
-    border-color:rgba(51, 192, 51, 1);
+    border-color:#33DB60;
     border-radius: 10px;
     transition: all 0.3s ease 0s;
     cursor: pointer;
@@ -59,7 +59,7 @@ li, a {
     margin: auto;
     min-height: 100vh;
     align-items: center;
-    margin-bottom: -15vw;
+    margin-bottom: -18vw;
     clip-path: polygon(0 0, 100% 0, 100% calc(100% - 15vw), 0 100%);
     z-index: 10;
     position: relative;
@@ -68,13 +68,13 @@ li, a {
     flex: 1;
     display:flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content:flex-start;
     align-items: center;
 }
 
-.cta{
+/* .cta{
     justify-content: flex-start !important;
-}
+} */
 .intro-text{
     height: 60%;
     width: 60%;
@@ -82,13 +82,10 @@ li, a {
     margin: 5px;
 }
 
-
-
-
 .intro-text h1{
-    font-size: 44px;
+    font-size: 50px;
     font-weight: bolder;
-    color:rgba(51, 192, 51, 1) ;
+    color:#33DB60 ;
    
 }
 .intro-text p{
@@ -103,10 +100,10 @@ li, a {
     z-index: -1;
 }
 .cover-one img{
-    height: 70vh;
-    width: 80vh;
-    -ms-transform: rotate(-10deg);
-    transform: rotate(-10deg);
+    height: 80vh;
+    width: 90vh;
+    -ms-transform: rotate(-8deg);
+    transform: rotate(-8deg);
     
 }
 
@@ -125,13 +122,13 @@ li, a {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    bottom: 20px;
+    margin-top: 10em;
 }
 
 .intro-two h1{
     font-size: 44px;
     font-weight: bolder;
-    color:rgba(51, 192, 51, 1) ;
+    color:#33DB60 ;
 }
 
 .cover-two{
@@ -173,7 +170,7 @@ li, a {
 
   .card-details h1 {
     font-weight: bold;
-    color:rgba(51, 192, 51, 1)
+    color:#33DB60
 }
 
 .section-three{
@@ -224,7 +221,7 @@ li, a {
 
 .image-card::after{
     content: '';
-    background-color: rgb(133, 216, 133);
+    background-color: #33DB60;
     position: absolute;
     height: 60px;
     width: 60px;
@@ -249,7 +246,7 @@ li, a {
 }
 .image-card-one::after{
     content: '';
-    background-color: rgb(133, 216, 133);
+    background-color: #33DB60;
     position: absolute;
     height: 60px;
     width: 60px;
@@ -272,7 +269,7 @@ li, a {
 }
 .image-card-two::after{
     content: '';
-    background-color: rgb(133, 216, 133);
+    background-color: #33DB60;
     position: absolute;
     height: 60px;
     width: 60px;
@@ -295,7 +292,7 @@ li, a {
 }
 .image-card-three::after{
     content: '';
-    background-color: rgb(133, 216, 133);
+    background-color: #33DB60;
     position: absolute;
     height: 60px;
     width: 60px;
@@ -316,7 +313,6 @@ li, a {
     box-shadow: 0 8px 8px 0 rgba(0,0,0,0.3);
     z-index: 2;
 }
-
 
 .image-card img{
     height: 100%;
@@ -365,7 +361,7 @@ li, a {
 .contents h1{
     font-size: 44px;
     font-weight: bolder;
-    color:rgba(51, 192, 51, 1) ;
+    color:#33DB60 ;
 }
 .wrapper{
     display: flex;
@@ -444,7 +440,7 @@ li, a {
     place-items: center;
     font-weight: bold;
     font-size: 15px;
-    color:rgb(51, 192, 51) ;
+    color:#33DB60 ;
 }
 
 .section-eight{
@@ -463,7 +459,7 @@ li, a {
     margin-top: -5px;
 }
 .top-box{
-    background-color:rgb(51, 192, 51);
+    background-color:#33DB60;
     width: 100%;
     height: 18% ;
     border-top-left-radius: 10px;
@@ -480,7 +476,7 @@ li, a {
     font-size: 40px;
     font-weight: bolder;
     padding: 5px;
-    color:rgb(51, 192, 51) ;
+    color:#33DB60 ;
 }
 .content-eight p{
     padding: 5px;
@@ -507,10 +503,10 @@ li, a {
 .footer-content li, .footer-content a {
     text-decoration: none !important;
     list-style: none !important;
-    color: black !important;
+    color: rgb(119, 117, 117) !important;
 }
 
 .footer-content h6{
-    color:rgb(51, 192, 51);
+    color:#33DB60;
     font-weight: bold;
 }
