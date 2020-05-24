@@ -50,24 +50,24 @@ export class LoginComponent {
         this.submitted = true;
 
         // stop here if form is invalid
-        // if (this.loginForm.invalid) {
-        //     return;
-        // }
+        if (this.loginForm.invalid) {
+            return;
+        }
         
         // this.loading = true;
-        this.router.navigate(['/dashboard/overview']);
+        // this.router.navigate(['/dashboard/overview']);
 
-        // this.authenticationService.login(this.f.email.value, this.f.password.value)
-        //     .pipe(first())
-        //     .subscribe(
-        //         data => {
-        //             this.bc.postMessage("Logged In")
-        //             this.router.navigate([this.returnUrl]);
-        //         },
-        //         error => {
-        //             this.error = error;
-        //             this.loading = false;
-        //         });
+        this.authenticationService.login(this.f.email.value, this.f.password.value)
+            .pipe(first())
+            .subscribe(
+                data => {
+                    this.bc.postMessage("Logged In")
+                    this.router.navigate([this.returnUrl]);
+                },
+                error => {
+                    this.error = error;
+                    this.loading = false;
+                });
     }
 
   showRecoverForm() {

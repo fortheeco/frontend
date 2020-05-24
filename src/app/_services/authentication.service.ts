@@ -32,10 +32,10 @@ export class AuthenticationService {
     }
 
 
-    login(email: string, password: string) {
-        const url = `${this.BASE_URL}api/auth/login`;
+    login(emailAddress: string, password: string) {
+        const url = `${this.BASE_URL}api/auth/signin`;
 
-        return this.http.post<any>(url, { email, password })
+        return this.http.post<any>(url, { emailAddress, password })
             .pipe(map(user => {
                 // login successful if there's a jwt token in the response
                 if (user && user.access_token) {
