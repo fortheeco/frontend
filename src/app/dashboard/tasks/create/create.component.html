@@ -1,0 +1,269 @@
+<div> 
+  <h3 style="margin-bottom: 30px;">Create a task</h3>
+  <div class="form-list-section">
+    <div class="row task-row">
+      <div class="col-md-3">
+          <div>
+                  <h4 class="segment-title"><span class="badge-1">01</span> Task description</h4>
+          </div>
+      </div>
+
+      <div class="col-md-9">
+          <div class="card shadow-card" (click)="editAbout()">
+              <div class="row">
+                  <div class="col-md-12">
+                      <div class="card-body">
+                        <div class="col-sm-12">                                      
+                            <form [formGroup]="dataForm" class="form-horizontal m-t-25" id="signupform" (ngSubmit)="onSubmit()">
+                              <div class="form-group row ">
+                                      <div class="col-12 ">
+                                            <input class="form-control form-control-md border-input" [ngClass]="{ 'is-invalid': submitted && f.price.errors }" type="text" required=" " placeholder="Title">
+                                      </div>
+                                      <div *ngIf="submitted && f.price.errors" class="invalid-feedback">
+                                          <div *ngIf="f.price.errors.required">Price is required</div>
+                                      </div>
+                              </div>
+                              <div class="form-group row ">
+                                      <div class="col-12 ">
+                                        <div class="form-group m-b-30">
+                                          <select class="form-control" id="exampleFormControlSelect1">
+                                              <option>Location of task</option>
+                                              <option>2</option>
+                                              <option>3</option>
+                                              <option>4</option>
+                                              <option>5</option>
+                                          </select>
+                                        </div>                                    
+                                      </div>
+                                      <div *ngIf="submitted && f.price.errors" class="invalid-feedback">
+                                          <div *ngIf="f.price.errors.required">Price is required</div>
+                                      </div>
+                              </div>
+                              <div class="form-group row ">
+                                      <div class="col-12 ">
+                                            <textarea class="form-control form-control-md border-input" cols="5" [ngClass]="{ 'is-invalid': submitted && f.price.errors }" type="text" required=" " placeholder="Description of task"></textarea>
+                                      </div>
+                                      <div *ngIf="submitted && f.price.errors" class="invalid-feedback">
+                                          <div *ngIf="f.price.errors.required">Price is required</div>
+                                      </div>
+                              </div>
+                              <div class="form-group row ">
+                                <div class="col-6 ">
+                                  <button type="button" style="float: right;" class="btn btn-rounded upload-btn" (click)="modal.close('Close click')">Upload +</button>
+                                </div>
+                                <div class="col-1 " style="padding-top: 2%;">OR</div>
+
+                                <div class="col-5 ">
+                                      <input class="form-control form-control-md border-input" [ngClass]="{ 'is-invalid': submitted && f.price.errors }" type="text" required=" " placeholder="URL Link">
+                                      <div *ngIf="submitted && f.price.errors" class="invalid-feedback">
+                                          <div *ngIf="f.price.errors.required">Price is required</div>
+                                      </div>
+                                </div>
+                              </div>
+                            </form>
+                        </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+    </div>
+    <div class="row task-row">
+      <div class="col-md-3">
+          <div>
+              <h4 class="segment-title"><span class="badge-1">02</span> ECO details</h4>
+          </div>
+      </div>
+
+      <div class="col-md-9">
+          <div class="card shadow-card" (click)="editAbout()">
+              <div class="row">
+                  <div class="col-md-12">
+                      <div class="card-body">
+                        <div class="col-sm-12">                                      
+                            <form [formGroup]="dataForm" class="form-horizontal m-t-25" id="signupform" (ngSubmit)="onSubmit()">
+                              <div class="form-group row ">
+                                <div class="col-4">
+                                  <div class="form-group radio-border-1">
+                                    <fieldset class="radio">
+                                        <label for="radio1">
+                                            <input type="radio" id="radio1" name="radio" value=""> <span class="radio-label">Enviroment</span></label>
+                                    </fieldset>
+                                  </div>                                    
+                                </div>
+                                <div class="col-4">
+                                  <div class="form-group radio-border-1">
+                                    <fieldset class="radio">
+                                        <label for="radio2">
+                                            <input type="radio" id="radio2" name="radio" value=""> <span class="radio-label">Community</span></label>
+                                    </fieldset>
+                                  </div>                                       
+                                </div>
+                                <div class="col-4">
+                                  <div class="form-group radio-border-1">
+                                    <fieldset class="radio">
+                                        <label for="radio3">
+                                            <input type="radio" id="radio3" name="radio" value=""> <span class="radio-label">Organisation</span></label>
+                                    </fieldset>
+                                  </div>                                     
+                                </div>
+                              </div>
+                              <div class="form-group row ">
+                                      <div class="col-12 ">
+                                        <div class="form-group m-b-30">
+                                          <select class="form-control" id="exampleFormControlSelect1">
+                                              <option>UN SDG Goals</option>
+                                              <option>2</option>
+                                              <option>3</option>
+                                              <option>4</option>
+                                              <option>5</option>
+                                          </select>
+                                        </div>                                    
+                                      </div>
+                                      <div *ngIf="submitted && f.price.errors" class="invalid-feedback">
+                                          <div *ngIf="f.price.errors.required">Price is required</div>
+                                      </div>
+                              </div>
+                              <div class="form-group row ">
+                                      <div class="col-12 ">
+                                            <input class="form-control form-control-md border-input" [ngClass]="{ 'is-invalid': submitted && f.price.errors }" type="text" required=" " placeholder="No UN SDG? Give yours">
+                                      </div>
+                                      <div *ngIf="submitted && f.price.errors" class="invalid-feedback">
+                                          <div *ngIf="f.price.errors.required">Price is required</div>
+                                      </div>
+                              </div>
+                            </form>
+                        </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+    </div>
+    <div class="row task-row">
+      <div class="col-md-3">
+          <div>
+              <h4 class="segment-title"><span class="badge-1">03</span> Task requirements</h4>
+          </div>
+      </div>
+
+      <div class="col-md-9">
+          <div class="card shadow-card" (click)="editAbout()">
+              <div class="row">
+                  <div class="col-md-12">
+                      <div class="card-body">
+                        <div class="col-sm-12">                                      
+                            <form [formGroup]="dataForm" class="form-horizontal m-t-25" id="signupform" (ngSubmit)="onSubmit()">
+                              <div class="form-group row ">
+                                      <div class="col-12 ">
+                                            <input class="form-control form-control-md border-input" [ngClass]="{ 'is-invalid': submitted && f.price.errors }" type="number" required=" " placeholder="Number of people required">
+                                      </div>
+                                      <div *ngIf="submitted && f.price.errors" class="invalid-feedback">
+                                          <div *ngIf="f.price.errors.required">Price is required</div>
+                                      </div>
+                              </div>
+                              <div class="form-group row ">
+                                      <div class="col-12 ">
+                                        <div class="form-group m-b-30">
+                                          <select class="form-control" id="exampleFormControlSelect1">
+                                              <option>Required Skills</option>
+                                              <option>2</option>
+                                              <option>3</option>
+                                              <option>4</option>
+                                              <option>5</option>
+                                          </select>
+                                        </div>                                    
+                                      </div>
+                                      <div *ngIf="submitted && f.price.errors" class="invalid-feedback">
+                                          <div *ngIf="f.price.errors.required">Price is required</div>
+                                      </div>
+                              </div>
+                              <div class="form-group row ">
+                                <div class="col-6 ">
+                                      <input class="form-control form-control-md border-input" [ngClass]="{ 'is-invalid': submitted && f.price.errors }" type="number" required=" " placeholder="Duration of task">
+                                </div>
+                                <div class="col-6 ">
+                                      <input class="form-control form-control-md border-input" [ngClass]="{ 'is-invalid': submitted && f.price.errors }" type="number" required=" " placeholder="Task start date   DD/MM/YYYY">
+                                </div>
+                              </div>
+                              <div class="form-group row ">
+                                      <div class="col-12 ">
+                                        <div class="form-group m-b-30">
+                                          <select class="form-control" id="exampleFormControlSelect1">
+                                              <option>How often do you want reports submitted?</option>
+                                              <option>2</option>
+                                              <option>3</option>
+                                              <option>4</option>
+                                              <option>5</option>
+                                          </select>
+                                        </div>                                    
+                                      </div>
+                                      <div *ngIf="submitted && f.price.errors" class="invalid-feedback">
+                                          <div *ngIf="f.price.errors.required">Price is required</div>
+                                      </div>
+                              </div>
+                            </form>
+                        </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+    </div>
+    <div class="row task-row">
+      <div class="col-md-3">
+          <div>
+              <h4 class="segment-title"><span class="badge-1">04</span> Payment</h4>
+          </div>
+      </div>
+
+      <div class="col-md-9">
+          <div class="card shadow-card" (click)="editAbout()">
+              <div class="row">
+                  <div class="col-md-12">
+                      <div class="card-body">
+                        <div class="col-sm-12">                                      
+                            <form [formGroup]="dataForm" class="form-horizontal m-t-25" id="signupform" (ngSubmit)="onSubmit()">
+                              <div class="form-group row ">
+                                      <div class="col-12 ">
+                                        <div class="form-group m-b-30">
+                                          <select class="form-control" id="exampleFormControlSelect1">
+                                              <option>Payment type</option>
+                                              <option>2</option>
+                                              <option>3</option>
+                                              <option>4</option>
+                                              <option>5</option>
+                                          </select>
+                                        </div>                                    
+                                      </div>
+                                      <div *ngIf="submitted && f.price.errors" class="invalid-feedback">
+                                          <div *ngIf="f.price.errors.required">Price is required</div>
+                                      </div>
+                              </div>
+                              <div class="form-group row ">
+                                      <div class="col-12 ">
+                                          <div class="input-group mb-3">
+                                            <input class="form-control form-control-md border-input" [ngClass]="{ 'is-invalid': submitted && f.price.errors }" type="number" required=" " placeholder="Amount to pay one person">
+                                            <div class="input-group-append">
+                                                <span class="input-group-text">$</span>
+                                            </div>
+                                          </div>
+                                      </div>
+                                      <div *ngIf="submitted && f.price.errors" class="invalid-feedback">
+                                          <div *ngIf="f.price.errors.required">Price is required</div>
+                                      </div>
+                              </div>
+                              <div style="display: block; padding-bottom: 10px;height: 40px;" class="form-group row ">
+                                <button type="button" class="btn btn-rounded btn-1 float-right" disabled (click)="onSubmit()">Pay and post</button>
+                              </div>
+
+                            </form>
+                        </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+    </div>
+  </div>
+</div>

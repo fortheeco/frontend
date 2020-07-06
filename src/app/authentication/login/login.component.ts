@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { first } from 'rxjs/operators';
+import {RestService} from "../../_services/rest.service";
 
 import { AuthenticationService } from '../../_services';
 
@@ -24,7 +25,8 @@ export class LoginComponent {
   constructor(
         private formBuilder: FormBuilder,
         private route: ActivatedRoute,
-        private router: Router,
+        private router: Router, 
+        private rest: RestService,
         private authenticationService: AuthenticationService
     ) {
         // redirect to home if already logged in
@@ -40,13 +42,15 @@ export class LoginComponent {
         });
 
         // get return url from route parameters or default to '/'
-        this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
+        this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/dashboard/overview';
     }
 
     // convenience getter for easy access to form fields
     get f() { return this.loginForm.controls; }
 
     onSubmit() {
+        // this.router.navigate(['/dashboard/overview']);
+        // return
         this.submitted = true;
 
         // stop here if form is invalid
@@ -54,9 +58,7 @@ export class LoginComponent {
             return;
         }
         
-        // this.loading = true;
-        // this.router.navigate(['/dashboard/overview']);
-
+        this.loading = true;
         this.authenticationService.login(this.f.email.value, this.f.password.value)
             .pipe(first())
             .subscribe(
@@ -65,7 +67,9 @@ export class LoginComponent {
                     this.router.navigate([this.returnUrl]);
                 },
                 error => {
+                    // let err = error.json()
                     this.error = error;
+                    // console.log(err)
                     this.loading = false;
                 });
     }

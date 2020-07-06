@@ -19,16 +19,32 @@ export class MenuItems {
          
           {
             path: '/dashboard/overview',
-            title: 'Overview',
-            icon: 'icon-grid',
+            title: 'Home',
+            icon: 'fas fa-stop',
             class: '',
             extralink: false,
             submenu: []
           },
           {
-            path: '/dashboard/profile',
-            title: 'Profile',
-            icon: 'icon-user',
+            path: '/dashboard/tasks',
+            title: 'Tasks',
+            icon: 'fas fa-stop',
+            class: '',
+            extralink: false,
+            submenu: []
+          },
+          {
+            path: '/dashboard/notifications',
+            title: 'Notifications',
+            icon: 'fas fa-stop',
+            class: '',
+            extralink: false,
+            submenu: []
+          },
+          {
+            path: '/dashboard/store',
+            title: 'Store',
+            icon: 'fas fa-stop',
             class: '',
             extralink: false,
             submenu: []

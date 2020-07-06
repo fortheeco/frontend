@@ -1,0 +1,32 @@
+
+
+.tab-container{
+    /* padding-top: 30px; */
+}
+:host ::ng-deep .nav-tabs{
+    border: none !important;
+    /* margin-top: 30%; */
+    background-color: #ffffff;
+    margin-bottom: 30px;
+    border-top-left-radius: 14px !important;
+}
+:host ::ng-deep .tabset1 a.nav-link {
+    color: #33DB60;
+    border: none;
+    padding: 0.8rem 1.3rem;
+    text-align: left !important;
+    margin-bottom: 1%;
+    font-weight: bold;
+}
+
+:host ::ng-deep .tabset1 .nav-tabs .nav-link.active, .nav-tabs .nav-item.show .nav-link{
+    color: #517258;
+    border-bottom: solid 2px #33DB60;
+    text-align: left !important;
+    margin-bottom: 1%;
+}
+
+:host ::ng-deep .tabset1 .nav-item:nth-child(2)  a.nav-link {
+  margin-left: 15pt;
+  margin-right: 35pt;
+}

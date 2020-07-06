@@ -1,12 +1,11 @@
 import { Component, AfterViewInit, EventEmitter, Output } from '@angular/core';
-import {
-  NgbModal
-} from '@ng-bootstrap/ng-bootstrap';
 import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
 declare var $: any;
 import { AuthenticationService } from '../../_services';
 import { Router, ActivatedRoute } from '@angular/router';
 import {BASE_URL} from "../../_providers/config/config";
+import { NgbModal, ModalDismissReasons, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { CreateOptionsComponent } from '../../shared/modals/create-options/create-options.component';
 
 @Component({
   selector: 'app-navigation',
@@ -22,9 +21,11 @@ export class NavigationComponent implements AfterViewInit {
   userProfile : any;
   notifications = [];
   
-  constructor(private modalService: NgbModal,
-        public authenticationService: AuthenticationService,
-        private router: Router) {}
+  constructor(
+    private modalService: NgbModal,
+    public authenticationService: AuthenticationService,
+    private router: Router
+  ) {}
 
 
   logout(){
@@ -32,6 +33,12 @@ export class NavigationComponent implements AfterViewInit {
     this.authenticationService.logout();
   }
 
+  viewCreateOptions() {
+    const modalRef = this.modalService.open(CreateOptionsComponent, { size: 'lg',centered: true,windowClass: 'clear-bg-modal'  });
+    modalRef.result.then((result) => {
+      // this._success.next("Successfully Deleted");
+    })
+  }
   ngAfterViewInit() {
   }
 }

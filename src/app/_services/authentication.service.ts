@@ -23,7 +23,7 @@ export class AuthenticationService {
         private route: ActivatedRoute,
         private httpc:Http,
         private router: Router) {
-        this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('currentUser')));
+        this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('ecoUser')));
         this.currentUser = this.currentUserSubject.asObservable();
     }
 
@@ -38,20 +38,19 @@ export class AuthenticationService {
         return this.http.post<any>(url, { emailAddress, password })
             .pipe(map(user => {
                 // login successful if there's a jwt token in the response
-                if (user && user.access_token) {
+                if (user && user.token) {
                     console.log(user);
-                    if(user.user.default_password_changed == 'yes'){
-                        // store user details and jwt token in local storage to keep user logged in between page refreshes
-                        localStorage.setItem('currentUser', JSON.stringify(user));
-                        this.currentUserSubject.next(user);
-                        return {status: 1};
-                    }else{
-                        this.currentUserSubject.next(user);
-                        return {status: 2};
-                    }
+                    // store user details and jwt token in local storage to keep user logged in between page refreshes
+                    localStorage.setItem('ecoUser', JSON.stringify(user));
+                    this.currentUserSubject.next(user);
+                    return {status: 1};
                 }
 
-            }));
+            },error => {
+                console.log(error);
+
+            }
+            ));
     }
     signup(registrationData) {
         const url = `${this.BASE_URL}api/auth/signup`;
@@ -71,6 +70,25 @@ export class AuthenticationService {
     }
 
 
+    /**
+     * RETURN Individual Data
+     *
+     * @param id
+     * @return Response
+     */
+
+
+	getIndividualData(): Observable<any> {
+		// console.log(this.currentUserValue)
+		let id = this.currentUserValue.user.id;
+	    const userToken: string = 'Bearer ' + this.currentUserValue.token;
+		const url = `${this.BASE_URL}api/Individual?IndividualId=${id}`;
+
+	    this.headers = new Headers({'Content-Type': 'application/json'});
+	    this.headers.append('Authorization', userToken);
+	    return this.httpc.get(url,{headers: this.headers});
+    }
+    
     logout() {
         // remove user from local storage to log user out
         localStorage.removeItem('currentUser');

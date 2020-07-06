@@ -19,6 +19,12 @@ import { AgmCoreModule } from '@agm/core';
 import { DragulaModule } from 'ng2-dragula';
 
 import {NgxPrintModule} from 'ngx-print';
+import { ProfileComponent } from './profile/profile.component';
+import { CreateComponent } from './tasks/create/create.component';
+import { ViewUserProfileComponent } from './tasks/view-user-profile/view-user-profile.component';
+import { ListComponent } from './tasks/list/list.component';
+import { ToastrModule } from 'ngx-toastr';
+
 @NgModule({
   imports: [
     FormsModule,
@@ -38,6 +44,10 @@ import {NgxPrintModule} from 'ngx-print';
   ],
   declarations: [
     HomeComponent,
+    ProfileComponent,
+    CreateComponent,
+    ViewUserProfileComponent,
+    ListComponent,
    ],
     entryComponents: [
     ]

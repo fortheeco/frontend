@@ -42,6 +42,17 @@ import {NgxPrintModule} from 'ngx-print';
 import { ViewUserComponent } from './shared/modals/view-user/view-user.component';
 import { ViewUserCvComponent } from './shared/modals/view-user-cv/view-user-cv.component';
 import { AddUserComponent } from './shared/modals/add-user/add-user.component';
+import { EditAboutComponent } from './shared/modals/profile/edit-about/edit-about.component';
+import { EditContactComponent } from './shared/modals/profile/edit-contact/edit-contact.component';
+import { EditGlobaladdressComponent } from './shared/modals/profile/edit-globaladdress/edit-globaladdress.component';
+import { EditSkillsComponent } from './shared/modals/profile/edit-skills/edit-skills.component';
+import { AddWorkComponent } from './shared/modals/profile/add-work/add-work.component';
+import { AddEducationComponent } from './shared/modals/profile/add-education/add-education.component';
+import { EditEducationComponent } from './shared/modals/profile/edit-education/edit-education.component';
+import { ViewComponent } from './shared/modals/tasks/view/view.component';
+import { CreateOptionsComponent } from './shared/modals/create-options/create-options.component';
+import { ToastrModule } from 'ngx-toastr';
+import {UtilityProvider} from "./_providers/utility";
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true,
@@ -62,12 +73,35 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     ViewUserComponent,
     ViewUserCvComponent,
     AddUserComponent,
+    EditAboutComponent,
+    EditContactComponent,
+    EditGlobaladdressComponent,
+    EditSkillsComponent,
+    AddWorkComponent,
+    AddEducationComponent,
+    EditEducationComponent,
+    ViewComponent,
+    CreateOptionsComponent,
   ],
-  entryComponents: [ViewUserComponent, ViewUserCvComponent, AddUserComponent],
+  entryComponents: [
+    ViewUserComponent, 
+    ViewUserCvComponent, 
+    AddUserComponent,
+    EditAboutComponent,
+    EditContactComponent,
+    EditSkillsComponent,
+    EditGlobaladdressComponent,
+    ViewComponent,
+    AddWorkComponent,
+    AddEducationComponent,
+    EditEducationComponent,
+    CreateOptionsComponent
+  ],
 
   imports: [
     CommonModule,
     BrowserModule,
+    ToastrModule.forRoot(),
     BrowserAnimationsModule,
     SlimLoadingBarModule,
     FormsModule,
@@ -87,6 +121,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   ],
   providers: [
     StatusTranslators,
+    UtilityProvider,
     MenuItems,
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },

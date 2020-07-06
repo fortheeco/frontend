@@ -1,0 +1,522 @@
+<div class="row">
+  <div class="col-md-9">
+    <div class="card profile-info">
+      <div class="cover-photo-container"></div>
+      <div class="row profile-bottom profile-bottom-1">
+        <div class="col col-md-2">
+          <img class="user-avatar" src="assets/images/avatar-default.png" />
+        </div>
+        <div class="col col-md-8">
+          <h4 class="color-darkgreen">{{ profile?profile.detail.firstName + ' ' + profile.detail.lastName:'' }}</h4>
+          <h6 class="color-darkgreen intro-title">Not yet set</h6>
+          <!-- <h6 class="color-darkgreen">{{ profile?profile.detail.aboutMe:'not yet set' }}</h6> -->
+        </div>
+        <div class="col col-md-2">
+          <button type="button" (click)="editAbout()" class="btn btn-circle btn-lg profile-btn"><i class="mdi mdi-border-color"></i> </button>
+          <div ngbDropdown class="btn-group">                   
+              <!-- <button class="btn btn-warning btn-sm" type="button" ngbDropdownToggle aria-controls="dropdsown-basic">
+                  More
+              </button> -->
+              <button type="button"  ngbDropdownToggle aria-controls="dropdown-basic-actions" class="btn btn-circle btn-lg profile-btn"><i class="icon-options"></i> </button>
+              <div class="" id="dropdown-basic-actions" ngbDropdownMenu>
+                  <a class="dropdown-item" href="javascript:void(0);" (click)="showEditContactModal()">Manage Contact</a>
+                  <a class="dropdown-item" href="javascript:void(0);" (click)="showEditGlobaladdressModal()">Manage Global Address</a>
+                  <a class="dropdown-item" href="javascript:void(0);" (click)="deleteCheckedMail()">Delete</a>
+              </div>
+          </div>
+          <!-- <button type="button" class="btn btn-circle btn-lg profile-btn"><i class="icon-options"></i> </button> -->
+        </div>
+      </div>
+      <div class="row  profile-bottom profile-bottom-2">
+        <div class="col col-md-10">
+          <div class="row">
+            <div class="col col-md-3">
+                <!-- <p><i class="icon-location-pin"></i> {{ profile?profile.detail.location:'not yet set' }}</p> -->
+                <p><i class="icon-location-pin"></i> not yet set</p>
+            </div>
+            <div class="col col-md-2">
+              <p><i class="icon-symble-male"></i> {{ profile?profile.detail.gender:'' }}</p>
+            </div>
+            <div class="col col-md-2">
+              <!-- <p><i class="icon-calender"></i> {{ profile?profile.detail.dateOfBirth|date:'dd mm YYYY':'' }}</p> -->
+              <p><i class="icon-calender"></i> {{ profile?.detail.dateOfBirth|date:'dd MMMM' }}</p>
+            </div>
+            <div class="col col-md-2">
+              <p><i class="icon-note"></i> {{ profile?.detail.dateJoined|date:'MMMM yyyy' }}</p>
+            </div>
+            <div class="col col-md-3"></div>
+          </div>
+        </div>
+        <div class="col col-md-2">
+          <div class="row user-stats">
+            <div class="col-6">
+              <p><b>{{ profile?.follows.following }}</b> following</p>
+            </div>
+            <div class="col-6">
+              <p><b>{{ profile?.follows.following }}</b> Followers</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row  profile-bottom profile-bottom-3">
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+          Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident</p>
+      </div>
+
+    </div>
+    
+    <ngb-tabset class="tabset1">
+      <ngb-tab title="Task">
+        <ng-template ngbTabContent>
+          <div class="tab-container">
+            <div class="card card-shadow" (click)="editAbout()">
+                <div class="row">
+                    <div class="col-md-9">
+                        <div class="card-body">
+                            <div class="d-flex flex-row">
+                                <div class="round align-self-center round-success card-round">
+                                </div>
+                                <div class="m-l-10 align-self-center">
+                                    <h4 class="m-b-0 green-text">John Smith</h4>
+                                    <p class="sq1"><span class="text-muted">Posted a task</span>  <span>May 4 2020 at 7:30pm</span></p>
+                                </div>
+                            </div>
+                            <div class="card-content">
+                                <div class="d-flex no-block al m-r-15ign-items-center">
+                                    <div class="m-t-10">
+                                        <h4 class="text-dark font-medium">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                                            eiusmod tempor incididunt ut labore et dolore magna aliqua.</h4>
+                                        <p class="card-text">
+                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+      
+                                            Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                                        </p>
+                                    </div>
+                                    <div class="ml-auto m-t-15">
+                                        <div class="crypto1"></div>
+                                    </div>
+                                </div>
+                                <div class="row  text-dark m-t-30 footer-btns">
+                                    <div class="col-1">
+                                        <p class="font-medium">
+                                            <i class="fa fa-arrow-up"></i> 2.5k</p>
+                                    </div>
+                                    <div class="col-1">
+                                        <p class="font-medium">
+                                            <i class="far fa-comment-alt"></i> 1.3k</p>
+                                    </div>
+                                    <div class="col-1">
+                                        <p class="font-medium">
+                                        <i class="fa fa-eye"></i> 250</p>
+                                    </div>
+                                    <div class="col-6">
+                                    </div>
+                                    <div class="col-1">
+                                        <p class="font-medium">
+                                            <i class="far fa-list-alt"></i> 80</p>
+                                    </div>
+                                    <div class="col-1">
+                                        <p class="font-medium">
+                                            <i class="icon-share"></i> 1.3k</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 card-right">
+                        <div class="d-flex no-block align-items-center">
+                            <div class="ml-auto card-right-top">
+                                <span class="text-success display-8">
+                                    <i class="icon-options"></i>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="feed-widget scrollable" style="height:auto;">
+                            <ul class="list-style-none feed-body m-0 p-b-20">
+                                <li class="feed-item">
+                                    <div class="feed-icon bg-info">
+                                    </div> Community
+                                </li>
+                                <li class="feed-item">
+                                    <div class="feed-icon bg-info">
+                                    </div> Good health and well being...
+                                </li>
+                                <li class="feed-item">
+                                    <div class="feed-icon bg-info">
+                                    </div> Manchester, United Kingdom
+                                </li>
+                                <li class="feed-item">
+                                    <div class="feed-icon bg-info">
+                                    </div> 2 applications left
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card card-shadow">
+                <div class="row">
+                    <div class="col-md-9">
+                        <div class="card-body">
+                            <div class="d-flex flex-row">
+                                <div class="round align-self-center round-success card-round">
+                                </div>
+                                <div class="m-l-10 align-self-center">
+                                    <h4 class="m-b-0 green-text">John Smith</h4>
+                                    <p class="sq1"><span class="text-muted">Posted a task</span>  <span>May 4 2020 at 7:30pm</span></p>
+                                </div>
+                            </div>
+                            <div class="card-content">
+                                <div class="d-flex no-block al m-r-15ign-items-center">
+                                    <div class="m-t-10">
+                                        <h4 class="text-dark font-medium">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                                            eiusmod tempor incididunt ut labore et dolore magna aliqua.</h4>
+                                            <img class="card-img-right" src="assets/images/article.png" alt="Card image cap">
+                                            <p class="card-text">
+                                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                                                Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                                            </p>
+                                    </div>
+                                    <div class="ml-auto m-t-15">
+                                        <div class="crypto1"></div>
+                                    </div>
+                                </div>
+                                <div class="row  text-dark m-t-30 footer-btns">
+                                    <div class="col-1">
+                                        <p class="font-medium">
+                                            <i class="fa fa-arrow-up"></i> 2.5k</p>
+                                    </div>
+                                    <div class="col-1">
+                                        <p class="font-medium">
+                                            <i class="far fa-comment-alt"></i> 1.3k</p>
+                                    </div>
+                                    <div class="col-1">
+                                        <p class="font-medium">
+                                        <i class="fa fa-eye"></i> 250</p>
+                                    </div>
+                                    <div class="col-6">
+                                    </div>
+                                    <div class="col-1">
+                                        <p class="font-medium">
+                                            <i class="far fa-list-alt"></i> 80</p>
+                                    </div>
+                                    <div class="col-1">
+                                        <p class="font-medium">
+                                            <i class="icon-share"></i> 1.3k</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 card-right">
+                        <div class="d-flex no-block align-items-center">
+                            <div class="ml-auto card-right-top">
+                                <span class="text-success display-8">
+                                    <i class="icon-options"></i>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="feed-widget scrollable" style="height:auto;">
+                            <ul class="list-style-none feed-body m-0 p-b-20">
+                                <li class="feed-item">
+                                    <div class="feed-icon bg-info">
+                                    </div> Community
+                                </li>
+                                <li class="feed-item">
+                                    <div class="feed-icon bg-info">
+                                    </div> Good health and well being...
+                                </li>
+                                <li class="feed-item">
+                                    <div class="feed-icon bg-info">
+                                    </div> Manchester, United Kingdom
+                                </li>
+                                <li class="feed-item">
+                                    <div class="feed-icon bg-info">
+                                    </div> 2 applications left
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+          </div>
+        </ng-template>
+      </ngb-tab>
+      <ngb-tab title="Problem">
+        <ng-template ngbTabContent>
+          <div class="tab-container">
+            <div class="card card-shadow" (click)="editAbout()">
+                <div class="row">
+                    <div class="col-md-9">
+                        <div class="card-body">
+                            <div class="d-flex flex-row">
+                                <div class="round align-self-center round-success card-round">
+                                </div>
+                                <div class="m-l-10 align-self-center">
+                                    <h4 class="m-b-0 green-text">John Smith</h4>
+                                    <p class="sq1"><span class="text-muted">Posted a task</span>  <span>May 4 2020 at 7:30pm</span></p>
+                                </div>
+                            </div>
+                            <div class="card-content">
+                                <div class="d-flex no-block al m-r-15ign-items-center">
+                                    <div class="m-t-10">
+                                        <h4 class="text-dark font-medium">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                                            eiusmod tempor incididunt ut labore et dolore magna aliqua.</h4>
+                                        <p class="card-text">
+                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+      
+                                            Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                                        </p>
+                                    </div>
+                                    <div class="ml-auto m-t-15">
+                                        <div class="crypto1"></div>
+                                    </div>
+                                </div>
+                                <div class="row  text-dark m-t-30 footer-btns">
+                                    <div class="col-1">
+                                        <p class="font-medium">
+                                            <i class="fa fa-arrow-up"></i> 2.5k</p>
+                                    </div>
+                                    <div class="col-1">
+                                        <p class="font-medium">
+                                            <i class="far fa-comment-alt"></i> 1.3k</p>
+                                    </div>
+                                    <div class="col-1">
+                                        <p class="font-medium">
+                                        <i class="fa fa-eye"></i> 250</p>
+                                    </div>
+                                    <div class="col-6">
+                                    </div>
+                                    <div class="col-1">
+                                        <p class="font-medium">
+                                            <i class="far fa-list-alt"></i> 80</p>
+                                    </div>
+                                    <div class="col-1">
+                                        <p class="font-medium">
+                                            <i class="icon-share"></i> 1.3k</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 card-right">
+                        <div class="d-flex no-block align-items-center">
+                            <div class="ml-auto card-right-top">
+                                <span class="text-success display-8">
+                                    <i class="icon-options"></i>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="feed-widget scrollable" style="height:auto;">
+                            <ul class="list-style-none feed-body m-0 p-b-20">
+                                <li class="feed-item">
+                                    <div class="feed-icon bg-info">
+                                    </div> Community
+                                </li>
+                                <li class="feed-item">
+                                    <div class="feed-icon bg-info">
+                                    </div> Good health and well being...
+                                </li>
+                                <li class="feed-item">
+                                    <div class="feed-icon bg-info">
+                                    </div> Manchester, United Kingdom
+                                </li>
+                                <li class="feed-item">
+                                    <div class="feed-icon bg-info">
+                                    </div> 2 applications left
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+          </div>
+        </ng-template>
+      </ngb-tab>
+      <ngb-tab title="Profile">
+        <ng-template ngbTabContent>
+          <div class="tab-container">
+            <div class="card card-shadow" (click)="editAbout()">
+                <div class="row">
+                    <div class="col-md-9">
+                        <div class="card-body">
+                            <div class="d-flex flex-row">
+                                <div class="round align-self-center round-success card-round">
+                                </div>
+                                <div class="m-l-10 align-self-center">
+                                    <h4 class="m-b-0 green-text">John Smith</h4>
+                                    <p class="sq1"><span class="text-muted">Posted a task</span>  <span>May 4 2020 at 7:30pm</span></p>
+                                </div>
+                            </div>
+                            <div class="card-content">
+                                <div class="d-flex no-block al m-r-15ign-items-center">
+                                    <div class="m-t-10">
+                                        <h4 class="text-dark font-medium">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                                            eiusmod tempor incididunt ut labore et dolore magna aliqua.</h4>
+                                        <p class="card-text">
+                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+      
+                                            Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                                        </p>
+                                    </div>
+                                    <div class="ml-auto m-t-15">
+                                        <div class="crypto1"></div>
+                                    </div>
+                                </div>
+                                <div class="row  text-dark m-t-30 footer-btns">
+                                    <div class="col-1">
+                                        <p class="font-medium">
+                                            <i class="fa fa-arrow-up"></i> 2.5k</p>
+                                    </div>
+                                    <div class="col-1">
+                                        <p class="font-medium">
+                                            <i class="far fa-comment-alt"></i> 1.3k</p>
+                                    </div>
+                                    <div class="col-1">
+                                        <p class="font-medium">
+                                        <i class="fa fa-eye"></i> 250</p>
+                                    </div>
+                                    <div class="col-6">
+                                    </div>
+                                    <div class="col-1">
+                                        <p class="font-medium">
+                                            <i class="far fa-list-alt"></i> 80</p>
+                                    </div>
+                                    <div class="col-1">
+                                        <p class="font-medium">
+                                            <i class="icon-share"></i> 1.3k</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 card-right">
+                        <div class="d-flex no-block align-items-center">
+                            <div class="ml-auto card-right-top">
+                                <span class="text-success display-8">
+                                    <i class="icon-options"></i>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="feed-widget scrollable" style="height:auto;">
+                            <ul class="list-style-none feed-body m-0 p-b-20">
+                                <li class="feed-item">
+                                    <div class="feed-icon bg-info">
+                                    </div> Community
+                                </li>
+                                <li class="feed-item">
+                                    <div class="feed-icon bg-info">
+                                    </div> Good health and well being...
+                                </li>
+                                <li class="feed-item">
+                                    <div class="feed-icon bg-info">
+                                    </div> Manchester, United Kingdom
+                                </li>
+                                <li class="feed-item">
+                                    <div class="feed-icon bg-info">
+                                    </div> 2 applications left
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card card-shadow" (click)="editAbout()">
+                <div class="row">
+                    <div class="col-md-9">
+                        <div class="card-body">
+                            <div class="d-flex flex-row">
+                                <div class="round align-self-center round-success card-round">
+                                </div>
+                                <div class="m-l-10 align-self-center">
+                                    <h4 class="m-b-0 green-text">John Smith</h4>
+                                    <p class="sq1"><span class="text-muted">Posted a task</span>  <span>May 4 2020 at 7:30pm</span></p>
+                                </div>
+                            </div>
+                            <div class="card-content">
+                                <div class="d-flex no-block al m-r-15ign-items-center">
+                                    <div class="m-t-10">
+                                        <h4 class="text-dark font-medium">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                                            eiusmod tempor incididunt ut labore et dolore magna aliqua.</h4>
+                                        <p class="card-text">
+                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+      
+                                            Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                                        </p>
+                                    </div>
+                                    <div class="ml-auto m-t-15">
+                                        <div class="crypto1"></div>
+                                    </div>
+                                </div>
+                                <div class="row  text-dark m-t-30 footer-btns">
+                                    <div class="col-1">
+                                        <p class="font-medium">
+                                            <i class="fa fa-arrow-up"></i> 2.5k</p>
+                                    </div>
+                                    <div class="col-1">
+                                        <p class="font-medium">
+                                            <i class="far fa-comment-alt"></i> 1.3k</p>
+                                    </div>
+                                    <div class="col-1">
+                                        <p class="font-medium">
+                                        <i class="fa fa-eye"></i> 250</p>
+                                    </div>
+                                    <div class="col-6">
+                                    </div>
+                                    <div class="col-1">
+                                        <p class="font-medium">
+                                            <i class="far fa-list-alt"></i> 80</p>
+                                    </div>
+                                    <div class="col-1">
+                                        <p class="font-medium">
+                                            <i class="icon-share"></i> 1.3k</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 card-right">
+                        <div class="d-flex no-block align-items-center">
+                            <div class="ml-auto card-right-top">
+                                <span class="text-success display-8">
+                                    <i class="icon-options"></i>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="feed-widget scrollable" style="height:auto;">
+                            <ul class="list-style-none feed-body m-0 p-b-20">
+                                <li class="feed-item">
+                                    <div class="feed-icon bg-info">
+                                    </div> Community
+                                </li>
+                                <li class="feed-item">
+                                    <div class="feed-icon bg-info">
+                                    </div> Good health and well being...
+                                </li>
+                                <li class="feed-item">
+                                    <div class="feed-icon bg-info">
+                                    </div> Manchester, United Kingdom
+                                </li>
+                                <li class="feed-item">
+                                    <div class="feed-icon bg-info">
+                                    </div> 2 applications left
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+          </div>
+        </ng-template>
+      </ngb-tab>
+    </ngb-tabset>
+  </div>
+  <div class="col-md-3">
+      <div class="card" style="height:100vh">
+          <div class="card-body">
+              <h4 class="card-title">Right section</h4>
+              <p class="card-text">what's going to be here dennis ?</p>
+          </div>
+      </div>
+  </div>
+</div>

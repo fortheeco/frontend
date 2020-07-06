@@ -1,0 +1,33 @@
+.option-container{
+    height: 280pt;
+}
+
+.opt-inner{
+    background-color: #ffffff;
+    margin: 5%;
+    height: 80%;
+    padding: 8px;
+    padding-top: 20%;
+    text-align: center;
+    border-radius: 10px;
+}
+
+.opt-inner img{
+    height: 70px;
+    width: 70px;
+}
+
+.opt-inner h4{
+    color: #33DB60;
+    font-size: 1em;
+    margin-top: 20px;
+}
+
+
+.opt-inner p{
+    font-size: 0.8em;
+}
+
+.btn-1{
+
+}
