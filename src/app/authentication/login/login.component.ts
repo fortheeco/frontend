@@ -69,7 +69,7 @@ export class LoginComponent {
                 error => {
                     // let err = error.json()
                     this.error = error;
-                    // console.log(err)
+                    console.log(error)
                     this.loading = false;
                 });
     }

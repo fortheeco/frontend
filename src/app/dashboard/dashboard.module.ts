@@ -23,7 +23,10 @@ import { ProfileComponent } from './profile/profile.component';
 import { CreateComponent } from './tasks/create/create.component';
 import { ViewUserProfileComponent } from './tasks/view-user-profile/view-user-profile.component';
 import { ListComponent } from './tasks/list/list.component';
-import { ToastrModule } from 'ngx-toastr';
+
+import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
+import { CreateProblemComponent } from './problem/create-problem/create-problem.component';
+import { OrganizationComponent } from './organization/organization.component';
 
 @NgModule({
   imports: [
@@ -33,6 +36,7 @@ import { ToastrModule } from 'ngx-toastr';
     ChartsModule,
     ChartistModule,
     RouterModule.forChild(DashboardRoutes),
+    NgMultiSelectDropDownModule.forRoot(),
     AgmCoreModule,
     PerfectScrollbarModule,
     CalendarModule.forRoot(),
@@ -48,6 +52,8 @@ import { ToastrModule } from 'ngx-toastr';
     CreateComponent,
     ViewUserProfileComponent,
     ListComponent,
+    CreateProblemComponent,
+    OrganizationComponent,
    ],
     entryComponents: [
     ]

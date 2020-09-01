@@ -1,0 +1,87 @@
+.tab-container{
+    /* padding-top: 30px; */
+}
+:host ::ng-deep .nav-tabs{
+    border: none !important;
+    margin-top: -2%;
+    z-index: 99999999999;
+    margin-bottom: 2%;
+    background-color: #ffffff;
+}
+:host ::ng-deep .tabset1 a.nav-link {
+    color: #33DB60;
+    border: none;
+    padding: 0.5rem 1.1rem;
+    text-align: left !important;
+    margin-bottom: 1%;
+    font-weight: bold;
+}
+
+:host ::ng-deep .tabset1 .nav-tabs .nav-link.active, .nav-tabs .nav-item.show .nav-link{
+    color: #33DB60;
+    border-bottom: solid 2px #33DB60;
+    padding: 0.5rem 1.1rem;
+    text-align: left !important;
+    margin-bottom: 1%;
+}
+
+:host ::ng-deep .tabset1 .nav-item:nth-child(2)  a.nav-link {
+  margin-left: 15pt;
+  margin-right: 35pt;
+}
+
+.intro-title{
+    font-weight: 600;
+}
+.feed-item{
+    overflow: hidden;
+}
+.dropdown-toggle::after{
+    display: none;
+}
+
+
+.profile-info{
+    height: 400px;
+    position: relative;
+}
+.profile-bottom{
+    padding: 20px;
+}
+.profile-bottom-1{
+    height: 50px;
+    padding-bottom: 4px;
+}
+.cover-photo-container{
+    height: 200px;
+    background:url(../../../assets/images/profile_cover.png) no-repeat center center;
+}
+
+.user-avatar{
+    height: 100px;
+    width: 100px;
+    position: absolute;
+    top: -70px;
+    border: solid 3px #ffffff;
+    border-radius: 4px;
+}
+
+.profile-btn{
+    background-color: #ffffff;
+    color: #33DB60;
+}
+
+.profile-bottom{
+    padding: 15px;
+    padding-left: 25px;
+    padding-right: 25px;
+    color: #517258;
+}
+
+.profile-bottom p{
+    font-size: 0.9em;
+}
+
+.user-stats  p{
+    font-size: 0.7em;
+}

@@ -12,13 +12,12 @@ import {RestService} from "../../_services/rest.service";
 import {AuthenticationService} from "../../_services/authentication.service";
 import { SharedServiceProvider } from '../../_providers/shared-provider';
 
-
 @Component({
-  selector: 'app-profile',
-  templateUrl: './profile.component.html',
-  styleUrls: ['./profile.component.css']
+  selector: 'app-organization',
+  templateUrl: './organization.component.html',
+  styleUrls: ['./organization.component.css']
 })
-export class ProfileComponent implements OnInit {
+export class OrganizationComponent implements OnInit {
   profile: any;
   problems: any;
   modalRef: NgbModalRef;

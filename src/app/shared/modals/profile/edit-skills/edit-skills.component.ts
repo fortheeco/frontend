@@ -11,25 +11,30 @@ import { NgbModal, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 })
 export class EditSkillsComponent implements OnInit {
 
-  form = {
-    name: "",
+  form : any = {
+    skillName: "",
   }
-
+  responseMessage: any;
   skillsList = ['cooking', 'gardening', 'fishing', 'carpenting', 'programming']
   filteredSkills : any;
 
 
   submitted = false;
+  userSkills: any;
   constructor(
     private utility: UtilityProvider,
     private rest: RestService,
     private toastr: ToastrService,
-    public activeModal: NgbActiveModal
+    public modal: NgbActiveModal,
+    public activeModal: NgbActiveModal,
   ) { }
 
   ngOnInit() {
+    this.getUserSkills()
   }
-
+  close(){
+    this.activeModal.close()
+  }
   filterItems(ev: any) {
     console.log(ev)
     // set val to the value of the searchbar
@@ -43,4 +48,51 @@ export class EditSkillsComponent implements OnInit {
     }
   }
 
+
+  getUserSkills(){
+    // this.isLoading = true;
+    this.rest.getUserSkills().subscribe(response => {
+        // this.isLoading = false;
+        // this.countries = response.json();
+        let data = response.json();
+        this.userSkills = data.entities;
+        
+        console.log(response.json())
+    },
+      error => {  
+        // this.isLoading = false;
+      });
+  }
+
+  selectSkill(s){
+    this.form.skillName = s;
+    this.filteredSkills = undefined;
+    // this.skill ='';
+
+    // let d= {
+    //   "name": s,
+    //   "level": 0
+    // }
+    // this.form.suggestion.requiredSkills.push(d)
+  }
+  onSubmit(){
+    this.submitted = true;
+    console.log(this.form)
+    // this.form.forEach(form=> {
+
+      this.rest.addSkill(this.form).subscribe(response => {
+          // this.isLoading = false;
+          // this.states = response.json();
+          // this.close();
+          this.form.skillName = "";
+          this.utility.showToast('success', 'Skill successfully added')
+
+          console.log(response.json())
+      },
+        error => {  
+          // this.isLoading = false;
+          // this.showSuccess()
+        });
+  //  });
+  }
 }

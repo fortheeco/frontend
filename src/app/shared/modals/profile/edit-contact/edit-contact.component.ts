@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {RestService} from "../../../../_services/rest.service";
+import { NgbModal, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-edit-contact',
@@ -9,6 +10,7 @@ import {RestService} from "../../../../_services/rest.service";
 export class EditContactComponent implements OnInit {
   countries: any;
   states: any;
+  responseMessage: any;
   form = {
     emailAddress: "",
     addressId: "",
@@ -21,6 +23,8 @@ export class EditContactComponent implements OnInit {
   submitted = false;
 
   constructor(
+    public modal: NgbActiveModal,
+    public activeModal: NgbActiveModal,
     private rest: RestService
   ) { }
 

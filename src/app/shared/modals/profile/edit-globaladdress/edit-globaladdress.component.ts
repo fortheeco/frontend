@@ -30,12 +30,14 @@ export class EditGlobaladdressComponent implements OnInit {
     states: [],
   }]
   submitted = false;
-
+  responseMessage:any;
+  
   constructor(
     private utility: UtilityProvider,
     private rest: RestService,
     private toastr: ToastrService,
-    public activeModal: NgbActiveModal
+    public modal: NgbActiveModal,
+    public activeModal: NgbActiveModal,
   ) { }
 
   ngOnInit() {

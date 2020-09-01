@@ -69,3 +69,13 @@ legend{
     border: none;
     margin: -6px;
 }
+
+.skill-card{
+    background-color: #EAFBEF;
+    height: 100px;
+    color: #33DB60;
+    border-radius: 5px;
+    padding: 15px;
+    font-weight: bold;
+    margin-top: 10px;
+}

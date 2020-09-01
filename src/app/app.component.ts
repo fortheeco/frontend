@@ -6,16 +6,8 @@ import { NavigationCancel,
         NavigationError,
         NavigationStart,
         Router } from '@angular/router';
-import * as firebase from 'Firebase';
 
 
-const config = {
-  apiKey: 'xxxxxxxx',
-  authDomain: 'xxxxxxxx.firebaseapp.com',
-  databaseURL: 'https://xxxxxxxx.firebaseio.com/',
-  projectId: 'xxxxxxxx',
-  storageBucket: 'gs://xxxxxxxx.appspot.com',
-};
 
 @Component({
   selector: 'app-root',
@@ -28,7 +20,6 @@ export class AppComponent {
     this._router.events.subscribe((event: Event) => {
       this.navigationInterceptor(event);
     });
-    firebase.initializeApp(config);
   }
   private navigationInterceptor(event: Event): void {
     if (event instanceof NavigationStart) {

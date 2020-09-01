@@ -32,6 +32,7 @@ import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
 import { PERFECT_SCROLLBAR_CONFIG } from 'ngx-perfect-scrollbar';
 import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
 import { SlimLoadingBarModule } from 'ng2-slim-loading-bar';
+import { SharedServiceProvider } from './_providers/shared-provider';
 
 import { httpRequestInterceptor } from './_interceptors/httpRequestInterceptor';
 import { PapaParseModule } from 'ngx-papaparse';
@@ -49,10 +50,12 @@ import { EditSkillsComponent } from './shared/modals/profile/edit-skills/edit-sk
 import { AddWorkComponent } from './shared/modals/profile/add-work/add-work.component';
 import { AddEducationComponent } from './shared/modals/profile/add-education/add-education.component';
 import { EditEducationComponent } from './shared/modals/profile/edit-education/edit-education.component';
-import { ViewComponent } from './shared/modals/tasks/view/view.component';
 import { CreateOptionsComponent } from './shared/modals/create-options/create-options.component';
 import { ToastrModule } from 'ngx-toastr';
 import {UtilityProvider} from "./_providers/utility";
+import { EditProblemComponent } from './shared/modals/problems/edit-problem/edit-problem.component';
+import { ViewProblemComponent } from './shared/modals/problems/view-problem/view-problem.component';
+import { ViewComponent } from './shared/modals/tasks/view/view.component';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true,
@@ -80,8 +83,10 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     AddWorkComponent,
     AddEducationComponent,
     EditEducationComponent,
-    ViewComponent,
     CreateOptionsComponent,
+    EditProblemComponent,
+    ViewProblemComponent,
+    ViewComponent
   ],
   entryComponents: [
     ViewUserComponent, 
@@ -91,11 +96,13 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     EditContactComponent,
     EditSkillsComponent,
     EditGlobaladdressComponent,
-    ViewComponent,
     AddWorkComponent,
     AddEducationComponent,
     EditEducationComponent,
-    CreateOptionsComponent
+    EditProblemComponent,
+    ViewProblemComponent,
+    CreateOptionsComponent,
+    ViewComponent
   ],
 
   imports: [
@@ -121,10 +128,11 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   ],
   providers: [
     StatusTranslators,
+    SharedServiceProvider,
     UtilityProvider,
     MenuItems,
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
-    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+    // { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: httpRequestInterceptor, multi: true },
     {
       provide: PERFECT_SCROLLBAR_CONFIG,

@@ -1,16 +1,22 @@
-import { Component, OnInit } from '@angular/core';
-import {RestService} from "../../../_services/rest.service";
-import {AuthenticationService} from "../../../_services/authentication.service";
-import { Router, ActivatedRoute } from '@angular/router';
-import {UtilityProvider} from "../../../_providers/utility";
-import { NgbDateParserFormatter } from '@ng-bootstrap/ng-bootstrap';
+import { Component, OnInit, Input } from '@angular/core';
+import {RestService} from "../../../../_services/rest.service";
+import {UtilityProvider} from "../../../../_providers/utility";
+import { ToastrService } from 'ngx-toastr';
+import { NgbModal, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import {AuthenticationService} from "../../../../_services/authentication.service";
+import { SharedServiceProvider } from '../../../../_providers/shared-provider';
 
 @Component({
-  selector: 'app-create',
-  templateUrl: './create.component.html',
-  styleUrls: ['./create.component.css']
+  selector: 'app-edit-problem',
+  templateUrl: './edit-problem.component.html',
+  styleUrls: ['./edit-problem.component.css']
 })
-export class CreateComponent implements OnInit {
+export class EditProblemComponent implements OnInit {
+
+
+  submitted = false;
+  userSkills: any;
+  @Input() public inputData;
 
   form = {
     "title": "",
@@ -28,68 +34,14 @@ export class CreateComponent implements OnInit {
       "icoId": [],
       "icoOther": ""
     },
-    // "suggestion": {
-    //   "durationInDays": '',
-    //   "description": "",
-    //   "requiredSkills": []
-    // },
-    "taskRequirement": {
-      "numberOfPeople": '',
-      "requiredSkill": [],
-      "durationOfTaskInDays": '',
-      "startDate": '',
-      "reportSubmissionFrequency": ''
-    },
-    "taskPayment": {
-      "paymentType": "",
-      "amountPerPerson": ""
+    "suggestion": {
+      "durationInDays": '',
+      "description": "",
+      "requiredSkills": []
     },
     "photos": []
   }
-/*
-  {
-    "title": "string",
-    "description": "string",
-    "address": {
-      "countryId": 0,
-      "stateId": 0,
-      "street": "string",
-      "postCode": "string"
-    },
-    "ecoDetails": {
-      "ecoEntity": 0,
-      "unSDGGoalId": [
-        0
-      ],
-      "unSDGGoalsOther": "string",
-      "icoId": [
-        0
-      ],
-      "icoOther": "string"
-    },
-    "photos": [
-      "string"
-    ],
-    "taskRequirement": {
-      "numberOfPeople": 0,
-      "requiredSkill": [
-        {
-          "name": "string",
-          "level": 0
-        }
-      ],
-      "durationOfTaskInDays": 0,
-      "startDate": "2020-08-21T06:42:28.604Z",
-      "reportSubmissionFrequency": 0
-    },
-    "taskPayment": {
-      "paymentType": "string",
-      "amountPerPerson": 0
-    }
-  }
-*/
   skill ='';
-  selectedAddress: any;
   profile: any;
   goal: any;
   addresses: any;
@@ -102,9 +54,8 @@ export class CreateComponent implements OnInit {
   dropdownSettings = {};
   singledropdownSettings = {};
   closeDropdownSelection=false;
-  submitted=false;
   
-  
+
 
   skillsList = [{id:1,name:'cooking'}, {id:2,name:'gardening'}, {id:3,name:'fishing'}, {id:4,name:'carpenting'}, {id:5,name:'programming'}]
   filteredSkills : any;
@@ -113,24 +64,40 @@ export class CreateComponent implements OnInit {
   errors: any;
   submiting: boolean;
   submitting: boolean;
-  startDate: any;
-
+  selectedAddress;
 
   constructor(
-    private authenticationService: AuthenticationService,
-    private router: Router, 
-    private ngbDateParserFormatter: NgbDateParserFormatter,
-    private rest: RestService,
     private utility: UtilityProvider,
+    private rest: RestService,
+    private authenticationService: AuthenticationService,
+    private toastr: ToastrService,
+    public activeModal: NgbActiveModal,
+    private sharedService: SharedServiceProvider, 
   ) { 
-    this.selectedItems = [];
+
+    // "description": "",
+    // "address": {
+    //   "countryId": '',
+    //   "stateId": '',
+    //   "street": "",
+    //   "postCode": ""
+    // },
+    this.sharedService.passedProblem$.subscribe((data) => {
+      console.log(data)
+      this.form.title = data.problem.title;
+      this.selectedAddress = data.problem.address
+      this.form.description = data.problem.description;
+      this.form.title = data.problem.title;
+      this.form.title = data.problem.title;
+      this.form.title = data.problem.title;
+    });
   }
 
-  
   ngOnInit() {
     // this.editSkills()
     this.getUserProfile()
     this.getUserContacts()
+    this.selectedItems = [];
     this.getEcoDetails();
 
     this.dropdownSettings = {
@@ -189,7 +156,7 @@ export class CreateComponent implements OnInit {
         // this.isLoading = false;
         let d = response.json();
         this.addresses = d.addresses;
-        console.log(this.addresses)
+        // console.log(this.addresses)
     },
       error => {  
         // this.isLoading = false;
@@ -231,18 +198,18 @@ export class CreateComponent implements OnInit {
       "name": s.name,
       "level": 1
     }
-    this.form.taskRequirement.requiredSkill.push(d)
-    console.log(this.form.taskRequirement.requiredSkill);
+    this.form.suggestion.requiredSkills.push(d)
+    console.log(this.form.suggestion.requiredSkills);
 
   }
 
   skillDeSelect(skill: any) {
     // console.log(this.form.suggestion.requiredSkills);
 
-      this.form.taskRequirement.requiredSkill = this.form.taskRequirement.requiredSkill.filter(function( obj ) {
+      this.form.suggestion.requiredSkills = this.form.suggestion.requiredSkills.filter(function( obj ) {
         return obj.name !== skill.name;
     });
-    console.log(this.form.taskRequirement.requiredSkill);
+    console.log(this.form.suggestion.requiredSkills);
   }
 
   addressSelected(address){
@@ -253,30 +220,25 @@ export class CreateComponent implements OnInit {
     // console.log(this.form)
   }
   onSubmit(){
-    console.log(this.getServerDate(this.form.taskRequirement.startDate))
-    this.form.taskRequirement.startDate = this.getServerDate(this.form.taskRequirement.startDate);
-    // console.log(this.form)
+    console.log(this.form)
     this.submitting = true;
 
-    this.rest.createTask(this.form).subscribe(response => {
+    this.rest.createProblem(this.form).subscribe(response => {
         this.submitting = false;
-        this.utility.showToast('success', 'Post created successfully')
-        this.router.navigate(['/dashboard/overview']);
+        // this.states = response.json();
+        // this.close();
+        // this.form.skillName = "";
+        // this.utility.showToast('success', 'Skill successfully added')
 
         console.log(response.json())
     },
       error => {  
-        // console.log(error.json())
+        console.log(error.json())
         let err = error.json();
         this.errors = err.errors;
-        console.log(this.errors)
-
         this.submitting = false;
         // this.showSuccess()
       });
-  }
-  getServerDate(dateStruct) {
-    return this.ngbDateParserFormatter.format(dateStruct);
   }
 
   getEcoDetails(){
@@ -292,7 +254,7 @@ export class CreateComponent implements OnInit {
 
         this.unSDGGoals = un.flat();
 
-        console.log(this.ecoDetails)
+        // console.log(this.ecoDetails)
         // console.log(un.flat())
     },
       error => {  
@@ -300,8 +262,4 @@ export class CreateComponent implements OnInit {
       });
   }
 
-    // format date from bootstrap date plugin
-    format(str): string {
-      return `${str.year}-${str.month}-${str.day}`;
-    }
 }

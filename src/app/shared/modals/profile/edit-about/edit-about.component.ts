@@ -52,6 +52,7 @@ export class EditAboutComponent implements OnInit {
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
     private router: Router,
+    public modal: NgbActiveModal,
     public activeModal: NgbActiveModal,
     private authenticationService: AuthenticationService
     ) 

@@ -89,6 +89,27 @@ export class AuthenticationService {
 	    return this.httpc.get(url,{headers: this.headers});
     }
     
+
+
+    /**
+     * RETURN User Contacts
+     *
+     * @param id
+     * @return Response
+     */
+
+
+	getUserContacts(): Observable<any> {
+		// console.log(this.currentUserValue)
+		let id = this.currentUserValue.user.id;
+	    const userToken: string = 'Bearer ' + this.currentUserValue.token;
+		const url = `${this.BASE_URL}api/User/contacts?Id=${id}`;
+
+	    this.headers = new Headers({'Content-Type': 'application/json'});
+	    this.headers.append('Authorization', userToken);
+	    return this.httpc.get(url,{headers: this.headers});
+    }
+    
     logout() {
         // remove user from local storage to log user out
         localStorage.removeItem('currentUser');

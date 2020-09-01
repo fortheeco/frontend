@@ -3,8 +3,10 @@ import { Routes } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { ProfileComponent } from './profile/profile.component';
 import { CreateComponent } from './tasks/create/create.component';
+import { CreateProblemComponent } from './problem/create-problem/create-problem.component';
 import { ViewUserProfileComponent } from './tasks/view-user-profile/view-user-profile.component';
 import { ListComponent } from './tasks/list/list.component';
+import { OrganizationComponent } from './organization/organization.component';
 
 export const DashboardRoutes: Routes = [
   {
@@ -55,6 +57,28 @@ export const DashboardRoutes: Routes = [
         }
       },
       {
+        path: 'problems',
+        component: ListComponent,
+        data: {
+          title: 'Problem',
+          urls: [
+            { title: 'Dashboard', url: '/problems' },
+            { title: 'Problem' }
+          ]
+        }
+      },
+      {
+        path: 'problems/create',
+        component: CreateProblemComponent,
+        data: {
+          title: 'Create Problem',
+          urls: [
+            { title: 'Dashboard', url: '/problems/create' },
+            { title: 'Create Problem' }
+          ]
+        }
+      },
+      {
         path: 'tasks/view-user-profile',
         component: ViewUserProfileComponent,
         data: {
@@ -73,6 +97,17 @@ export const DashboardRoutes: Routes = [
           urls: [
             { title: 'Dashboard', url: '/profile' },
             { title: 'Profile' }
+          ]
+        }
+      },
+      {
+        path: 'organization',
+        component: OrganizationComponent,
+        data: {
+          title: 'Organization',
+          urls: [
+            { title: 'Dashboard', url: '/organization' },
+            { title: 'Organization' }
           ]
         }
       },
