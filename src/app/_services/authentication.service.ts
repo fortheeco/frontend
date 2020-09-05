@@ -88,7 +88,6 @@ export class AuthenticationService {
 	    this.headers.append('Authorization', userToken);
 	    return this.httpc.get(url,{headers: this.headers});
     }
-    
 
 
     /**
@@ -116,4 +115,6 @@ export class AuthenticationService {
         this.currentUserSubject.next(null);
         this.router.navigate(['/authentication/login']);
     }
+
+
 }

@@ -85,3 +85,15 @@
 .user-stats  p{
     font-size: 0.7em;
 }
+
+.mobile-button {
+    position: absolute;
+    top: -26px;
+    left: -7px;
+    z-index: 1;
+}
+
+.mobile-menu {
+    position: absolute;
+    z-index: 1;
+}

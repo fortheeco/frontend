@@ -3,7 +3,9 @@
         <div class="card card-shadow"  *ngFor="let post of posts; index as i" >
             <div class="row" *ngIf="post.task">
                 <div class="col-md-9">
+
                     <div class="card-body">
+
                         <div class="d-flex flex-row">
                             <div class="round align-self-center round-success card-round">
                             </div>
@@ -12,6 +14,7 @@
                                 <p class="sq1"><span class="text-muted">Posted a task</span>  <span>{{ post.task.dateCreated | date }}</span></p>
                             </div>
                         </div>
+
                         <div class="card-content" (click)="viewPost(post)">
                             <div class="d-flex no-block al m-r-15ign-items-center">
                                 <div class="m-t-10">
@@ -47,7 +50,9 @@
                                 </div>
                             </div>
                         </div>
+
                     </div>
+
                 </div>
                 <div class="col-md-3 card-right" (click)="viewPost(post)">
                     <div class="d-flex no-block align-items-center">
@@ -259,6 +264,7 @@
             </div>
         </div> -->
     </div>
+    
     <div class="col-md-3 col-xs-12">
         <div class="card" style="height:100vh">
             <div class="card-body">
@@ -266,4 +272,5 @@
             </div>
         </div>
     </div>
+
 </div>
