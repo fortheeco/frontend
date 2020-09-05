@@ -1,0 +1,120 @@
+
+legend{
+    font-size: 0.9em;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+.fieldset-input{
+    border: none;
+    /* padding-top: 0px; */
+    /* padding-bottom: 5px; */
+    height: 15px;
+}
+.fieldset-input2{
+    border: none;
+}
+.border{    
+    border: solid 1px #517258 !important;
+    border-radius: 10px;
+    color: #517258;
+
+}
+
+.btn-rounded{
+    border-radius: 10px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    padding-left: 22px;
+    padding-right: 22px;
+    font-size: 16px;
+    width: 140px;
+}
+
+.btn-1{
+    background-color: #33DB60 !important;
+    color: #ffffff;
+}
+.btn-2{
+    background-color: #D8F8E1 !important;
+    color: #33DB60;
+}
+
+
+.modal-lbl{
+    color: #517258;
+    font-weight: bold;
+}
+
+.form-control{
+    color: #517258;
+}
+.pic-container img{
+    border-radius: 15px;
+    height: 100px;
+    margin-bottom: 5px;
+}
+.upload-btn{
+    background-color: #EAFBEF;
+    border: dashed #33DB60 1px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    width: 200px;
+    color: #517258;
+    /* padding-right: 18px; */
+}
+
+.segment-title{
+    color: #33DB60 !important; 
+    font-size: 1em; 
+    line-height: 30px;
+}
+
+.multiselect-dropdown .selected-item{
+    background-color: #517258 !important;
+    border: none !important;
+}
+
+.segment-title span{
+    background-color: #8FEBA7;
+    border: #33DB60 solid 1px;
+    color: #ffffff !important;  
+    height: 25px;
+    border-radius: 50%;
+    padding: 5px;
+    font-size: 13px;
+}
+
+.form-list-section{
+    width: 70%;
+    margin-left: 15%;
+    margin-right: 15%;
+}
+
+.radio-border-1{
+    border: solid 1px #ccc;
+    padding: 8px;
+    padding-top: 18px;
+    color: #517258;
+    font-size: 0.8em;
+    border-radius: 10px;
+}
+
+.radio-label{
+    margin-left: 15px;
+}
+
+.input-group-text{
+    background-color: #fff;
+    border: none;
+}
+
+.err-message{
+  background: #f3c4d1 !important;
+  color: #c51244;
+  width: 100%;
+  padding: 10px !important;
+  border-radius: 2px !important;
+  position: relative; 
+  display: inline-block !important;
+  margin-bottom: 10px;
+}

@@ -1,20 +1,5 @@
 <nav class="sidebar-nav">
     <ul id="sidebarnav">  
-        <li>
-            <div class="user-profile d-flsex no-block m-t-20">
-                <div class="user-pic">
-                    <img src="assets/images/avatar-default.png" alt="users" class="rounded-circle" width="40" />
-                </div>
-                <div class="dropdown user-content hide-menu m-l-10" ngbDropdown placement="bottom-right" style="margin-top: 10px">
-                    <a ngbDropdownToggle href="javascript:void(0)" id="Userdd" role="button" data-toggle="dropdown" aria-haspopup="true"
-                        aria-expanded="false">
-                        <h5 class="m-b-0 user-name font-medium">Hello Ife!
-                        </h5>
-                        <span class="op-5 user-email">ife@eco.com</span>
-                    </a>
-                </div>
-            </div>
-        </li>
         <!-- First level menu -->
         <li class="sidebar-item" [class.active]="showMenu === sidebarnavItem.title" *ngFor="let sidebarnavItem of sidebarnavItems"
             [routerLinkActive]="sidebarnavItem.submenu.length != 0 ? '' : 'active'">
@@ -46,8 +31,8 @@
                 </li>
             </ul>
         </li>
-        <li class="sidebar-item" style="margin-top: 30%" (click)="logout()">
+        <!-- <li class="sidebar-item" style="margin-top: 30%" (click)="logout()">
             <div class="nav-small-cap"><i class="mdi mdi-exit-to-app"></i><span class="hide-menu">Logout</span></div>
-        </li>
+        </li> -->
     </ul>
 </nav>

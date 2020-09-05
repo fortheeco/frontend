@@ -1,0 +1,84 @@
+<div class="modal-header">
+  <h4 class="modal-title" id="modal-basic-title">Edit Contact</h4>
+  <button type="button" class="close" aria-label="Close" (click)="close()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">  
+  <div class="row">
+    <div class="col-sm-12">
+        <div class="card">
+            <div class="card-body">                
+                <div class="row col-sm-12" style="margin-top: 20px">
+                    <ngb-alert *ngIf="responseMessage" [type]="messageType" (close)="responseMessage = null">{{ responseMessage }}</ngb-alert>   
+                </div>
+                <div class="col-sm-12"  *ngFor="let f of form; let i = index">   
+                      <div class="form-group row">
+                          <div class="col-3">
+                            <div class="col-12 ">
+                              <p class="modal-lbl">Local address</p>
+                            </div>
+                          </div>
+                          <div class="col-5">
+                            <div class="col-12 ">
+                                <fieldset class="border p-2">
+                                    <legend  class="w-auto">Country</legend>  
+                                    <select class="form-control legend-select" id="selectCountries" [(ngModel)]="form[i].countryId" (ngModelChange)="getStates(i,form[i].countryId)">
+                                        <option *ngFor="let country of countries" [value]="country.id">{{ country?.name}}</option>
+                                    </select>                              
+                                </fieldset>
+                              </div>
+                              <div *ngIf="submitted && !form.countryId" class="invalid-feedback">
+                                  <div>Country is required</div>
+                              </div>
+                          </div>
+                          <div class="col-4">
+                            <div class="col-12 ">
+                                <fieldset class="border p-2">
+                                    <legend  class="w-auto">State</legend>                                
+                                    <select class="form-control legend-select" id="selectState" [(ngModel)]="form[i].stateId">
+                                        <option *ngFor="let state of form[i].states" [value]="state.id">{{ state?.name}}</option>
+                                    </select>    
+                                </fieldset>
+                              </div>
+                              <div *ngIf="submitted && !form[i].stateId" class="invalid-feedback">
+                                  <div>State is required</div>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="form-group row">
+                          <div class="col-3">
+                            <div class="col-12 ">
+                              <p class="modal-lbl"></p>
+                            </div>
+                          </div>
+                          <div class="col-5">
+                            <div class="col-12 ">
+                                <fieldset class="border p-2">
+                                    <legend  class="w-auto">Street</legend>                                
+                                    <input class="form-control form-control-md fieldset-input" [ngClass]="{ 'is-invalid': submitted && !form[i].street }" [(ngModel)]="form[i].street" type="text" required=" " >
+                                </fieldset>
+                              </div>
+                          </div>
+                          <div class="col-4">
+                            <div class="col-12 ">
+                                <fieldset class="border p-2">
+                                    <legend  class="w-auto">Post/ZIP code</legend>                                
+                                    <input class="form-control form-control-md fieldset-input" [ngClass]="{ 'is-invalid': submitted && !form[i].countryId }" [(ngModel)]="form[i].postCode" type="text" required=" ">
+                                </fieldset>
+                              </div>
+                          </div>
+                      </div>
+                </div>
+                <!-- <div class="row">
+                  <button type="button" class="btn btn-rounded btn-1" (click)="addContact()">Add</button>
+                </div> -->
+            </div>
+        </div>
+    </div>
+  </div>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-rounded btn-2" (click)="modal.close('Close click')">Cancel</button>
+  <button type="button" class="btn btn-rounded btn-1" (click)="onSubmit()">Save changes</button>
+</div>

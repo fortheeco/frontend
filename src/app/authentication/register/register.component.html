@@ -1,3 +1,16 @@
-<p>
-  register works!
-</p>
+
+<div class="auth-wrapper d-flex no-block">
+    <div class="col-6 col-xs-12">
+        <span class="db"><img height="60" src="assets/images/logo.png" alt="logo" /></span>
+        <h3 class="big-text">Join the Task
+          force and build 
+          credibility</h3>
+    </div>
+
+    <div class="auth-box col-6 col-xs-12">
+        <app-register-as-individual *ngIf="isIndividual" (registerAsOrganization)="toggoleIndividual()" ></app-register-as-individual>
+        <app-register-as-organization *ngIf="!isIndividual" (registerAsIndividual)="toggoleIndividual()" ></app-register-as-organization>
+    </div>
+
+</div>
+<!-- <app-register-as-organization></app-register-as-organization> -->

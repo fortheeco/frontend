@@ -10,6 +10,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AuthenticationRoutes } from './authentication.routing';
 import { RegisterComponent } from './register/register.component';
+import { RegisterAsIndividualComponent } from './register/register-as-individual/register-as-individual.component';
+import { RegisterAsOrganizationComponent } from './register/register-as-organization/register-as-organization.component';
 
 @NgModule({
   imports: [
@@ -23,6 +25,8 @@ import { RegisterComponent } from './register/register.component';
     NotfoundComponent,
     LoginComponent,
     RegisterComponent,
+    RegisterAsIndividualComponent,
+    RegisterAsOrganizationComponent,
   ],
   exports: [
     CommonModule,

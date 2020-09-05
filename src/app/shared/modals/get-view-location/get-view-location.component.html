@@ -1,0 +1,81 @@
+<div class="modal-header">
+  <h4 class="modal-title" id="modal-basic-title">Address</h4>
+  <button type="button" class="close" aria-label="Close" (click)="activeModal.close()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">  
+
+  <div class="row">
+    <div class="col-sm-12">
+
+        <div class="card">
+
+            <div class="card-body">  
+
+                <!-- <div class="row col-sm-12" style="margin-top: 20px">
+                    <ngb-alert *ngIf="responseMessage" [type]="messageType" (close)="responseMessage = null">{{ responseMessage }}</ngb-alert>   
+                </div> -->
+
+              <form [formGroup]="locationForm" >
+
+                <div class="col-12 ">
+                  <fieldset class="border p-2">
+                      <legend  class="w-auto">Country</legend>  
+                      <select class="form-control legend-select" #country (change)="getState(country.value)" formControlName="countryId" >
+                        <option>---</option>
+                          <option *ngFor="let country of countries" [value]="country.id" >{{country.name}}</option>
+                      </select>                              
+                  </fieldset>
+                </div>
+
+                <!-- <div *ngIf="submitted && !form.countryId" class="invalid-feedback">
+                    <div>Country is required</div>
+                </div> -->
+
+                
+
+            
+              <div class="col-12 ">
+                  <fieldset class="border p-2">
+                      <legend  class="w-auto">State</legend>                                
+                      <select class="form-control legend-select" formControlName="stateId">
+                          <option>---</option>
+                          <option *ngFor="let item of states" [value]="item.id" >{{item.name}}</option>
+                      </select>    
+                  </fieldset>
+                </div>
+
+                <!-- <div *ngIf="submitted && !form[i].stateId" class="invalid-feedback">
+                    <div>State is required</div>
+                </div> -->
+
+              <div class="col-12 ">
+                  <fieldset class="border p-2">
+                      <legend  class="w-auto">Street</legend>                                
+                      <input maxlength="500" class="form-control form-control-md fieldset-input" type="text" formControlName="street" >
+                  </fieldset>
+                </div>
+                
+            
+              <div class="col-12 ">
+                  <fieldset class="border p-2">
+                      <legend  class="w-auto">Post/ZIP code</legend>                                
+                      <input maxlength="100" class="form-control form-control-md fieldset-input" type="text"  formControlName="postCode">
+                  </fieldset>
+                </div>
+                
+
+              </form>
+
+            </div>
+        </div>
+    </div>
+  </div>
+
+
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-rounded btn-2" (click)="activeModal.close()" >Cancel</button>
+  <button type="button" class="btn btn-rounded btn-1" [disabled]="locationForm.invalid" (click)="saveAddress()" >Save</button>
+</div>

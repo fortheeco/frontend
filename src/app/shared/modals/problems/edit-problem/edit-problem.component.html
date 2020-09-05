@@ -1,0 +1,181 @@
+<!-- <div class="modal-header">
+  <h4 class="modal-title" id="modal-basic-title">Edit Problem</h4>
+  <button type="button" class="close" aria-label="Close" (click)="close()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <div class="form-list-section">
+    <div class="row task-row">
+      <div class="col-md-3">
+          <div>
+            <h4 class="segment-title"><span class="badge-1">01</span> Problem description</h4>
+          </div>
+      </div>
+
+      <div class="col-md-9">
+          <div class="card shadow-card">
+              <div class="row">
+                  <div class="col-md-12">
+                      <div class="card-body">
+                        <div class="col-sm-12">                                      
+                              <div class="form-group row ">
+                                      <div class="col-12 ">
+                                            <p *ngIf="errors && errors['address.CountryId']"><span class="err-message" *ngFor="let err of errors['address.CountryId']">{{err}} <br></span></p>
+                                            <input [(ngModel)]="form.title" class="form-control form-control-md border-input" type="text" required=" " placeholder="Title of problem">
+                                      </div>
+                              </div>
+                              <div class="form-group row ">
+                                      <div class="col-12 ">
+                                        <div class="form-group m-b-30">
+                                          <p *ngIf="errors && errors['address.StateId']"><span class="err-message" *ngFor="let err of errors['address.StateId']">{{err}} <br></span></p>
+                                          <select class="form-control" [(ngModel)]="selectedAddress" (change)="addressSelected(selectedAddress)" id="exampleFormControlSelect1">
+                                              <option>Location of problem</option>
+                                              <option  *ngFor="let address of addresses" [ngValue]="address">{{ address.street }}</option>
+                                          </select>
+                                        </div>                                    
+                                      </div>
+                              </div>
+                              <div class="form-group row ">
+                                <div class="col-12 ">
+                                      <p *ngIf="errors && errors['description']"><span class="err-message" *ngFor="let err of errors['description']">{{err}} <br></span></p>
+                                      <textarea class="form-control form-control-md border-input" [(ngModel)]="form.description" cols="5" type="text" required=" " placeholder="Description of problem"></textarea>
+                                  </div>
+                              </div>
+                              <div class="row ">
+                                <div class="col-3 pic-container" *ngFor="let photo of form.photos">
+                                  <img [src]="photo" />
+                                </div>
+                              </div>
+                              <div class="row">
+                                <div class="col-5">
+                                  <button type="button" [disabled]="form.photos.length > 4" style="width: 100%;" class="btn btn-block btn-rounded upload-btn" (click)="file.click()">Upload +</button>
+                                  <input style="opacity: 0; height: 1px;" #file nbInput fullWidth type="file" name="photo" [ngClass]="{ 'is-invalid':submitted && f.photo?.errors }" (change)="onFileChange($event)" accept="image/*">
+                                  <p *ngIf="form.photos.length > 0" style="text-align: center;">{{form.photos.length}}/5</p>
+                                </div>
+                                <div class="col-2" style="padding-top: 2%; text-align: center;">OR</div>
+
+                                <div class="col-5">
+                                      <input class="form-control form-control-md border-input" type="text" required=" " placeholder="URL Link">
+                                    
+                                </div>
+                              </div>
+                        </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+    </div>
+    <div class="row task-row">
+      <div class="col-md-3">
+          <div>
+              <h4 class="segment-title"><span class="badge-1">02</span> ECO details</h4>
+          </div>
+      </div>
+
+      <div class="col-md-9">
+          <div class="card shadow-card">
+              <div class="row">
+                  <div class="col-md-12">
+                      <div class="card-body">
+                        <div class="col-sm-12">      
+                              <p *ngIf="errors && errors['ecoDetails.EcoEntity']"><span class="err-message" *ngFor="let err of errors['ecoDetails.EcoEntity']">{{err}} <br></span></p>                                
+                              <div class="form-group row " *ngIf="ecoDetails">
+                                <div class="col-4" *ngFor="let ico of ecoDetails.icos">
+                                  <div class="form-group radio-border-1">
+                                    <fieldset class="radio">
+                                        <label for="{{ 'checkbox' + ico.id }}">
+                                            <input type="checkbox" #myItem id="{{ 'checkbox' + ico.id }}" name="{{'checkbox' + ico.id }" [checked]="saveUsername" (change)="icoSelected($event,ico.id,ico.name)" [value]="ico.name"> <span class="radio-label">{{ico.name}}</span></label>
+                                    </fieldset>
+                                  </div>                                    
+                                </div>
+                              </div>
+                              <div class="form-group row ">      
+                                <p *ngIf="errors && errors['ecoDetails.UnSDGGoalId']"><span class="err-message" *ngFor="let err of errors['ecoDetails.UnSDGGoalId']">{{err}} <br></span></p>                                
+                                <div class="col-12 ">
+                                        <div class="form-group m-b-30">
+                                          <ng-multiselect-dropdown
+                                            [placeholder]="'UN SDG Goals'"
+                                            [disabled]="unSDGGoals.length < 1"
+                                            [data]="unSDGGoalsList"
+                                            [(ngModel)]="selectedItems"
+                                            [settings]="dropdownSettings"
+                                            (onSelect)="goalSelected($event)"
+                                            (onDeSelect)="goalDeSelect($event)"
+                                          >
+                                          </ng-multiselect-dropdown>
+                                        </div>                                    
+                                      </div>
+                              </div>
+                              <div class="form-group row ">
+                                <div class="col-4">
+                                  <span>
+
+                                  </span>
+                                </div>
+                              </div>
+                              <div class="form-group row ">
+                                    <div class="col-12 ">
+                                          <input class="form-control form-control-md border-input" [disabled]="form.ecoDetails.unSDGGoalId.length > 0" [(ngModel)]="form.ecoDetails.unSDGGoalsOther" type="text" required=" " placeholder="No UN SDG? Give yours">
+                                    </div>
+                              </div>
+                        </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+    </div>
+    <div class="row task-row">
+      <div class="col-md-3">
+          <div>
+              <h4 class="segment-title"><span class="badge-1">03</span> Suggestions to problem (optional)</h4>
+          </div>
+      </div>
+
+      <div class="col-md-9">
+          <div class="card shadow-card">
+              <div class="row">
+                  <div class="col-md-12">
+                      <div class="card-body">
+                        <div class="col-sm-12">
+                              <div class="form-group row ">      
+                                      <p *ngIf="errors && errors['suggestion.DurationInDays']"><span class="err-message" *ngFor="let err of errors['suggestion.DurationInDays']">{{err}} <br></span></p>    
+                                      <div class="col-12 ">
+                                            <input class="form-control form-control-md border-input" [(ngModel)]="form.suggestion.durationInDays" type="number" required=" " placeholder="Estimated days to fulfil task">
+                                      </div>
+                              </div>
+                              <div class="form-group row ">
+                                      <div class="col-12 ">
+                                        <ng-multiselect-dropdown
+                                          [placeholder]="'Required Skills'"
+                                          [disabled]="skillsList.length < 1"
+                                          [data]="skillsList"
+                                          [(ngModel)]="filteredSkills"
+                                          [settings]="dropdownSettings"
+                                          (onSelect)="selectSkill($event)"
+                                          (onDeSelect)="skillDeSelect($event)"
+                                        >
+                                        </ng-multiselect-dropdown>
+                                      </div>
+                              </div>
+                              <div class="form-group row ">
+                                      <div class="col-12 ">
+                                        <p *ngIf="errors && errors['suggestion.Description']"><span class="err-message" *ngFor="let err of errors['suggestion.Description']">{{err}} <br></span></p>    
+                                        <textarea class="form-control form-control-md border-input" cols="5" [(ngModel)]="form.suggestion.description" type="text" required=" " placeholder="Suggestion"></textarea>
+                                      </div>
+                              </div>
+                        </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-rounded btn-2" (click)="modal.close('Close click')">Cancel</button>
+  <button type="button" class="btn btn-rounded btn-1" (click)="onSubmit()">Save changes</button>
+</div> -->

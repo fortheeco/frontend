@@ -19,6 +19,19 @@ import { AgmCoreModule } from '@agm/core';
 import { DragulaModule } from 'ng2-dragula';
 
 import {NgxPrintModule} from 'ngx-print';
+import { ProfileComponent } from './profile/profile.component';
+import { CreateComponent } from './tasks/create/create.component';
+import { ViewUserProfileComponent } from './tasks/view-user-profile/view-user-profile.component';
+import { ListComponent } from './tasks/list/list.component';
+
+import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
+import { CreateProblemComponent } from './problem/create-problem/create-problem.component';
+import { OrganizationComponent } from './organization/organization.component';
+import { ProblemCardComponent } from '../shared/components/problems/problem-card/problem-card.component';
+import { TaskCardComponent } from '../shared/components/tasks/task-card/task-card.component';
+import { ViewOrganizationProblemsComponent } from './organization/view-organization-problems/view-organization-problems.component';
+import { ViewOrganizationTasksComponent } from './organization/view-organization-tasks/view-organization-tasks.component';
+
 @NgModule({
   imports: [
     FormsModule,
@@ -27,6 +40,7 @@ import {NgxPrintModule} from 'ngx-print';
     ChartsModule,
     ChartistModule,
     RouterModule.forChild(DashboardRoutes),
+    NgMultiSelectDropDownModule.forRoot(),
     AgmCoreModule,
     PerfectScrollbarModule,
     CalendarModule.forRoot(),
@@ -38,6 +52,16 @@ import {NgxPrintModule} from 'ngx-print';
   ],
   declarations: [
     HomeComponent,
+    ProfileComponent,
+    CreateComponent,
+    ViewUserProfileComponent,
+    ListComponent,
+    CreateProblemComponent,
+    OrganizationComponent,
+    ViewOrganizationProblemsComponent,
+    ViewOrganizationTasksComponent,
+    ProblemCardComponent,
+    TaskCardComponent,
    ],
     entryComponents: [
     ]

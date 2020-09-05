@@ -10,6 +10,8 @@ import {
  
 import { Observable, throwError } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
+import { AuthenticationService } from '../_services/authentication.service';
+import {UtilityProvider} from "../_providers/utility";
 
 
 
@@ -17,6 +19,8 @@ import { map, catchError } from 'rxjs/operators';
 export class httpRequestInterceptor implements HttpInterceptor {
     
     constructor(
+        private authenticationService: AuthenticationService,
+        private utility: UtilityProvider,
         ) { }
 
 //     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
@@ -46,19 +50,40 @@ intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<an
  
         request = request.clone({ headers: request.headers.set('Accept', 'application/json') });
  
-        request = request.clone({ headers: request.headers.set('Freaky', 'Jolly') });
+        // request = request.clone({ headers: request.headers.set('Freaky', 'Jolly') });
  
-        return next.handle(request).pipe(
-            map((event: HttpEvent<any>) => {
-                if (event instanceof HttpResponse) {
+        // return next.handle(request).pipe(
+        //     map((event: HttpEvent<any>) => {
+        //         if (event instanceof HttpResponse) {
+        //         }
+        //         return event;
+        //     }),
+        //     catchError((error: HttpErrorResponse) => {
+        //         if (error.status === 401) {
+        //             console.log('error')
+        //             // auto logout if 401 response returned from api
+        //             this.authenticationService.logout();
+        //             this.utility.showToast('primary', 'session timeout, please login')
+        //             // location.reload(true);
+        //         }
+        //         let data = {};
+        //         data = {
+        //             message: error.message,
+        //         };
+        //         return throwError(error);
+        //     }));
+        console.log('dw')
+
+            return next.handle(request).pipe(catchError(err => {
+                if (err.status === 401) {
+                                        console.log('error')
+
+                    // auto logout if 401 response returned from api
+                    this.authenticationService.logout();
+                    this.utility.showToast('primary', 'session timeout, please login')
+                    // location.reload(true);
                 }
-                return event;
-            }),
-            catchError((error: HttpErrorResponse) => {
-                let data = {};
-                data = {
-                    message: error.message,
-                };
+                const error = err.error.message || err.statusText;
                 return throwError(error);
             }));
     }

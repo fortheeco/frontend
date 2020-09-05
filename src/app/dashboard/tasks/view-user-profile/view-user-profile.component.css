@@ -1,0 +1,103 @@
+.tab-container{
+    /* padding-top: 30px; */
+}
+:host ::ng-deep .nav-tabs{
+    border: none !important;
+    /* margin-top: 30%; */
+    background-color: #ffffff;
+}
+:host ::ng-deep .tabset1 a.nav-link {
+    color: #33DB60;
+    border: none;
+    padding: 0.5rem 1.1rem;
+    text-align: left !important;
+    margin-bottom: 1%;
+    font-weight: bold;
+}
+
+:host ::ng-deep .tabset1 .nav-tabs .nav-link.active, .nav-tabs .nav-item.show .nav-link{
+    color: #33DB60;
+    border-bottom: solid 2px #33DB60;
+    padding: 0.5rem 1.1rem;
+    text-align: left !important;
+    margin-bottom: 1%;
+}
+
+:host ::ng-deep .tabset1 .nav-item:nth-child(2)  a.nav-link {
+  margin-left: 15pt;
+  margin-right: 35pt;
+}
+
+.feed-item{
+    overflow: hidden;
+}
+
+.feed-icon{
+    background-color:#517258 !important;
+    height: 20px !important;
+    width: 20px !important;
+}
+
+.sq1{
+    font-size: 0.6em;
+}
+
+.sq1 .text-muted{
+    margin-right: 4%;
+}
+
+
+.footer-btns{
+    color:#33DB60 !important;
+}
+.green-text{
+    color:#33DB60 !important;
+}
+.footer-btns p{
+    font-size: 0.8em;
+}
+
+.footer-btns i{
+    font-size: 0.8em;
+}
+
+.profile-info{
+    height: 400px;
+    position: relative;
+}
+.profile-bottom{
+    padding: 20px;
+}
+.cover-photo-container{
+    height: 200px;
+    background:url(../../../../assets/images/profile_cover.png) no-repeat center center;
+}
+
+.user-avatar{
+    height: 100px;
+    width: 100px;
+    position: absolute;
+    top: -70px;
+    border: solid 3px #ffffff;
+    border-radius: 4px;
+}
+
+.profile-btn{
+    background-color: #ffffff;
+    color: #33DB60;
+}
+
+.profile-bottom{
+    padding: 15px;
+    padding-left: 25px;
+    padding-right: 25px;
+    color: #517258;
+}
+
+.profile-bottom p{
+    font-size: 0.9em;
+}
+
+.user-stats  p{
+    font-size: 0.7em;
+}
