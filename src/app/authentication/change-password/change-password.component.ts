@@ -50,7 +50,7 @@ export class ChangePasswordComponent implements OnInit, OnDestroy {
     this.loading = true;
 
     const data = {
-      token : this.token,
+      token : encodeURIComponent(this.token),
       userId: this.userId,
       password: this.changePasswordFrom.get('password').value
     };
