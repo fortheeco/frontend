@@ -12,7 +12,7 @@ import {RestService} from '../../_services/rest.service';
 import {AuthenticationService} from '../../_services/authentication.service';
 import { SharedServiceProvider } from '../../_providers/shared-provider';
 import { OrganizationService } from 'src/app/_services/organization/organization.service';
-import { AppOrganization } from 'src/app/_entities/organization/app-organization';
+import { AppOrganization } from 'src/app/_models/organization/app-organization';
 
 @Component({
   selector: 'app-organization',
@@ -20,7 +20,9 @@ import { AppOrganization } from 'src/app/_entities/organization/app-organization
   styleUrls: ['./organization.component.css']
 })
 export class OrganizationComponent implements OnInit {
+
   profile: AppOrganization = {} as AppOrganization;
+
   problems: any;
   modalRef: NgbModalRef;
 
@@ -50,7 +52,7 @@ export class OrganizationComponent implements OnInit {
         // this.isLoading = false;
         this.profile = new AppOrganization(response.json());
         // this.temp = response.json().data;
-        console.log(this.profile);
+        console.log(response.json());
     },
       error => {
         // this.isLoading = false;

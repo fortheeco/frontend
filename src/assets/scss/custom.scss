@@ -24,8 +24,29 @@ li.active-success:hover, li.success:hover {
 
 
 
-// Colors
+// Colors --------------------------------------------------------------
 
+// Backgrounds
 .custom-bg-green {
     background-color: #6FDC61;
+    color: #fff;
+}
+
+
+
+// Text-colors 
+.custom-text-green {
+    color: #6FDC61;
+}
+
+
+// Customs structure
+
+.custom-lengend {
+    position: absolute;
+    background-color: #fff;
+    font-size: 15px;
+    font-weight: bold;
+    top: -5px;
+    left: 31px;
 }

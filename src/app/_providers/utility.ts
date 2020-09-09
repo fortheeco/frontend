@@ -12,15 +12,15 @@ export class UtilityProvider {
     ) {
 
     }
-   
-  showToast(type,text) {
-    if(type == 'success'){
+
+  showToast(type, text) {
+    if (type == 'success') {
         this.toastr.success(text, 'Success!');
-    }else if(type == 'warning'){
+    } else if (type == 'warning') {
         this.toastr.warning(text, 'Alert!');
-    }else if(type == 'danger'){
+    } else if (type == 'danger') {
         this.toastr.error(text, 'Oops!');
-    }else if(type == 'info'){
+    } else if (type == 'info') {
         this.toastr.info(text);
     }
   }

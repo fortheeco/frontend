@@ -46,6 +46,13 @@ import { SharedServiceProvider } from './_providers/shared-provider';
 import { UtilityProvider } from './_providers/utility';
 import { OrganizationService } from './_services/organization/organization.service';
 import { GetViewLocationComponent } from './shared/modals/get-view-location/get-view-location.component';
+import { EditOrganizationAboutComponent } from './shared/modals/organization/edit-organization-about/edit-organization-about.component';
+import { ValidatorErrorMessageComponent } from './shared/custom-validators/validator-error-message/validator-error-message.component';
+import { FormErrorService } from './_services/form-error/form-error.service';
+import { UserContactCommunicateComponent } from './shared/components/user/user-contact/user-contact-communicate/user-contact-communicate.component';
+import { UserContactAddressesComponent } from './shared/components/user/user-contact/user-contact-addresses/user-contact-addresses.component';
+import { UserContactComponent } from './shared/components/user/user-contact/user-contact.component';
+import { SharedModule } from './shared/shared.module';
 
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
@@ -79,6 +86,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     ViewProblemComponent,
     ViewComponent,
     GetViewLocationComponent,
+    EditOrganizationAboutComponent,
   ],
   entryComponents: [
     ViewUserComponent,
@@ -96,6 +104,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     CreateOptionsComponent,
     ViewComponent,
     GetViewLocationComponent,
+    EditOrganizationAboutComponent,
   ],
 
   imports: [
@@ -113,6 +122,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     NgxPrintModule,
     HttpClientModule,
     NgbModule,
+    SharedModule,
     RouterModule.forRoot(Approutes),
     PerfectScrollbarModule,
     NgMultiSelectDropDownModule.forRoot(),
@@ -125,6 +135,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     UtilityProvider,
     MenuItems,
     OrganizationService,
+    FormErrorService,
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     // { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: httpRequestInterceptor, multi: true },

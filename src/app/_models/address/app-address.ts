@@ -1,7 +1,7 @@
 import { ICountry, IState } from './app-country';
 
 
-export interface IAppAddress {
+export class IAppAddress {
     id: string;
     country: ICountry;
     state: IState;

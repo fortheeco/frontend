@@ -31,6 +31,11 @@ import { ProblemCardComponent } from '../shared/components/problems/problem-card
 import { TaskCardComponent } from '../shared/components/tasks/task-card/task-card.component';
 import { ViewOrganizationProblemsComponent } from './organization/view-organization-problems/view-organization-problems.component';
 import { ViewOrganizationTasksComponent } from './organization/view-organization-tasks/view-organization-tasks.component';
+import { ViewOrganizationHeaderComponent } from './organization/view-organization-header/view-organization-header.component';
+import { OrganizationAboutComponent } from './organization/organization-about/organization-about.component';
+import { OrganizationAboutOverviewComponent } from './organization/organization-about/organization-about-overview/organization-about-overview.component';
+import { OrganizationAboutStatisticsComponent } from './organization/organization-about/organization-about-statistics/organization-about-statistics.component';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   imports: [
@@ -48,7 +53,10 @@ import { ViewOrganizationTasksComponent } from './organization/view-organization
     ReactiveFormsModule,
     DragulaModule,
     NgxDatatableModule,
-    NgxPrintModule
+    NgxPrintModule,
+
+    // Modules used accross all other modules
+    SharedModule,
   ],
   declarations: [
     HomeComponent,
@@ -62,6 +70,10 @@ import { ViewOrganizationTasksComponent } from './organization/view-organization
     ViewOrganizationTasksComponent,
     ProblemCardComponent,
     TaskCardComponent,
+    ViewOrganizationHeaderComponent,
+    OrganizationAboutComponent,
+    OrganizationAboutOverviewComponent,
+    OrganizationAboutStatisticsComponent,
    ],
     entryComponents: [
     ]

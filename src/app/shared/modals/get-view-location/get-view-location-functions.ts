@@ -1,5 +1,5 @@
 import { FormGroup, FormBuilder, Validators } from "@angular/forms";
-import { IAppAddress } from 'src/app/_entities/address/app-address';
+import { IAppAddress } from 'src/app/_models/address/app-address';
 
 
 /**

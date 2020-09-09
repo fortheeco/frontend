@@ -1,111 +1,51 @@
 <div class="row">
 
+  <!-- Basic information about the organization in view -->
   <div class="col-12 mb-4">
-    <div class="card profile-info">
-        <div class="cover-photo-container"></div>
-        <div class="row profile-bottom profile-bottom-1">
-          <div class="col col-md-2">
-            <img class="user-avatar" src="assets/images/avatar-default.png" />
-          </div>
-          <div class="col col-md-8">
-            <h4 class="color-darkgreen">{{ profile?.detail?.name  }}</h4>
-            <h6 class="color-darkgreen intro-title"> {{ profile?.localAddress?.country?.name }} {{ profile?.localAddress?.state?.name }} </h6>
-            <!-- <h6 class="color-darkgreen">{{ profile?profile.detail.aboutMe:'not yet set' }}</h6> -->
-          </div>
-          <div class="col col-md-2">
-            <button type="button" (click)="editAbout()" class="btn btn-circle btn-lg profile-btn"><i class="mdi mdi-border-color"></i> </button>
-            <div ngbDropdown class="btn-group">                   
-                <!-- <button class="btn btn-warning btn-sm" type="button" ngbDropdownToggle aria-controls="dropdsown-basic">
-                    More
-                </button> -->
-                <button type="button"  ngbDropdownToggle aria-controls="dropdown-basic-actions" class="btn btn-circle btn-lg profile-btn"><i class="icon-options"></i> </button>
-                <div class="" id="dropdown-basic-actions" ngbDropdownMenu>
-                    <!-- <a class="dropdown-item" href="javascript:void(0);" (click)="showEditContactModal(profile)">Manage Contact</a>
-                    <a class="dropdown-item" href="javascript:void(0);" (click)="showEditGlobaladdressModal(profile)">Manage Global Address</a>
-                    <a class="dropdown-item" href="javascript:void(0);" (click)="editSkills()">Manage Skills</a> -->
-                </div>
-            </div>
-            <!-- <button type="button" class="btn btn-circle btn-lg profile-btn"><i class="icon-options"></i> </button> -->
-          </div>
-        </div>
-        <div class="row  profile-bottom profile-bottom-2">
-
-            <!-- Organization Location -->
-          <div class="col col-md-10">
-            <div class="row">
-              <div class="col col-md-3">
-                  <!-- <p><i class="icon-location-pin"></i> {{ profile?profile.detail.location:'not yet set' }}</p> -->
-                  <p><i class="icon-location-pin"></i> not yet set</p>
-              </div>
-              <div class="col col-md-2">
-                <!-- <p><i class="icon-symble-male"></i> {{ profile?profile.detail.gender:'' }}</p> -->
-              </div>
-              <div class="col col-md-2">
-                <!-- <p><i class="icon-calender"></i> {{ profile?profile.detail.dateOfBirth|date:'dd mm YYYY':'' }}</p> -->
-                <!-- <p><i class="icon-calender"></i> {{ profile?.detail.dateOfBirth|date:'dd MMMM' }}</p> -->
-              </div>
-              <div class="col col-md-2">
-                <!-- <p><i class="icon-note"></i> {{ profile?.detail.dateJoined|date:'MMMM yyyy' }}</p> -->
-              </div>
-              <div class="col col-md-3"></div>
-            </div>
-          </div>
-
-
-          <div class="col col-md-2">
-            <div class="row user-stats">
-              <div class="col-6">
-                <p><b>{{ profile?.follows.following }}</b> following</p>
-              </div>
-              <div class="col-6">
-                <p><b>{{ profile?.follows.following }}</b> Followers</p>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="row  profile-bottom profile-bottom-3">
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-            Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident</p>
-        </div>
-  
-      </div>
+    <app-view-organization-header [profile]="profile" ></app-view-organization-header>
   </div>
 
-<div class="col-lg-2">
+  <!-- Menu for the views in this organization -->
+  <div class="col-lg-2">
 
-    <button class="btn custom-bg-green text-white mobile-button d-lg-none d-xl-none" (click)="showMobileMenu = !showMobileMenu" ><i class="fa fa-bars" ></i></button>
+      <button class="btn custom-bg-green text-white mobile-button d-lg-none d-xl-none" (click)="showMobileMenu = !showMobileMenu" ><i class="fa fa-bars" ></i></button>
 
 
-    <!-- Mobile view -->
-    <ul class="list-group list-group-flush shadow-sm green-text d-lg-none d-xl-none mobile-menu" *ngIf="showMobileMenu">
-        <li class="list-group-item pointer success" (click)="navigateTo('problem'); showMobileMenu = false" [ngClass]="{'active-success': viewSection==='problem'}" >Problem</li>
-        <li class="list-group-item pointer success" (click)="navigateTo('task'); showMobileMenu = false" [ngClass]="{'active-success': viewSection==='task'}">Task</li>
-        <li class="list-group-item pointer success" (click)="navigateTo('contact'); showMobileMenu = false" [ngClass]="{'active-success': viewSection==='contact'}">Contact</li>
-        <li class="list-group-item pointer success" (click)="navigateTo('services'); showMobileMenu = false" [ngClass]="{'active-success': viewSection==='services'}">Services</li>
-        <li class="list-group-item pointer success" (click)="navigateTo('employeeAndSkills'); showMobileMenu = false" [ngClass]="{'active-success': viewSection==='employeeAndSkills'}">Employee and skills</li>
-        <li class="list-group-item pointer success" (click)="navigateTo('branches'); showMobileMenu = false" [ngClass]="{'active-success': viewSection==='branches'}">Branches</li>
-        <li class="list-group-item pointer success" (click)="navigateTo('community'); showMobileMenu = false" [ngClass]="{'active-success': viewSection==='community'}">Community</li>
-    </ul>
+      <!-- Mobile view -->
+      <ul class="list-group list-group-flush shadow-sm green-text d-lg-none d-xl-none mobile-menu" *ngIf="showMobileMenu">
+          <li class="list-group-item pointer success" (click)="navigateTo('problem'); showMobileMenu = false" [ngClass]="{'active-success': viewSection==='problem'}" >Problem</li>
+          <li class="list-group-item pointer success" (click)="navigateTo('task'); showMobileMenu = false" [ngClass]="{'active-success': viewSection==='task'}">Task</li>
+          <li class="list-group-item pointer success" (click)="navigateTo('about'); showMobileMenu = false" [ngClass]="{'active-success': viewSection==='about'}">About</li>
+          <li class="list-group-item pointer success" (click)="navigateTo('contact'); showMobileMenu = false" [ngClass]="{'active-success': viewSection==='contact'}">Contact</li>
+          <li class="list-group-item pointer success" (click)="navigateTo('services'); showMobileMenu = false" [ngClass]="{'active-success': viewSection==='services'}">Services</li>
+          <li class="list-group-item pointer success" (click)="navigateTo('employeeAndSkills'); showMobileMenu = false" [ngClass]="{'active-success': viewSection==='employeeAndSkills'}">Employee and skills</li>
+          <li class="list-group-item pointer success" (click)="navigateTo('branches'); showMobileMenu = false" [ngClass]="{'active-success': viewSection==='branches'}">Branches</li>
+          <li class="list-group-item pointer success" (click)="navigateTo('community'); showMobileMenu = false" [ngClass]="{'active-success': viewSection==='community'}">Community</li>
+      </ul>
 
-    <!-- Desktop view -->
-    <ul class="list-group list-group-flush shadow-sm green-text d-none d-lg-block">
-        <li class="list-group-item pointer success" (click)="navigateTo('problem')" [ngClass]="{'active-success': viewSection==='problem'}" >Problem</li>
-        <li class="list-group-item pointer success" (click)="navigateTo('task')" [ngClass]="{'active-success': viewSection==='task'}">Task</li>
-        <li class="list-group-item pointer success" (click)="navigateTo('contact')" [ngClass]="{'active-success': viewSection==='contact'}">Contact</li>
-        <li class="list-group-item pointer success" (click)="navigateTo('services')" [ngClass]="{'active-success': viewSection==='services'}">Services</li>
-        <li class="list-group-item pointer success" (click)="navigateTo('employeeAndSkills')" [ngClass]="{'active-success': viewSection==='employeeAndSkills'}">Employee and skills</li>
-        <li class="list-group-item pointer success" (click)="navigateTo('branches')" [ngClass]="{'active-success': viewSection==='branches'}">Branches</li>
-        <li class="list-group-item pointer success" (click)="navigateTo('community')" [ngClass]="{'active-success': viewSection==='community'}">Community</li>
-    </ul>
-</div>
+      <!-- Desktop view -->
+      <ul class="list-group list-group-flush shadow-sm green-text d-none d-lg-block">
+          <li class="list-group-item pointer success" (click)="navigateTo('problem')" [ngClass]="{'active-success': viewSection==='problem'}" >Problem</li>
+          <li class="list-group-item pointer success" (click)="navigateTo('task')" [ngClass]="{'active-success': viewSection==='task'}">Task</li>
+          <li class="list-group-item pointer success" (click)="navigateTo('about')" [ngClass]="{'active-success': viewSection==='about'}">About</li>
+          <li class="list-group-item pointer success" (click)="navigateTo('contact')" [ngClass]="{'active-success': viewSection==='contact'}">Contact</li>
+          <li class="list-group-item pointer success" (click)="navigateTo('services')" [ngClass]="{'active-success': viewSection==='services'}">Services</li>
+          <li class="list-group-item pointer success" (click)="navigateTo('employeeAndSkills')" [ngClass]="{'active-success': viewSection==='employeeAndSkills'}">Employee and skills</li>
+          <li class="list-group-item pointer success" (click)="navigateTo('branches')" [ngClass]="{'active-success': viewSection==='branches'}">Branches</li>
+          <li class="list-group-item pointer success" (click)="navigateTo('community')" [ngClass]="{'active-success': viewSection==='community'}">Community</li>
+      </ul>
+  </div>
 
+  <!-- Views seen by the users -->
   <div class="col-lg-8">
       
     <app-view-organization-problems *ngIf="viewSection === 'problem'"  ></app-view-organization-problems>
     <app-view-organization-tasks *ngIf="viewSection === 'task'" ></app-view-organization-tasks>
-
+    <app-organization-about [organization]="profile" *ngIf="viewSection === 'about'"></app-organization-about>
+    <app-user-contact  *ngIf="viewSection === 'contact'" ></app-user-contact>
   </div>
 
+  <!-- Coming soon -->
   <div class="col-lg-2 d-none d-lg-block">
       <div class="card" style="height:100vh">
           <div class="card-body">
