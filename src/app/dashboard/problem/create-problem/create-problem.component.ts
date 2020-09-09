@@ -130,7 +130,7 @@ export class CreateProblemComponent implements OnInit {
     this.authenticationService.getUserContacts().subscribe(response => {
         // this.isLoading = false;
         let d = response.json();
-        this.addresses = d.addresses;
+        this.addresses = d.addresses.entities;
         console.log(this.addresses)
     },
       error => {  

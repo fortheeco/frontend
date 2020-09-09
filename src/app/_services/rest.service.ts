@@ -51,15 +51,68 @@ private headers_formdata: Headers = new Headers({'Content-Type': undefined});
      */
 
 
-    getGlobalPosts(): Observable<any> {
+    getGlobalPosts(data): Observable<any> {
       // console.log(this.currentUserValue)
         const userToken: string = 'Bearer ' + this.authenticationService.currentUserValue.token;
       const url = `${this.BASE_URL}api/Post/global`;
   
         this.headers = new Headers({'Content-Type': 'application/json'});
         this.headers.append('Authorization', userToken);
-        return this.httpc.get(url,{headers: this.headers});
+        return this.httpc.post(url, data ,{headers: this.headers});
       }
+
+
+      /**
+       * RETURN Applications
+       *
+       * @param 
+       * @return Response
+       */
+  
+  
+        getTaskApplications(data): Observable<any> {
+          const userToken: string = 'Bearer ' + this.authenticationService.currentUserValue.token;
+          const url = `${this.BASE_URL}api/Task/applicants`;
+    
+          this.headers = new Headers({'Content-Type': 'application/json'});
+          this.headers.append('Authorization', userToken);
+          return this.httpc.post(url, data ,{headers: this.headers});
+        }
+
+
+        /**
+         * Create Idea
+         *
+         * @param 
+         * @return Response
+         */
+    
+    
+        submitIdea(data): Observable<any> {
+          const userToken: string = 'Bearer ' + this.authenticationService.currentUserValue.token;
+          const url = `${this.BASE_URL}api/Task/idea`;
+    
+          this.headers = new Headers({'Content-Type': 'application/json'});
+          this.headers.append('Authorization', userToken);
+          return this.httpc.post(url, data ,{headers: this.headers});
+        }
+
+        /**
+         * Create Idea
+         *
+         * @param 
+         * @return Response
+         */
+    
+    
+        submitProblemIdea(data): Observable<any> {
+            const userToken: string = 'Bearer ' + this.authenticationService.currentUserValue.token;
+            const url = `${this.BASE_URL}api/Problem/idea`;
+      
+            this.headers = new Headers({'Content-Type': 'application/json'});
+            this.headers.append('Authorization', userToken);
+            return this.httpc.post(url, data ,{headers: this.headers});
+          }
 
       /**
        * RETURN Posts
@@ -172,6 +225,22 @@ private headers_formdata: Headers = new Headers({'Content-Type': undefined});
     return this.httpc.post(url, data ,{headers: this.headers});
   }
 
+  applyForTask(data): Observable<any> {
+    const userToken: string = 'Bearer ' + this.authenticationService.currentUserValue.token;
+      const url = `${this.BASE_URL}api/Individual/apply-task`;
+    this.headers = new Headers({'Content-Type': 'application/json'});
+    this.headers.append('Authorization', userToken);
+    return this.httpc.put(url, data ,{headers: this.headers});
+  }
+
+  sendContract(data): Observable<any> {
+    const userToken: string = 'Bearer ' + this.authenticationService.currentUserValue.token;
+      const url = `${this.BASE_URL}api/Task/send-contract`;
+    this.headers = new Headers({'Content-Type': 'application/json'});
+    this.headers.append('Authorization', userToken);
+    return this.httpc.post(url, data ,{headers: this.headers});
+  }
+
   createTask(data): Observable<any> {
     const userToken: string = 'Bearer ' + this.authenticationService.currentUserValue.token;
       const url = `${this.BASE_URL}api/Task`;
@@ -182,7 +251,27 @@ private headers_formdata: Headers = new Headers({'Content-Type': undefined});
 
   getTaskComments(tId="",cId=""): Observable<any> {
       const userToken: string = 'Bearer ' + this.authenticationService.currentUserValue.token;
-    const url = `${this.BASE_URL}api/Task/comments?TaskId=${tId}&CommentId=${cId}`;
+      const url = `${this.BASE_URL}api/Task/comments?TaskId=${tId}&CommentId=${cId}`;
+
+      this.headers = new Headers({'Content-Type': 'application/json'});
+      this.headers.append('Authorization', userToken);
+      return this.httpc.get(url,{headers: this.headers});
+    }
+
+
+    getTaskIdeas(tId=""): Observable<any> {
+      const userToken: string = 'Bearer ' + this.authenticationService.currentUserValue.token;
+      const url = `${this.BASE_URL}api/Task/ideas?TaskId=${tId}`;
+
+      this.headers = new Headers({'Content-Type': 'application/json'});
+      this.headers.append('Authorization', userToken);
+      return this.httpc.get(url,{headers: this.headers});
+    }
+
+
+    getProblemIdeas(pId=""): Observable<any> {
+      const userToken: string = 'Bearer ' + this.authenticationService.currentUserValue.token;
+      const url = `${this.BASE_URL}api/Problem/ideas?ProblemId=${pId}`;
 
       this.headers = new Headers({'Content-Type': 'application/json'});
       this.headers.append('Authorization', userToken);
@@ -191,7 +280,7 @@ private headers_formdata: Headers = new Headers({'Content-Type': undefined});
 
     getProblemComments(pId="",cId=""): Observable<any> {
         const userToken: string = 'Bearer ' + this.authenticationService.currentUserValue.token;
-      const url = `${this.BASE_URL}api/Problem/comments?ProblemId=${pId}&CommentId=${cId}`;
+        const url = `${this.BASE_URL}api/Problem/comments?ProblemId=${pId}&CommentId=${cId}`;
   
         this.headers = new Headers({'Content-Type': 'application/json'});
         this.headers.append('Authorization', userToken);

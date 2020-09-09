@@ -56,6 +56,8 @@ import {UtilityProvider} from "./_providers/utility";
 import { EditProblemComponent } from './shared/modals/problems/edit-problem/edit-problem.component';
 import { ViewProblemComponent } from './shared/modals/problems/view-problem/view-problem.component';
 import { ViewComponent } from './shared/modals/tasks/view/view.component';
+import { ApplyComponent } from './shared/modals/tasks/apply/apply.component';
+import { ViewApplicantComponent } from './shared/modals/tasks/view-applicant/view-applicant.component';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true,
@@ -86,7 +88,9 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     CreateOptionsComponent,
     EditProblemComponent,
     ViewProblemComponent,
-    ViewComponent
+    ViewComponent,
+    ApplyComponent,
+    ViewApplicantComponent
   ],
   entryComponents: [
     ViewUserComponent, 
@@ -102,7 +106,9 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     EditProblemComponent,
     ViewProblemComponent,
     CreateOptionsComponent,
-    ViewComponent
+    ViewComponent,
+    ViewApplicantComponent,
+    ApplyComponent
   ],
 
   imports: [

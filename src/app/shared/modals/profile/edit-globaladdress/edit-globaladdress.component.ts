@@ -50,7 +50,7 @@ export class EditGlobaladdressComponent implements OnInit {
     this.rest.getContacts().subscribe(response => {
         // this.isLoading = false;
         let d = response.json();
-        let addresses = d.addresses;
+        let addresses = d.addresses.entities;
         let i = 0;
         addresses.forEach(add=> {
           console.log(add)

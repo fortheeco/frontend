@@ -1,0 +1,42 @@
+<!-- <div class="modal-header">
+  <h4 class="modal-title" id="modal-basic-title">Apply to task</h4>
+</div> -->
+<div class="modal-body">  
+  <div class="row">
+    <h4 class="modal-title" id="modal-basic-title">Apply to task</h4>
+    <div class="col-sm-12">
+        <div class="card">
+            <div class="card-body">                
+                <div class="row col-sm-12" style="margin-top: 20px">
+                    <ngb-alert *ngIf="responseMessage" [type]="messageType" (close)="responseMessage = null">{{ responseMessage }}</ngb-alert>   
+                </div>
+                <div class="col-sm-12">                                      
+                    <!-- <form [formGroup]="dataForm" class="form-horizontal m-t-25" id="signupform" (ngSubmit)="onSubmit()"> -->
+                      <div class="form-group row">
+                          <div class="col-12">
+                            <div class="col-12 ">
+                              <p class="modal-lbl"></p>
+                            </div>
+                          </div>
+                      </div>
+                      <div class="form-group row">
+                          <div class="col-12">
+                            <div class="col-12 ">
+                                <fieldset class="border p-2">
+                                    <legend  class="w-auto">Reason why you deserve this task (optional)</legend>                                
+                                    <input class="form-control form-control-md fieldset-input" [(ngModel)]="form.description" [ngClass]="{ 'is-invalid': submitted && f.price.errors }" type="text" required=" ">
+                                </fieldset>
+                              </div>
+                          </div>
+                      </div>
+                    <!-- </form> -->
+              </div>
+            </div>
+        </div>
+    </div>
+  </div>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-rounded btn-2" (click)="modal.close('Close click')">Cancel</button>
+  <button type="button" class="btn btn-rounded btn-1" [disabled]="submitting" (click)="onSubmit()">{{submitting?'Submitting':'Apply'}}</button>
+</div>

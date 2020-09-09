@@ -20,12 +20,18 @@ export class NavigationComponent implements AfterViewInit {
   public showSearch = false;
   userProfile : any;
   notifications = [];
+  profile: any;
   
   constructor(
     private modalService: NgbModal,
     public authenticationService: AuthenticationService,
     private router: Router
-  ) {}
+  ) {
+
+    let u = this.authenticationService.currentUserValue;
+    this.profile = u.user;
+    console.log(this.profile)
+  }
 
 
   logout(){

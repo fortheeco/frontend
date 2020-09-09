@@ -24,10 +24,11 @@
                                       <div class="col-12 ">
                                         <div class="form-group m-b-30">
                                           <p *ngIf="errors && errors['address.StateId']"><span class="err-message" *ngFor="let err of errors['address.StateId']">{{err}} <br></span></p>
-                                          <select class="form-control" [(ngModel)]="selectedAddress" (change)="addressSelected(selectedAddress)" id="exampleFormControlSelect1">
+                                          <select class="form-control" [(ngModel)]="selectedAddress" [disabled]="!addresses" (change)="addressSelected(selectedAddress)" id="exampleFormControlSelect1">
                                               <option>Location of problem</option>
-                                              <option  *ngFor="let address of addresses" [ngValue]="address">{{ address.street }}</option>
+                                              <option  *ngFor="let address of addresses" [ngValue]="address">{{ address.street }}, {{ address.state.name }}</option>
                                           </select>
+                                          <p *ngIf="addresses && addresses.length < 1">Please visit profile page and add your address</p>
                                         </div>                                    
                                       </div>
                               </div>

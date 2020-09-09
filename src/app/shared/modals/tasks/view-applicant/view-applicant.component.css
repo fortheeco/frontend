@@ -1,0 +1,16 @@
+
+
+.skill-card{
+    background-color: #517258;
+    color: #ffffff;
+    border-radius: 5px;
+    padding: 3pt;
+    margin-right: 7pt;
+}
+
+.chat-img img{
+    height: 100px;
+    width: 100px;
+    border-radius: 50%;
+}
+

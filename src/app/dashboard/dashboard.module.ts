@@ -27,6 +27,7 @@ import { ListComponent } from './tasks/list/list.component';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { CreateProblemComponent } from './problem/create-problem/create-problem.component';
 import { OrganizationComponent } from './organization/organization.component';
+import { NotificationsComponent } from './notifications/notifications.component';
 
 @NgModule({
   imports: [
@@ -54,6 +55,7 @@ import { OrganizationComponent } from './organization/organization.component';
     ListComponent,
     CreateProblemComponent,
     OrganizationComponent,
+    NotificationsComponent,
    ],
     entryComponents: [
     ]

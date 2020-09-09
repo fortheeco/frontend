@@ -188,8 +188,8 @@ export class CreateComponent implements OnInit {
     this.authenticationService.getUserContacts().subscribe(response => {
         // this.isLoading = false;
         let d = response.json();
-        this.addresses = d.addresses;
-        console.log(this.addresses)
+        this.addresses = d.addresses.entities;
+        console.log(this.addresses.entities)
     },
       error => {  
         // this.isLoading = false;

@@ -2,6 +2,7 @@ import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { NgbModal, ModalDismissReasons, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { CreateOptionsComponent } from '../../shared/modals/create-options/create-options.component';
 import { ViewComponent } from '../../shared/modals/tasks/view/view.component';
+import { ViewApplicantComponent } from '../../shared/modals/tasks/view-applicant/view-applicant.component';
 import { Router } from '@angular/router';
 import { SharedServiceProvider } from '../../_providers/shared-provider';
 import {RestService} from "../../_services/rest.service";
@@ -15,6 +16,21 @@ export class HomeComponent implements OnInit {
   posts: any;
   problems: any;
 	shownGroup = null;
+  pageParams ={
+    "filter": {
+      "userId": "",
+      "title": "",
+      "countryId": "",
+      "stateId": "",
+      "createdBefore": "",
+      "createdAfter": "",
+      "endedBefore": "",
+      "endedAfter": "",
+      "postType": ""
+    },
+    "pageNumber": "0",
+    "pageSize": "0"
+  }
 
   constructor(
     private modalService: NgbModal,
@@ -24,7 +40,7 @@ export class HomeComponent implements OnInit {
     ) { }
  
     ngOnInit() {
-      // this.editAbout(null)
+      // this.viewModal()
       this.getGlobalPosts()
       // this.router.navigate(['/dashboard/tasks/view-user-profile']);
 
@@ -38,13 +54,14 @@ export class HomeComponent implements OnInit {
           this.shownGroup = group;
       }
     };
+
     isGroupShown(group) {
         return this.shownGroup === group;
     };
     
     getGlobalPosts(){
       // this.isLoading = true;
-      this.rest.getGlobalPosts().subscribe(response => {
+      this.rest.getGlobalPosts(this.pageParams).subscribe(response => {
           // this.isLoading = false;
          let posts = response.json();
           this.problems = posts.problems;
@@ -60,7 +77,11 @@ export class HomeComponent implements OnInit {
   
     viewCreateOptions() {
       const modalRef = this.modalService.open(CreateOptionsComponent, { size: 'lg',centered: true,windowClass: 'clear-bg-modal'  });
+    }
 
+  
+    viewModal() {
+      const modalRef = this.modalService.open(ViewApplicantComponent, { size: 'lg',centered: true,windowClass: 'mini-modal'  });
     }
 
     viewPost(row) {
@@ -69,7 +90,7 @@ export class HomeComponent implements OnInit {
 
     viewTask(row) {
       this.sharedService.updatePassedProblem(row);
-      const modalRef = this.modalService.open(ViewComponent, { size: 'lg',centered: true  });
+      const modalRef = this.modalService.open(ViewComponent, { size: 'lg',centered: true,windowClass: 'right-modal'  });
       modalRef.componentInstance.inputData = row;
       modalRef.result.then((result) => {
         this.getGlobalPosts();

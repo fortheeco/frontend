@@ -15,6 +15,21 @@ import {UtilityProvider} from "../../../_providers/utility";
 export class ListComponent implements OnInit {
   posts: any;
   problems: any;
+  pageParams ={
+    "filter": {
+      "userId": "",
+      "title": "",
+      "countryId": "",
+      "stateId": "",
+      "createdBefore": "",
+      "createdAfter": "",
+      "endedBefore": "",
+      "endedAfter": "",
+      "postType": ""
+    },
+    "pageNumber": "0",
+    "pageSize": "0"
+  }
 
   constructor(
     private modalService: NgbModal,
@@ -32,7 +47,7 @@ export class ListComponent implements OnInit {
     getGlobalPosts(){
       this.problems = undefined;
       // this.isLoading = true;
-      this.rest.getGlobalPosts().subscribe(response => {
+      this.rest.getGlobalPosts(this.pageParams).subscribe(response => {
           // this.isLoading = false;
          let posts = response.json();
           this.problems = posts.problems; 

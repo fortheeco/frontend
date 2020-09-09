@@ -1,6 +1,7 @@
 <div class="modal-header">
-  <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
-    <span aria-hidden="true">&times;</span>
+  <button type="button" class="close close-left"  (click)="activeModal.dismiss('Cross click')">
+    <span aria-hidden="true">&lt;</span>
+    <!-- <i class="mdi mdi-chevron-left"></i> -->
   </button>
 </div>
 <div class="modal-body" *ngIf="postDetails && postDetails.task">  
@@ -68,22 +69,22 @@
                       <p><span *ngFor="let skill of postDetails.task.requirements.requiredSkills" class="label darkgreen-bg lbl-1">{{skill.name}}</span></p>
                     </div>
                     <div class="row  text-dark m-t-30 footer-btns">
-                        <div class="col-3" (click)="voteTaskPost(postDetails.task.id)">
+                        <div class="col-3 section-button" (click)="voteTaskPost(postDetails.task.id)">
                             <p class="font-medium">
                                 <i class="fa fa-arrow-up"></i> {{postDetails.collection.votes}} Votes</p>
                         </div>
-                        <div class="col-3">
+                        <div [ngClass]="{'active-section': viewMode == 'comments', 'section-button': viewMode !== 'comments'}" class="col-3 sect-selection" (click)="viewMode = 'comments'">
                             <p class="font-medium">
                                 <i class="far fa-comment-alt"></i> {{postDetails.collection.comments}} Comments</p>
                         </div>
-                        <div class="col-3">
+                        <div  (click)="viewMode = 'ideas'" [ngClass]="{'active-section': viewMode == 'ideas', 'section-button': viewMode !== 'ideas'}" class="col-3 sect-selection">
                             <p class="font-medium">
                             <i class="icon-bulb"></i> {{postDetails.collection.ideas}} Ideas</p>
                         </div>
-                        <!-- <div class="col-3">
+                        <div  (click)="viewMode = 'applications'" [ngClass]="{'active-section': viewMode == 'applications', 'section-button': viewMode !== 'applications'}" class="col-3 sect-selection" (click)="viewMode = 'applications'" [hidden]="currentUser.id !== postDetails.task.owner.id">
                             <p class="font-medium">
-                                <i class="far fa-list-alt"></i> 0 Applications</p>
-                        </div> -->
+                                <i class="far fa-list-alt"></i> {{postDetails.collection.applications}} Applications</p>
+                        </div>
                         <!-- <div class="col-3">
                             <p class="font-medium">
                                 <i class="icon-share"></i> 1.3k Shares</p>
@@ -93,7 +94,7 @@
                 </div>
             </div>
             <div class="card-body">
-              <div class="rights-part">
+              <div class="switch-section" *ngIf="viewMode == 'comments'">
                   <div class="card">
                       <div class="card-body p-t-0 p-r-0">
                           <div class="chat-box p-r-15" style="height:calc(100vh - 400px); position: relative;" [perfectScrollbar]="config">
@@ -122,6 +123,9 @@
                                     </div>
                                 </li>
                               </ul>
+                              <div class="inf-con" *ngIf="comments && comments.length < 1">
+                                Nobody has commented on this task
+                              </div>
                           </div>
                       </div>
                       <div class="card-body">  
@@ -138,19 +142,59 @@
                               </div>
                           </div>
                         </div>
-                          <!-- <div class="row">
-                              <div class="col-9">
-                                  <div class="input-field m-t-0 m-b-0">
-                                      <input id="textarea1" placeholder="Type and enter" [(ngModel)]="commentForm.message" class="form-control border-0" type="text">
-                                  </div>
-                              </div>
-                              <div class="col-3">
-                                  <a class="btn-circle btn-lg btn-cyan float-right text-white" [class.disabled]="commenting || !commentForm.message" href="javascript:void(0)" (click)="commentOnPost()">
-                                      <i class="fas fa-paper-plane"></i>
-                                  </a>
-                              </div>
-                          </div> -->
                       </div>
+                  </div>
+              </div>
+              <div class="switch-section" *ngIf="viewMode == 'ideas'">
+                <div class="ideas-section">
+                  <p>Submit an Idea</p>
+                  <textarea [(ngModel)]="ideaForm.message" class="form-control" rows="5"></textarea>  
+                  <br>      
+                  <button type="button" (click)="submitIdea()" class="btn btn-sm btn-block btn-success btn-green">Submit</button>
+                  <br>
+                  <h3>Submitted Ideas</h3>
+                  <hr>
+                  <br>
+                  <div class="inf-con" *ngIf="ideas && ideas.length < 1">
+                    No idea has been submitted
+                  </div>
+                  <ul class="chat-list">
+                    <li class="chat-item" *ngFor="let idea of ideas">
+                        <div class="chat-img">
+                            <img src="{{idea.owner.profilePicture?idea.owner.profilePicture:'assets/images/users/1.jpg'}}" alt="user">
+                        </div>
+                        <div class="chat-content">
+                            <div class="box bg-light-info">
+                              <h6 class="chat-name font-medium">{{ idea.owner.fullName }}</h6>
+                              <div class="chat-time">{{ idea.dateCreated |date:'MMMM d, y h:mm:ss a' }}</div>
+                              {{idea.message}}
+                            </div>
+                        </div>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <div class="switch-section" *ngIf="viewMode == 'applications'">
+                  <div class="card">
+                    <p>Applications</p>
+                    <div class="card-body p-t-0 p-r-0">
+                        <div class="chat-box p-r-15" style="height:calc(100vh - 400px); position: relative;" [perfectScrollbar]="config">
+                            <ul class="chat-list">
+                              <li class="chat-item" *ngFor="let application of applications" (click)="viewApplicantModal(application)">
+                                  <div class="chat-img">
+                                      <img src="{{application.applicant.profilePicture?application.applicant.profilePicture:'assets/images/users/1.jpg'}}" alt="user">
+                                  </div>
+                                  <div class="chat-content">
+                                      <div class="box bg-light-info bx-applicant">
+                                        <h6 class="chat-name font-medium">{{ application.applicant.fullName }}</h6>
+                                        <div class="chat-time">{{ application.dateCreated |date:'MMMM d, y h:mm:ss a' }}</div>
+                                        {{application.reasonToJoin}}
+                                      </div>
+                                  </div>
+                              </li>
+                            </ul>
+                        </div>
+                    </div>
                   </div>
               </div>
             </div>               
@@ -158,7 +202,7 @@
     </div>
     <div class="col-sm-3 sect-right">
       <div class="border-bottom-section section-padding" style="padding-bottom: 20px;" *ngIf="currentUser.id !== postDetails.task.owner.id">
-        <button type="button" class="btn btn-block btn-success btn-green"><i class="fas fa-list-alt"></i> Apply to this task</button>
+        <button type="button" (click)="applyToTask(postDetails)" class="btn btn-block btn-success btn-green"><i class="fas fa-list-alt"></i> Apply to this task</button>
       </div>
       <div class="border-bottom-section section-padding">
         <p class="txt-hd-1">ECO category</p>
@@ -254,22 +298,22 @@
                       <p><span *ngFor="let skill of postDetails.problem.suggestion.requiredSkills" class="label darkgreen-bg lbl-1">{{skill.name}}</span></p>
                     </div>
                     <div class="row  text-dark m-t-30 footer-btns">
-                        <div class="col-3">
+                        <div class="col-3 section-button" (click)="voteTaskPost(postDetails.problem.id)">
                             <p class="font-medium">
                                 <i class="fa fa-arrow-up"></i> {{postDetails.collection.votes}} Votes</p>
                         </div>
-                        <div class="col-3">
+                        <div [ngClass]="{'active-section': viewMode == 'comments', 'section-button': viewMode !== 'comments'}" class="col-3 sect-selection" (click)="viewMode = 'comments'">
                             <p class="font-medium">
                                 <i class="far fa-comment-alt"></i> {{postDetails.collection.comments}} Comments</p>
                         </div>
-                        <div class="col-3">
+                        <div  (click)="viewMode = 'ideas'" [ngClass]="{'active-section': viewMode == 'ideas', 'section-button': viewMode !== 'ideas'}" class="col-3 sect-selection">
                             <p class="font-medium">
                             <i class="icon-bulb"></i> {{postDetails.collection.ideas}} Ideas</p>
                         </div>
-                        <!-- <div class="col-3">
+                        <div  (click)="viewMode = 'applications'" [ngClass]="{'active-section': viewMode == 'applications', 'section-button': viewMode !== 'applications'}" class="col-3 sect-selection" (click)="viewMode = 'applications'" [hidden]="currentUser.id !== postDetails.problem.owner.id">
                             <p class="font-medium">
-                                <i class="far fa-list-alt"></i> 0 Applications</p>
-                        </div> -->
+                                <i class="far fa-list-alt"></i> {{postDetails.collection.applications}} Adoptions</p>
+                        </div>
                         <!-- <div class="col-3">
                             <p class="font-medium">
                                 <i class="icon-share"></i> 1.3k Shares</p>
@@ -279,36 +323,39 @@
                 </div>
             </div>
             <div class="card-body">
-              <div class="rights-part">
+              <div class="switch-section" *ngIf="viewMode == 'comments'">
                   <div class="card">
                       <div class="card-body p-t-0 p-r-0">
-                          <div class="chat-box p-r-15" style="height:calc(100vh - 400px); position: relative;" [perfectScrollbar]="config">
-                              <ul class="chat-list">
-                                <li class="chat-item" *ngFor="let comment of comments">
-                                    <div class="chat-img">
-                                        <img src="{{comment.owner.profilePicture?comment.owner.profilePicture:'assets/images/users/1.jpg'}}" alt="user">
-                                    </div>
-                                    <div class="chat-content">
-                                        <div class="box bg-light-info">
-                                          <h6 class="chat-name font-medium">{{ comment.owner.fullName }}</h6>
-                                          <div class="chat-time">{{ comment.dateCreated |date:'MMMM d, y h:mm:ss a' }}</div>
-                                          {{comment.message}}
+                        <div class="chat-box p-r-15" style="height:calc(100vh - 400px); position: relative;" [perfectScrollbar]="config">
+                            <ul class="chat-list">
+                              <li class="chat-item" *ngFor="let comment of comments">
+                                  <div class="chat-img">
+                                      <img src="{{comment.owner.profilePicture?comment.owner.profilePicture:'assets/images/users/1.jpg'}}" alt="user">
+                                  </div>
+                                  <div class="chat-content">
+                                      <div class="box bg-light-info">
+                                        <h6 class="chat-name font-medium">{{ comment.owner.fullName }}</h6>
+                                        <div class="chat-time">{{ comment.dateCreated |date:'MMMM d, y h:mm:ss a' }}</div>
+                                        {{comment.message}}
+                                      </div>
+                                      <div class="row">
+                                        <div class="col-2">
+                                          <p (click)="scroll(target,comment)" class="font-medium re-1">Reply</p>
                                         </div>
-                                        <div class="row">
-                                          <div class="col-2">
-                                            <p (click)="scroll(target,comment)" class="font-medium re-1">Reply</p>
-                                          </div>
-                                          <!-- <div class="col-2">
-                                            <p  (click)="toggleGroup(comment.id)" class="font-medium re-1">Replies ({{comment.replys}})</p>
-                                          </div> -->
-                                        </div>
-                                        <!-- <div class="row" *ngIf="isGroupShown(comment.id)">
-                                          <p>dddd</p>
+                                        <!-- <div class="col-2">
+                                          <p  (click)="toggleGroup(comment.id)" class="font-medium re-1">Replies ({{comment.replys}})</p>
                                         </div> -->
-                                    </div>
-                                </li>
-                              </ul>
-                          </div>
+                                      </div>
+                                      <!-- <div class="row" *ngIf="isGroupShown(comment.id)">
+                                        <p>dddd</p>
+                                      </div> -->
+                                  </div>
+                              </li>
+                            </ul>
+                            <div class="inf-con" *ngIf="comments && comments.length < 1">
+                              Nobody has commented on this task
+                            </div>
+                        </div>
                       </div>
                       <div class="card-body">  
                         <div class="row">
@@ -324,20 +371,37 @@
                               </div>
                           </div>
                         </div>
-                          <!-- <div class="row">
-                              <div class="col-9">
-                                  <div class="input-field m-t-0 m-b-0">
-                                      <input id="textarea1" placeholder="Type and enter" [(ngModel)]="commentForm.message" class="form-control border-0" type="text">
-                                  </div>
-                              </div>
-                              <div class="col-3">
-                                  <a class="btn-circle btn-lg btn-cyan float-right text-white" [class.disabled]="commenting || !commentForm.message" href="javascript:void(0)" (click)="commentOnPost()">
-                                      <i class="fas fa-paper-plane"></i>
-                                  </a>
-                              </div>
-                          </div> -->
                       </div>
                   </div>
+              </div>
+              <div class="switch-section" *ngIf="viewMode == 'ideas'">
+                <div class="ideas-section">
+                  <p>Submit an Idea</p>
+                  <textarea [(ngModel)]="ideaForm2.message" class="form-control" rows="5"></textarea>  
+                  <br>      
+                  <button type="button" [disabled]="submitting1" (click)="submitProblemIdea()" class="btn btn-sm btn-block btn-success btn-green">Submit</button>
+                  <br>
+                  <h3>Submitted Ideas</h3>
+                  <hr>
+                  <br>
+                  <div class="inf-con" *ngIf="ideas && ideas.length < 1">
+                    No idea has been submitted
+                  </div>
+                  <ul class="chat-list">
+                    <li class="chat-item" *ngFor="let idea of ideas">
+                        <div class="chat-img">
+                            <img src="{{idea.owner.profilePicture?idea.owner.profilePicture:'assets/images/users/1.jpg'}}" alt="user">
+                        </div>
+                        <div class="chat-content">
+                            <div class="box bg-light-info">
+                              <h6 class="chat-name font-medium">{{ idea.owner.fullName }}</h6>
+                              <div class="chat-time">{{ idea.dateCreated |date:'MMMM d, y h:mm:ss a' }}</div>
+                              {{idea.message}}
+                            </div>
+                        </div>
+                    </li>
+                  </ul>
+                </div>
               </div>
             </div>               
         </div>

@@ -15,7 +15,7 @@
 .t-1{}
 
 .txt2{
-    font-size: 0.6em;
+    font-size: 0.7em;
 }
 
 .b-1{
@@ -34,7 +34,7 @@
 
 .card-content{
     color: #517258;
-    font-size: 0.7em;
+    font-size: 0.9em;
 }
 
 .task-content-section{
@@ -116,6 +116,12 @@ a.disabled {
     text-decoration: underline;
 }
 
+.inf-con{
+    padding: 8px;
+    color: #666666;
+    text-align: center;
+}
+
 #textarea1{
     border: solid 1px #68856e !important;
     border-radius: 5px;
@@ -153,4 +159,35 @@ a.disabled {
     border: none;
     padding: 15px;
     border-radius: 10px;
+}
+
+.bx-applicant {
+    border: solid 1px #97b99e;
+    min-width: 64%;
+    border-bottom-right-radius: 20px;
+}
+
+.section-button{
+    padding: 6px;
+    text-align: center;
+    padding-top: 12px;
+}
+
+.active-section{    
+    background-color: #EAFBEF;
+    color: #68856e;
+    border-radius: 14px;
+    padding: 6px;
+    text-align: center;
+    padding-top: 12px;
+}
+
+.active-section p{
+    padding: 0px;
+    margin-bottom: 0px;
+}
+
+.ideas-section{
+    height:calc(100vh - 400px); 
+    position: relative;
 }
