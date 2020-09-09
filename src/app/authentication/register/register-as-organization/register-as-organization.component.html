@@ -33,6 +33,7 @@
 
                   <div class="col-12 ">
                     <select class="form-control border-input" placeholder="Type of Organization" formControlName="organizationType">
+                        <option [selected]="true" [value]="null" hidden>Type of Organization</option>
                         <option *ngFor="let type of organizationTypes" [value]="type.key" >{{type.value}}</option>
                     </select>   
 
@@ -46,7 +47,9 @@
                 <div class="input-group">
 
                   <div class="col-12 ">
-                    <select class="form-control border-input" placeholder="Industry" formControlName="industry">
+
+                    <select class="form-control border-input" formControlName="industry">
+                      <option [selected]="true" [value]="null" hidden>Industry</option>
                       <option *ngFor="let item of industries" [value]="item" >{{item}}</option>
                     </select>
 
