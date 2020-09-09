@@ -47,10 +47,14 @@ export class ForgotPasswordComponent implements OnInit, OnDestroy {
         this.sent = true;
        }))
       .subscribe(x => {
-      });
+      },
+        error => console.log(error.json())
+      );
   }
 
   ngOnDestroy() {
     this.subscriptions.forEach(x => x.unsubscribe());
   }
 }
+
+//token=CfDJ8Fu%2FsTmKd49Dsia6TC%2B8WlZqevwP43Dxkz34iMRdOWpsaqjCvFgCZWfZRwjbZ319r6mNWt5Z34%2FszRWzOi83198PAuHSTYpkpEzLjdqwEMBZL0K17P%2BnVgiIlsoM0GDGKOKOVvX2io4B%2BnUqiMVGqi7LuLgwMFy3j6iW868xI7tcRYypKKhyUryeUXvTmjfCDvOmODTntRotN4Yh9%2FxHB6KSVFomOEN1qiX6Hl4FGKR%2F&userId=9ccc946f-1fd8-4afa-84d4-b43b3c35f740" 
