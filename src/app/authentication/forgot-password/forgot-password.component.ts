@@ -48,7 +48,7 @@ export class ForgotPasswordComponent implements OnInit, OnDestroy {
        }))
       .subscribe(x => {
       },
-        error => console.log(error.json())
+        // error => console.log(error.json())
       );
   }
 

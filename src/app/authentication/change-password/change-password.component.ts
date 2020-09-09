@@ -55,7 +55,7 @@ export class ChangePasswordComponent implements OnInit, OnDestroy {
       password: this.changePasswordFrom.get('password').value
     };
 
-    console.log(data.token, this.token);
+    // console.log(data.token, this.token);
 
     const sub = this.auth.changePassword(data)
       .pipe(finalize(() => this.loading = false))
@@ -63,7 +63,7 @@ export class ChangePasswordComponent implements OnInit, OnDestroy {
         this.sent = true;
       },
         error => {
-          console.log(error.json());
+          // console.log(error.json());
           this.utility.showToast('danger', 'Could not change password, kindly request new link and try again later');
           this.loading = false;
         }
