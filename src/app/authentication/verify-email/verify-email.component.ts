@@ -41,7 +41,7 @@ export class VerifyEmailComponent implements OnInit, OnDestroy {
 
     this.loading = true;
 
-    const sub = this.auth.verifyEmailAddress({token: this.token, userId: this.userId})
+    const sub = this.auth.verifyEmailAddress({token: encodeURIComponent(this.token), userId: this.userId})
       .pipe(finalize(() => this.loading = false ))
       .subscribe(x => {
         this.loading = false;
