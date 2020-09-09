@@ -6,7 +6,6 @@ import {Headers, Http} from '@angular/http';
 import { BASE_URL } from 'src/app/_providers/config/config';
 import { User } from 'src/app/_models';
 import { ActivatedRoute, Router } from '@angular/router';
-import { AppOrganization } from 'src/app/_entities/organization/app-organization';
 
 
 @Injectable({
@@ -60,12 +59,26 @@ export class OrganizationService {
    */
 
   getOrganizationIndustries(): Observable<any> {
-    const userToken: string = 'Bearer ' + this.currentUserValue.token;
+    // const userToken: string = 'Bearer ' + this.currentUserValue.token;
     const url = `${this.BASE_URL}api/organization/industries`;
 
       this.headers = new Headers({'Content-Type': 'application/json'});
-      this.headers.append('Authorization', userToken);
+      // this.headers.append('Authorization', userToken);
       return this.httpc.get(url, {headers: this.headers});
+  }
+
+  /**
+   * @description Returns the industries used in this application for organization to select from
+   * @return Response
+   */
+
+  updateOrganizationDetails(data: any): Observable<any> {
+    const userToken: string = 'Bearer ' + this.currentUserValue.token;
+    const url = `${this.BASE_URL}api/organization/organization`;
+
+      this.headers = new Headers({'Content-Type': 'application/json'});
+      this.headers.append('Authorization', userToken);
+      return this.httpc.patch(url, data, {headers: this.headers});
   }
 
 }

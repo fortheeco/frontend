@@ -1,0 +1,11 @@
+  <!-- This is used in a reactive form, I have not figured how to use it in a template form -->
+  <!-- This simplies gets the form and the field name and places the the error messages inside -->
+
+
+<div
+  *ngIf="(form && form.get(field) && ((form.get(field).touched && form.get(field).invalid) || form.get(field).hasError('serverError') ))"
+  class=" text-danger"
+  >
+  <!-- <small>{{ form.get(field).errors['message'] }}</small> -->
+  <small>{{ form.get(field).errors['message'] }}</small>
+</div>

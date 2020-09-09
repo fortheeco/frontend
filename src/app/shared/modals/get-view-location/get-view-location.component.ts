@@ -2,10 +2,10 @@ import { Component, OnInit, OnDestroy, Input, Output, EventEmitter } from '@angu
 import { NgbModal, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { Subscription } from 'rxjs';
 import { RestService } from 'src/app/_services/rest.service';
-import { ICountry, IState } from 'src/app/_entities/address/app-country';
+import { ICountry, IState } from 'src/app/_models/address/app-country';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { GetViewLocationFunctions } from './get-view-location-functions';
-import { IAppAddress } from 'src/app/_entities/address/app-address';
+import { IAppAddress } from 'src/app/_models/address/app-address';
 
 @Component({
   selector: 'app-get-view-location',
