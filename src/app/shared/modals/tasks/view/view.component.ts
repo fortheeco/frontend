@@ -6,6 +6,8 @@ import { NgbModal, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import {AuthenticationService} from "../../../../_services/authentication.service";
 import { SharedServiceProvider } from '../../../../_providers/shared-provider';
 import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
+import { ApplyComponent } from './../apply/apply.component';
+import { ViewApplicantComponent } from './../view-applicant/view-applicant.component';
 
 @Component({
   selector: 'app-view',
@@ -26,19 +28,41 @@ export class ViewComponent implements OnInit {
     problemId: "",
     taskId: "",
   };
+
+  ideaForm = {
+    message: "",
+    taskId: "",
+  };
+
+  ideaForm2 = {
+    message: "",
+    problemId: "",
+  };
+
   commenting: boolean;
   comments: any;
   commentToReply: any;
   currentUser: any;
   deleting: boolean;
   viewMode = 'comments';
-
+  pageParams = {
+    "taskId": "",
+    "filter": {
+      "contractStatus": ""
+    },
+    "pageNumber": 0,
+    "pageSize": 0
+  }
+  applications: any;
+  ideas: any;
+  submitting1: boolean;
 
   constructor(
     private utility: UtilityProvider,
     private rest: RestService,
     private authenticationService: AuthenticationService,
     private toastr: ToastrService,
+    private modalService: NgbModal,
     public activeModal: NgbActiveModal,
     private sharedService: SharedServiceProvider, 
 
@@ -49,9 +73,15 @@ export class ViewComponent implements OnInit {
       this.postDetails = data;
       // console.log(this.postDetails.problem.ecoDetail.ecoEntity.name)
       if(data.task){
+        this.pageParams.taskId = data.task.id;
+        this.ideaForm.taskId = data.task.id;
         this.getTaskComments();
+        this.getTaskIdeas();
+        this.getTaskApplications();
       }else{
+        this.ideaForm2.problemId = data.problem.id;
         this.getComments();
+        this.getProblemIdeas();
       }
 
     });
@@ -64,6 +94,25 @@ export class ViewComponent implements OnInit {
 
   ngOnInit() {
   }
+
+  
+  viewApplicantModal(data) {
+    this.sharedService.updatePassedApplicant(data);
+    const modalRef = this.modalService.open(ViewApplicantComponent, { size: 'lg',centered: true,windowClass: 'mini-modal'  });
+  }
+
+
+  applyToTask(row) {
+    const modalRef = this.modalService.open(ApplyComponent, { size: 'sm',centered: true, windowClass: 'wide-modal'  });
+    modalRef.componentInstance.inputData = row;
+    modalRef.result.then((result) => {
+      // this.getGlobalPosts();
+    }).catch((res) => {
+      console.log(res)
+      // this.getGlobalPosts();
+    });
+  }
+
 
   commentOnTask(){
     this.commenting = true;
@@ -144,6 +193,35 @@ export class ViewComponent implements OnInit {
       });
   }
 
+  
+  getTaskIdeas(){
+    // this.isLoading = true;
+    this.rest.getTaskIdeas(this.postDetails.task.id).subscribe(response => {
+        // this.isLoading = false;
+       let res = response.json();
+       this.ideas = res.entities;
+        console.log(res)
+    },
+      error => {  
+        // this.isLoading = false;
+      });
+  }
+
+
+  
+  getProblemIdeas(){
+    // this.isLoading = true;
+    this.rest.getProblemIdeas(this.postDetails.problem.id).subscribe(response => {
+        // this.isLoading = false;
+       let res = response.json();
+       this.ideas = res.entities;
+        console.log(res)
+    },
+      error => {  
+        // this.isLoading = false;
+      });
+  }
+
   getCommentReplies(cId){
     // this.isLoading = true;
     this.rest.getProblemComments(this.postDetails.problem.id?this.postDetails.problem.id:this.postDetails.task.id,cId).subscribe(response => {
@@ -154,6 +232,61 @@ export class ViewComponent implements OnInit {
     },
       error => {  
         // this.isLoading = false;
+      });
+  }
+
+  getTaskApplications(){
+    this.applications = undefined;
+    // this.isLoading = true;
+    this.rest.getTaskApplications(this.pageParams).subscribe(response => {
+        // this.isLoading = false;
+       let posts = response.json();
+        this.applications = posts.entities; 
+        console.log(this.applications)
+    },
+      error => {  
+        // this.isLoading = false;
+      });
+  }
+
+  submitIdea(){
+    this.applications = undefined;
+    this.submitting1 = true;
+    this.rest.submitIdea(this.ideaForm).subscribe(response => {
+        this.submitting1 = false;
+       let posts = response.json();
+       this.ideaForm = {
+        message: "",
+        taskId: "",
+      };
+      this.utility.showToast('success', 'Idea submitted successfully')
+        // this.applications = posts.entities; 
+        this.getTaskIdeas();
+        console.log(this.applications)
+    },
+      error => {  
+        this.submitting1 = false;
+      });
+  }
+
+
+  submitProblemIdea(){
+    this.applications = undefined;
+    this.submitting1 = true;
+    this.rest.submitProblemIdea(this.ideaForm2).subscribe(response => {
+        this.submitting1 = false;
+       let posts = response.json();
+       this.ideaForm2 = {
+        message: "",
+        problemId: "",
+      };
+      this.utility.showToast('success', 'Idea submitted successfully')
+        // this.applications = posts.entities; 
+        this.getProblemIdeas();
+        console.log(this.applications)
+    },
+      error => {  
+        this.submitting1 = false;
       });
   }
 

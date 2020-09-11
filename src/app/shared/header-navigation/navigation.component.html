@@ -56,7 +56,7 @@
         
         <a ngbDropdownToggle class="nav-link text-muted waves-effect waves-dark pro-pic cus-link-2" href="javascript:void(0)" data-toggle="dropdown" aria-haspopup="true"
             aria-expanded="false">
-            <img src="assets/images/users/1.jpg" width="31" height="31" class="rounded-circle" alt="user"> Joe Dennis <i class="fas fa-caret-down"></i>
+            <img src="assets/images/users/1.jpg" width="31" height="31" class="rounded-circle" alt="user"> {{ profile?profile.fullName:'' }} <i class="fas fa-caret-down"></i>
         </a>
         <div class="dropdown-menu-right user-dd animated flipInY" ngbDropdownMenu>
             <!-- <span class="with-arrow">

@@ -302,8 +302,33 @@ legend{
     box-shadow: none;
     border: none;
 }
+.wide-modal .modal-dialog{
+    max-width: 40% !important;
+}
+.sect-selection{
+    cursor: pointer;
+}
+.sect-selection :hover{
+    /* background-color: #efefef; */
+    font-weight: bold;
+}
+.right-modal .modal-body{
+    padding-top: 0px !important;
+}
 
+.right-modal .modal-dialog{
+    margin-right: 0px;
+    margin-top: 0px;
+    max-width: 85% !important;
+}
 
+.close-left{
+    margin-left: 0px !important;   
+}
+
+.close-left i{
+    color: #33DB60;
+}
 
 /* feed cards */
 
@@ -375,4 +400,8 @@ legend{
     float: right;
     margin: 10px;
     border-radius: 4px;
+}
+
+.modal-title{
+    padding-left: 10px;
 }

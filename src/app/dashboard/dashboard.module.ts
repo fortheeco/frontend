@@ -27,6 +27,7 @@ import { ListComponent } from './tasks/list/list.component';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { CreateProblemComponent } from './problem/create-problem/create-problem.component';
 import { OrganizationComponent } from './organization/organization.component';
+import { NotificationsComponent } from './notifications/notifications.component';
 import { ProblemCardComponent } from '../shared/components/problems/problem-card/problem-card.component';
 import { TaskCardComponent } from '../shared/components/tasks/task-card/task-card.component';
 import { ViewOrganizationProblemsComponent } from './organization/view-organization-problems/view-organization-problems.component';
@@ -66,6 +67,7 @@ import { SharedModule } from '../shared/shared.module';
     ListComponent,
     CreateProblemComponent,
     OrganizationComponent,
+    NotificationsComponent,
     ViewOrganizationProblemsComponent,
     ViewOrganizationTasksComponent,
     ProblemCardComponent,

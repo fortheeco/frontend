@@ -34,6 +34,8 @@ import { EditEducationComponent } from './shared/modals/profile/edit-education/e
 import { EditGlobaladdressComponent } from './shared/modals/profile/edit-globaladdress/edit-globaladdress.component';
 import { EditSkillsComponent } from './shared/modals/profile/edit-skills/edit-skills.component';
 import { ViewComponent } from './shared/modals/tasks/view/view.component';
+import { ApplyComponent } from './shared/modals/tasks/apply/apply.component';
+import { ViewApplicantComponent } from './shared/modals/tasks/view-applicant/view-applicant.component';
 import { ViewUserCvComponent } from './shared/modals/view-user-cv/view-user-cv.component';
 import { ViewUserComponent } from './shared/modals/view-user/view-user.component';
 import { MenuItems } from './shared/sidebar/menu-items';
@@ -85,6 +87,8 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     EditProblemComponent,
     ViewProblemComponent,
     ViewComponent,
+    ApplyComponent,
+    ViewApplicantComponent,
     GetViewLocationComponent,
     EditOrganizationAboutComponent,
   ],
@@ -103,6 +107,8 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     ViewProblemComponent,
     CreateOptionsComponent,
     ViewComponent,
+    ViewApplicantComponent,
+    ApplyComponent,
     GetViewLocationComponent,
     EditOrganizationAboutComponent,
   ],

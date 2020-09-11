@@ -13,19 +13,24 @@ export class SharedServiceProvider {
       
   public passedProblemSource  = new BehaviorSubject<any>(null);
   passedProblem$ = this.passedProblemSource.asObservable();
+        
+  public passedApplicantSource  = new BehaviorSubject<any>(null);
+  passedApplicant$ = this.passedApplicantSource.asObservable();
 
 
   constructor(public http: HttpClient) {
     console.log('Hello SharedServiceProvider Provider');
   }
 
-//   UpdatePassedProblem(val: any) {
-//     this._passedProblemSource.next(val);
-//   }
-  
-    updatePassedProblem(details){
-      this.passedProblemSource.next(details);
-    }
+
+  updatePassedProblem(details){
+    this.passedProblemSource.next(details);
+  }
+
+
+  updatePassedApplicant(details){
+    this.passedApplicantSource.next(details);
+  }
 
 
 
