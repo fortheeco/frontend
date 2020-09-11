@@ -60,6 +60,8 @@ export class CreateProblemComponent implements OnInit {
   submiting: boolean;
   submitting: boolean;
 
+  saveUsername = true;
+
   constructor(
     private authenticationService: AuthenticationService,
     private router: Router, 
