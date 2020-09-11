@@ -54,21 +54,16 @@ export class AuthenticationService {
             ));
     }
 
-    signup(registrationData) {
+    /**
+     * @description Sign ups a user to the platform
+     * @param data
+     */
+    signup(data: any) {
         const url = `${this.BASE_URL}api/auth/signup`;
 
-        // return this.http.post<any>(`/users/authenticate`, { username, password })
-        return this.http.post<any>(url, registrationData)
-            .pipe(map(user => {
-                // login successful if there's a jwt token in the response
-                // if (user && user.access_token) {
-                //     // store user details and jwt token in local storage to keep user logged in between page refreshes
-                //     localStorage.setItem('currentUser', JSON.stringify(user));
-                //     this.currentUserSubject.next(user);
-                // }
+        this.headers = new Headers({'Content-Type': 'application/json'});
 
-                // return user;
-            }));
+        return this.httpc.post(url, data, {headers: this.headers});
     }
 
     /**

@@ -59,3 +59,9 @@ select:-webkit-autofill:focus {
 .btn-curved{
     border-radius: 8px;
 }
+
+.show-password {
+    position: absolute;
+    right: 18px;
+    top: 21px;
+}
