@@ -1,6 +1,6 @@
 <div class="card card-shadow">
 
-  <p ><i (click)="openEditOeganizationModal()" class="fas fa-pencil-alt custom-text-green edit-button pointer"></i></p>
+  <p *ngIf="currentUser?.user?.isOwner(organization.id)" ><i (click)="openEditOeganizationModal()" class="fas fa-pencil-alt custom-text-green edit-button pointer"></i></p>
   
   <div class="card-body">
     <h5 class="card-title border-bottom">Overview</h5>

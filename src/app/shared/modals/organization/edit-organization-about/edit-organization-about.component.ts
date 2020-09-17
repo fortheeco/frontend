@@ -34,7 +34,7 @@ export class EditOrganizationAboutComponent implements OnInit, OnDestroy {
     public activeModal: NgbActiveModal,
     private fb: FormBuilder,
     private organizationService: OrganizationService,
-    private formError: FormErrorService
+    public formError: FormErrorService
     ) { }
 
   ngOnInit() {
@@ -67,7 +67,6 @@ export class EditOrganizationAboutComponent implements OnInit, OnDestroy {
     const sub = this.organizationService.updateOrganizationDetails(this.editOrganizationDetailsForm.value)
       .pipe(finalize(() => this.loading = false))
       .subscribe(x => {
-        console.log(x);
 
         // just a slight change in the backend
         const update = this.editOrganizationDetailsForm.value as AppOrganizationetails;

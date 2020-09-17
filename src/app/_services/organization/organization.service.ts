@@ -1,11 +1,10 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpEvent, HttpErrorResponse, HttpEventType } from  '@angular/common/http';
-import { BehaviorSubject, Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
-import {Headers, Http} from '@angular/http';
-import { BASE_URL } from 'src/app/_providers/config/config';
-import { User } from 'src/app/_models';
+import { Headers, Http } from '@angular/http';
 import { ActivatedRoute, Router } from '@angular/router';
+import { BehaviorSubject, Observable } from 'rxjs';
+import { User } from 'src/app/_models';
+import { BASE_URL } from 'src/app/_providers/config/config';
 
 
 @Injectable({
@@ -41,11 +40,12 @@ export class OrganizationService {
    */
 
 
-  getOrganizationData(): Observable<any> {
-    // console.log(this.currentUserValue)
+  getOrganizationData(data: any): Observable<any> {
+    data = new URLSearchParams(data as {}).toString();
+    
     const id = this.currentUserValue.user.id;
       const userToken: string = 'Bearer ' + this.currentUserValue.token;
-    const url = `${this.BASE_URL}api/organization?organizationId=${id}`;
+    const url = `${this.BASE_URL}api/organization?${data}`;
 
       this.headers = new Headers({'Content-Type': 'application/json'});
       this.headers.append('Authorization', userToken);
@@ -68,7 +68,7 @@ export class OrganizationService {
   }
 
   /**
-   * @description Returns the industries used in this application for organization to select from
+   * @description Update the organization details
    * @return Response
    */
 
@@ -80,5 +80,46 @@ export class OrganizationService {
       this.headers.append('Authorization', userToken);
       return this.httpc.patch(url, data, {headers: this.headers});
   }
+
+  /**
+   * @description Adds a new service to an organization
+   * @return Response
+   */
+  getOrganizationServices(data: any): Observable<any> {
+    const userToken: string = 'Bearer ' + this.currentUserValue.token;
+    const url = `${this.BASE_URL}api/organization/services`;
+
+      this.headers = new Headers({'Content-Type': 'application/json'});
+      this.headers.append('Authorization', userToken);
+      return this.httpc.post(url, data, {headers: this.headers});
+  }
+
+  /**
+   * @description Adds a new service to an organization
+   * @return Response
+   */
+  addNewOrganizationService(data: any): Observable<any> {
+    const userToken: string = 'Bearer ' + this.currentUserValue.token;
+    const url = `${this.BASE_URL}api/organization/service`;
+
+      this.headers = new Headers({'Content-Type': 'application/json'});
+      this.headers.append('Authorization', userToken);
+      return this.httpc.post(url, data, {headers: this.headers});
+  }
+
+  /**
+   * @description Remove organization service, I hope you know what you are doing
+   * @return Response
+   */
+  removeOrganizationService(data: any): Observable<any> {
+
+    const userToken: string = 'Bearer ' + this.currentUserValue.token;
+    const url = `${this.BASE_URL}api/organization/service`;
+
+    this.headers = new Headers({'Content-Type': 'application/json'});
+    this.headers.append('Authorization', userToken);
+
+    return this.httpc.delete(url, {headers: this.headers, body: data});
+}
 
 }
