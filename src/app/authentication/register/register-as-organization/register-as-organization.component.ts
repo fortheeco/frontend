@@ -36,6 +36,8 @@ export class RegisterAsOrganizationComponent implements OnInit, OnDestroy {
 
   loading = false;
 
+  showPassword = false;
+
   constructor(
     private organizationService: OrganizationService,
     private fb: FormBuilder,

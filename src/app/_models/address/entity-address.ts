@@ -8,12 +8,16 @@ export class EntityAddress extends IAppAddress
     isFree: boolean;
     isLocal: boolean;
     nextChange: moment.Moment;
-    payment: any[];
+    payments: any[];
     varifiedInLocation: boolean;
 
     constructor(data: Partial<EntityAddress>) {
-        super();
+        super(data);
         Object.assign(this, data);
         this.nextChange = moment(this.nextChange);
+    }
+
+    canUpdate() {
+        return this.nextChange.isBefore(moment());
     }
 }

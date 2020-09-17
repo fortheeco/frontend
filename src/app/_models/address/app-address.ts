@@ -7,4 +7,25 @@ export class IAppAddress {
     state: IState;
     postCode: string;
     street: string;
+
+    constructor(data: Partial<IAppAddress>) {
+        Object.assign(this, data);
+    }
+
+    displayAddress() {
+
+        let addr = '';
+
+        if (this.street) { addr += this.street + ', '; }
+
+        if (this.postCode) { addr += this.postCode + ', '; }
+
+        addr += this.state.name + ', ';
+
+        addr += this.country.name;
+
+        return addr;
+
+
+    }
 }

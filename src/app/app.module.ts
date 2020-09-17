@@ -55,6 +55,14 @@ import { UserContactCommunicateComponent } from './shared/components/user/user-c
 import { UserContactAddressesComponent } from './shared/components/user/user-contact/user-contact-addresses/user-contact-addresses.component';
 import { UserContactComponent } from './shared/components/user/user-contact/user-contact.component';
 import { SharedModule } from './shared/shared.module';
+import { UserService } from './_services';
+import { AddUserContactComponent } from './shared/modals/user/add-user-contact/add-user-contact.component';
+import { ConfirmActionComponent } from './shared/modals/confirm-action/confirm-action.component';
+import { NewUserAddressComponent } from './shared/modals/user/new-user-address/new-user-address.component';
+import { EditUserAddressComponent } from './shared/modals/user/edit-user-address/edit-user-address.component';
+import { AddFreeAddressesComponent } from './shared/modals/user/add-free-addresses/add-free-addresses.component';
+import { ClickoutsideDirective } from './shared/directive/clickoutside.directive';
+import { AddOrganizationServiceComponent } from './shared/modals/organization/add-organization-service/add-organization-service.component';
 
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
@@ -91,6 +99,12 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     ViewApplicantComponent,
     GetViewLocationComponent,
     EditOrganizationAboutComponent,
+    AddUserContactComponent,
+    ConfirmActionComponent,
+    NewUserAddressComponent,
+    EditUserAddressComponent,
+    AddFreeAddressesComponent,    
+    AddOrganizationServiceComponent,
   ],
   entryComponents: [
     ViewUserComponent,
@@ -111,10 +125,17 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     ApplyComponent,
     GetViewLocationComponent,
     EditOrganizationAboutComponent,
+    AddUserContactComponent,
+    ConfirmActionComponent,
+    NewUserAddressComponent,
+    EditUserAddressComponent,
+    AddFreeAddressesComponent,
+    AddOrganizationServiceComponent,
+
   ],
 
   imports: [
-    CommonModule,
+    // CommonModule,
     BrowserModule,
     ToastrModule.forRoot(),
     BrowserAnimationsModule,
@@ -142,6 +163,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     MenuItems,
     OrganizationService,
     FormErrorService,
+    UserService,
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     // { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: httpRequestInterceptor, multi: true },

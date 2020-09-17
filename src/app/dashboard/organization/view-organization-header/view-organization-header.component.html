@@ -1,11 +1,13 @@
 <div class="card profile-info card-shadow">
 
 
-  <div class="cover-photo-container"></div>
+  <div class="cover-photo-container">
+    <span class="btn custom-bg-green pointer text-white follow-button shadow-sm"><strong>follow</strong></span>
+  </div>
 
   <div class="row profile-bottom profile-bottom-1">
 
-    <div class="col-sm-6 d-flex justify-content-start">
+    <div class="col-sm-12 d-flex justify-content-start">
 
       <div>
         <img class="user-avatar" src="assets/images/avatar-default.png" />
@@ -13,7 +15,8 @@
   
       <div>
         <span class="color-darkgreen h4">{{ profile?.detail?.name  }}</span>
-        <span *ngIf="profile?.localAddress"  class="color-darkgreen intro-title h6 d-block"> {{ profile?.localAddress?.country?.name }} {{ profile?.localAddress?.state?.name }} {{ profile?.localAddress?.street }} {{ profile?.localAddress?.postCode}} 
+        <span *ngIf="profile?.localAddress"  class="color-darkgreen intro-title h6 d-block"> 
+          {{ profile?.localAddress.displayAddress() }}
           <i *ngIf="profile?.localAddress?.varifiedInLocation" class="fas fa-check-circle text-success"></i> 
           <i *ngIf="!profile?.localAddress?.varifiedInLocation" class="fas fa-times-circle text-danger"></i> 
         </span>
@@ -22,8 +25,7 @@
 
     </div>
 
-    <div class="col-sm-6 d-flex justify-content-end">
-      <span class="mr-3 custom-bg-green pointer text-white px-2 shadow-sm" style="height: 21px;"><strong>follow</strong></span>
+    <div class="col-sm-12 d-flex justify-content-start">
       <span class="mr-3"><b>{{ profile?.follows?.following }}</b> following</span>
       <span><b>{{ profile?.follows?.following }}</b> Followers</span>
     </div>

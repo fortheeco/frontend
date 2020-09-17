@@ -11,14 +11,14 @@
 }
 
 // active list element should be this color
-li.active-success {
+.active-success {
     color: #fff;
     background-color: #6FDC61;
 }
 
 // order list element or active when hover should have this color
-li.active-success:hover, li.success:hover {
-    background-color: #cdffc6;
+.active-success:hover, .success:hover {
+    background-color: #f3fbf2;
     color: #6FDC61;
 }
 
@@ -32,12 +32,20 @@ li.active-success:hover, li.success:hover {
     color: #fff;
 }
 
-
+.custom-bg-lighter-green {
+    background-color: #f3fbf2;
+}
 
 // Text-colors 
 .custom-text-green {
     color: #6FDC61;
 }
+
+// Custom borders
+.custom-border-green {
+    border: 1px solid #6FDC61;
+}
+
 
 
 // Customs structure
@@ -49,4 +57,20 @@ li.active-success:hover, li.success:hover {
     font-weight: bold;
     top: -5px;
     left: 31px;
+}
+
+
+.general-loading {
+    height: 15px;
+    width: 20px;
+    position: absolute;
+    right: 15px;
+    top: 10px;
+}
+
+// Profile picture small image
+
+.profile-pic-sm {
+    width: 40px;
+    height: 40px;
 }

@@ -47,7 +47,7 @@ export class AuthenticationService {
                     return {status: 1};
                 }
 
-            },error => {
+            }, error => {
                 console.log(error);
 
             }

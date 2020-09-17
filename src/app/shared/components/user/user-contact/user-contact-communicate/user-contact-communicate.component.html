@@ -1,3 +1,47 @@
-<p>
-  user-contact-communicate works!
-</p>
+<div class="card card-shadow">
+
+  <!-- <p ><i class="fas fa-pencil-alt custom-text-green edit-button pointer"></i></p> -->
+  
+  <div class="card-body">
+    <h5 class="card-title border-bottom">Contacts 
+      <i *ngIf="currentUser?.user?.isOwner(userId)"  (click)="addNewContact()" class="fa fa-plus-circle pointer custom-text-green" ></i>
+    </h5>
+    
+    <div class="row">
+
+      <div class="col-sm-4">
+        <p class="card-text"><b>Emails</b></p>
+      </div>
+
+      <div class="col-sm-8">
+            <div *ngFor="let item of userContacts?.contacts" class="col-sm-6">
+              <span *ngIf="item.contactType === 'emailAddress'"> 
+                <i *ngIf="currentUser?.user?.isOwner(userId)"  (click)="confirmRemoveContact(item)" class="fa fa-trash text-danger mr-2 pointer" ></i> 
+                {{ item.value }} 
+              </span>
+            </div>
+      </div>
+
+    </div>
+
+    <div class="row">
+      <div class="col-12 mt-3"></div>
+
+      <div class="col-sm-4">
+        <p class="card-text"><b>Phone Numbers</b></p>
+      </div>
+
+      <div class="col-sm-8">
+          <div *ngFor="let item of userContacts?.contacts" class="col-sm-6">
+            <span *ngIf="item.contactType === 'phone'">  
+              <i *ngIf="currentUser?.user?.isOwner(userId)"  (click)="confirmRemoveContact(item)" class="fa fa-trash-alt text-danger mr-2 pointer" ></i> 
+              {{ item.value }} 
+            </span>
+          </div>
+      </div>
+
+    </div>
+
+  </div>
+</div>
+

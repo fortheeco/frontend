@@ -5,6 +5,8 @@ import { AppOrganization } from 'src/app/_models/organization/app-organization';
 import { Subscription } from 'rxjs';
 import { AppOrganizationetails } from 'src/app/_models/organization/app-organization-detail';
 import { ApplicationConstant } from 'src/app/_models/app-constant';
+import { User } from 'src/app/_models';
+import { UserService } from 'src/app/_services';
 
 @Component({
   selector: 'app-organization-about-overview',
@@ -19,12 +21,23 @@ export class OrganizationAboutOverviewComponent implements OnInit, OnDestroy {
 
   organizationTye = ApplicationConstant.organizationType;
 
+  currentUser: User = {} as User;
+
   constructor(
-    private modalService: NgbModal
+    private modalService: NgbModal,
+    private userService: UserService
   ) { }
 
   ngOnInit() {
+    this.setCurrentUser();
   }
+
+  setCurrentUser() {
+    const sub = this.userService.currentUser.subscribe(x => {
+      this.currentUser = new User(x);
+    });
+  }
+
 
   openEditOeganizationModal() {
     const modalRef = this.modalService.open(EditOrganizationAboutComponent, { size: 'lg' });
@@ -33,6 +46,8 @@ export class OrganizationAboutOverviewComponent implements OnInit, OnDestroy {
     const sub = modalRef.componentInstance.editedOrganization.subscribe((x: AppOrganizationetails) => {
       this.organization.detail = x;
     });
+
+    this.subscriptions.push(sub);
   }
 
 
