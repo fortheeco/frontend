@@ -1,0 +1,30 @@
+sudo: required
+language: generic
+services:
+  - docker
+
+jobs:
+  include:
+    - stage: deploy-staging
+      if: branch = develop
+      before_install:
+        - travis_wait 30
+        - docker build -t newecopeoplev1/web_app_dev ./angular-app
+      install:
+        # login to docker hub
+        - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+
+        # push to docker hub
+        - docker push newecopeoplev1/web_app_dev
+      
+    - stage: deploy-production
+      if: branch = master
+      before_install:
+        - travis_wait 30
+        - docker build -t newecopeoplev1/web_app ./angular-app
+      install:
+        # login to docker hub
+        - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+
+        # push to docker hub uisng login_page. trying pull
+        - docker push newecopeoplev1/web_app

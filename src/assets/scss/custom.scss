@@ -1,1 +1,52 @@
 // In this scss you can overwrite all our scss, we suggested you to add your scss into this, so whenever the update comes it will not affect your code.
+
+
+
+// Custom css that may be used in all components/pages
+// These codes are backward compatible and will not affect future codes
+
+// When over on the element change to a pointer
+.pointer {
+    cursor: pointer;
+}
+
+// active list element should be this color
+li.active-success {
+    color: #fff;
+    background-color: #6FDC61;
+}
+
+// order list element or active when hover should have this color
+li.active-success:hover, li.success:hover {
+    background-color: #cdffc6;
+    color: #6FDC61;
+}
+
+
+
+// Colors --------------------------------------------------------------
+
+// Backgrounds
+.custom-bg-green {
+    background-color: #6FDC61;
+    color: #fff;
+}
+
+
+
+// Text-colors 
+.custom-text-green {
+    color: #6FDC61;
+}
+
+
+// Customs structure
+
+.custom-lengend {
+    position: absolute;
+    background-color: #fff;
+    font-size: 15px;
+    font-weight: bold;
+    top: -5px;
+    left: 31px;
+}

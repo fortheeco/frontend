@@ -21,8 +21,9 @@ export class AuthenticationService {
         private http: HttpClient,
         private httpClient: HttpClient,
         private route: ActivatedRoute,
-        private httpc:Http,
-        private router: Router) {
+        private httpc: Http,
+        private router: Router)
+         {
         this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('ecoUser')));
         this.currentUser = this.currentUserSubject.asObservable();
     }
@@ -52,6 +53,7 @@ export class AuthenticationService {
             }
             ));
     }
+
     signup(registrationData) {
         const url = `${this.BASE_URL}api/auth/signup`;
 
@@ -68,6 +70,68 @@ export class AuthenticationService {
                 // return user;
             }));
     }
+
+    /**
+     * @description Api to sign up as organization
+     * @param data
+     */
+    signUpAsOrganization(data: any) {
+        const url = `${this.BASE_URL}api/auth/signup-organization`;
+
+        this.headers = new Headers({'Content-Type': 'application/json'});
+
+        return this.httpc.post(url, data, {headers: this.headers});
+    }
+
+    /**
+     * @description Api to verify email address
+     * @param data
+     */
+    verifyEmailAddress(data: any) {
+        const url = `${this.BASE_URL}api/auth/verify-email`;
+
+        this.headers = new Headers({'Content-Type': 'application/json'});
+
+        return this.httpc.post(url, data, {headers: this.headers});
+    }
+
+    /**
+     * @description Api to request for forgot password link
+     * @param data
+     */
+    forgotPassword(data: any) {
+        const url = `${this.BASE_URL}api/auth/forgot-password`;
+
+        this.headers = new Headers({'Content-Type': 'application/json'});
+
+        return this.httpc.post(url, data, {headers: this.headers});
+    }
+
+    /**
+     * @description Api to change password using token
+     * @param data
+     */
+    changePassword(data: any) {
+        const url = `${this.BASE_URL}api/auth/reset-password`;
+
+        this.headers = new Headers({'Content-Type': 'application/json'});
+
+        return this.httpc.put(url, data, {headers: this.headers});
+    }
+
+    /**
+     * @description Request Email verification link
+     * @param data
+     */
+    requestEmailVerificationAgain(data: any) {
+        const url = `${this.BASE_URL}api/auth/resend-confirm-email`;
+
+        this.headers = new Headers({'Content-Type': 'application/json'});
+
+        return this.httpc.post(url, data, {headers: this.headers});
+    }
+    
+    
 
 
     /**
@@ -88,7 +152,6 @@ export class AuthenticationService {
 	    this.headers.append('Authorization', userToken);
 	    return this.httpc.get(url,{headers: this.headers});
     }
-    
 
 
     changeProfilePhoto(passedData) {
@@ -156,4 +219,6 @@ export class AuthenticationService {
         this.currentUserSubject.next(null);
         this.router.navigate(['/authentication/login']);
     }
+
+
 }

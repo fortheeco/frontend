@@ -1,0 +1,75 @@
+<div class="card profile-info card-shadow">
+
+
+  <div class="cover-photo-container"></div>
+
+  <div class="row profile-bottom profile-bottom-1">
+
+    <div class="col-sm-6 d-flex justify-content-start">
+
+      <div>
+        <img class="user-avatar" src="assets/images/avatar-default.png" />
+      </div>
+  
+      <div>
+        <span class="color-darkgreen h4">{{ profile?.detail?.name  }}</span>
+        <span *ngIf="profile?.localAddress"  class="color-darkgreen intro-title h6 d-block"> {{ profile?.localAddress?.country?.name }} {{ profile?.localAddress?.state?.name }} {{ profile?.localAddress?.street }} {{ profile?.localAddress?.postCode}} 
+          <i *ngIf="profile?.localAddress?.varifiedInLocation" class="fas fa-check-circle text-success"></i> 
+          <i *ngIf="!profile?.localAddress?.varifiedInLocation" class="fas fa-times-circle text-danger"></i> 
+        </span>
+        <span *ngIf="!profile?.localAddress"  class="color-darkgreen intro-title h6 d-block"> Address not given yet</span>
+      </div>
+
+    </div>
+
+    <div class="col-sm-6 d-flex justify-content-end">
+      <span class="mr-3 custom-bg-green pointer text-white px-2 shadow-sm" style="height: 21px;"><strong>follow</strong></span>
+      <span class="mr-3"><b>{{ profile?.follows?.following }}</b> following</span>
+      <span><b>{{ profile?.follows?.following }}</b> Followers</span>
+    </div>
+
+    <!-- <div class="col col-md-2">
+      <button type="button" class="btn btn-circle btn-lg profile-btn"><i class="mdi mdi-border-color"></i> </button>
+      <div ngbDropdown class="btn-group">                   
+          <button class="btn btn-warning btn-sm" type="button" ngbDropdownToggle aria-controls="dropdsown-basic">
+              More
+          </button>
+          <button type="button"  ngbDropdownToggle aria-controls="dropdown-basic-actions" class="btn btn-circle btn-lg profile-btn"><i class="icon-options"></i> </button>
+          <div class="" id="dropdown-basic-actions" ngbDropdownMenu>
+              <a class="dropdown-item" href="javascript:void(0);" (click)="showEditContactModal(profile)">Manage Contact</a>
+              <a class="dropdown-item" href="javascript:void(0);" (click)="showEditGlobaladdressModal(profile)">Manage Global Address</a>
+              <a class="dropdown-item" href="javascript:void(0);" (click)="editSkills()">Manage Skills</a>
+          </div>
+      </div>
+      <button type="button" class="btn btn-circle btn-lg profile-btn"><i class="icon-options"></i> </button>
+    </div> -->
+  </div>
+
+  <!-- <div class="row  profile-bottom profile-bottom-2"> -->
+
+
+      <!-- Organization Location -->
+    <!-- <div class="col col-md-10">
+      <div class="row">
+        <div class="col col-md-3">
+            <p><i class="icon-location-pin"></i> {{ profile?profile.detail.location:'not yet set' }}</p>
+            <p *ngIf="profile?.localAddress" ><i class="icon-location-pin"></i> {{ profile?.displayLocalAddress() }}</p>
+            <p *ngIf="!profile?.localAddress"><i class="icon-location-pin"></i> Not set yet</p>
+        </div>
+        <div class="col col-md-2">
+          <p><i class="icon-symble-male"></i> {{ profile?.detail?.organizationType}}</p>
+        </div>
+        <div class="col col-md-2">
+          <p><i class="icon-calender"></i> {{ profile?profile.detail.dateOfBirth|date:'dd mm YYYY':'' }}</p>
+          <p><i class="icon-calender"></i> {{ profile?.detail?.yearFounded }}</p>
+        </div>
+        <div class="col col-md-2">
+          <p><i class="icon-note"></i> {{ profile?.detail?.dateJoined|date:'MMMM yyyy' }}</p>
+        </div>
+        <div class="col col-md-3"></div>
+      </div>
+    </div> -->
+
+  <!-- </div> -->
+
+</div>

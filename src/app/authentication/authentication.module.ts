@@ -10,6 +10,13 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AuthenticationRoutes } from './authentication.routing';
 import { RegisterComponent } from './register/register.component';
+import { RegisterAsIndividualComponent } from './register/register-as-individual/register-as-individual.component';
+import { RegisterAsOrganizationComponent } from './register/register-as-organization/register-as-organization.component';
+import { SharedModule } from '../shared/shared.module';
+import { VerifyEmailComponent } from './verify-email/verify-email.component';
+import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
+import { ChangePasswordComponent } from './change-password/change-password.component';
+import { RequestNewEmailVerificationComponent } from './request-new-email-verification/request-new-email-verification.component';
 
 @NgModule({
   imports: [
@@ -17,12 +24,19 @@ import { RegisterComponent } from './register/register.component';
     FormsModule,
     ReactiveFormsModule,
     RouterModule.forChild(AuthenticationRoutes),
-    NgbModule
+    NgbModule,
+    SharedModule,
   ],
   declarations: [
     NotfoundComponent,
     LoginComponent,
     RegisterComponent,
+    RegisterAsIndividualComponent,
+    RegisterAsOrganizationComponent,
+    VerifyEmailComponent,
+    ForgotPasswordComponent,
+    ChangePasswordComponent,
+    RequestNewEmailVerificationComponent,
   ],
   exports: [
     CommonModule,

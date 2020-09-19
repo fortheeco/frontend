@@ -1,70 +1,68 @@
-import * as $ from 'jquery';
-import { BrowserModule } from '@angular/platform-browser';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {
-  CommonModule
-} from '@angular/common';
+import { AgmCoreModule } from '@agm/core';
+import { CommonModule } from '@angular/common';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule , HTTP_INTERCEPTORS} from '@angular/common/http';
-import { RouterModule } from '@angular/router';
 import { HttpModule } from '@angular/http';
-import { JwtInterceptor, ErrorInterceptor } from './_helpers';
-
-
+import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { RouterModule } from '@angular/router';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { AgmCoreModule } from '@agm/core';
 import { DataTablesModule } from 'angular-datatables';
+import { QRCodeModule } from 'angularx-qrcode';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
-
-import { FullComponent } from './layouts/full/full.component';
-import { BlankComponent } from './layouts/blank/blank.component';
-
-import { NavigationComponent } from './shared/header-navigation/navigation.component';
-import { SidebarComponent } from './shared/sidebar/sidebar.component';
-import { BreadcrumbComponent } from './shared/breadcrumb/breadcrumb.component';
-
+import { SlimLoadingBarModule } from 'ng2-slim-loading-bar';
+import { PapaParseModule } from 'ngx-papaparse';
+import { PerfectScrollbarConfigInterface, PerfectScrollbarModule, PERFECT_SCROLLBAR_CONFIG } from 'ngx-perfect-scrollbar';
+import { NgxPrintModule } from 'ngx-print';
+import { ToastrModule } from 'ngx-toastr';
 import { Approutes } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { SpinnerComponent } from './shared/spinner.component';
-
-import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
-import { PERFECT_SCROLLBAR_CONFIG } from 'ngx-perfect-scrollbar';
-import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
-import { SlimLoadingBarModule } from 'ng2-slim-loading-bar';
-import { SharedServiceProvider } from './_providers/shared-provider';
-
-import { httpRequestInterceptor } from './_interceptors/httpRequestInterceptor';
-import { PapaParseModule } from 'ngx-papaparse';
-import {StatusTranslators} from "./_helpers/statusTranslators";
-import { MenuItems } from './shared/sidebar/menu-items';
-import { QRCodeModule } from 'angularx-qrcode';
-import {NgxPrintModule} from 'ngx-print';
-import { ViewUserComponent } from './shared/modals/view-user/view-user.component';
-import { ViewUserCvComponent } from './shared/modals/view-user-cv/view-user-cv.component';
+import { BlankComponent } from './layouts/blank/blank.component';
+import { FullComponent } from './layouts/full/full.component';
+import { BreadcrumbComponent } from './shared/breadcrumb/breadcrumb.component';
+import { NavigationComponent } from './shared/header-navigation/navigation.component';
 import { AddUserComponent } from './shared/modals/add-user/add-user.component';
-import { EditAboutComponent } from './shared/modals/profile/edit-about/edit-about.component';
-import { EditContactComponent } from './shared/modals/profile/edit-contact/edit-contact.component';
-import { EditGlobaladdressComponent } from './shared/modals/profile/edit-globaladdress/edit-globaladdress.component';
-import { EditSkillsComponent } from './shared/modals/profile/edit-skills/edit-skills.component';
-import { AddWorkComponent } from './shared/modals/profile/add-work/add-work.component';
-import { AddEducationComponent } from './shared/modals/profile/add-education/add-education.component';
-import { EditEducationComponent } from './shared/modals/profile/edit-education/edit-education.component';
 import { CreateOptionsComponent } from './shared/modals/create-options/create-options.component';
-import { ToastrModule } from 'ngx-toastr';
-import {UtilityProvider} from "./_providers/utility";
 import { EditProblemComponent } from './shared/modals/problems/edit-problem/edit-problem.component';
 import { ViewProblemComponent } from './shared/modals/problems/view-problem/view-problem.component';
+import { AddEducationComponent } from './shared/modals/profile/add-education/add-education.component';
+import { AddWorkComponent } from './shared/modals/profile/add-work/add-work.component';
+import { EditAboutComponent } from './shared/modals/profile/edit-about/edit-about.component';
+import { EditContactComponent } from './shared/modals/profile/edit-contact/edit-contact.component';
+import { EditEducationComponent } from './shared/modals/profile/edit-education/edit-education.component';
+import { EditGlobaladdressComponent } from './shared/modals/profile/edit-globaladdress/edit-globaladdress.component';
+import { EditSkillsComponent } from './shared/modals/profile/edit-skills/edit-skills.component';
 import { ViewComponent } from './shared/modals/tasks/view/view.component';
 import { ApplyComponent } from './shared/modals/tasks/apply/apply.component';
 import { ViewApplicantComponent } from './shared/modals/tasks/view-applicant/view-applicant.component';
+import { ViewUserCvComponent } from './shared/modals/view-user-cv/view-user-cv.component';
+import { ViewUserComponent } from './shared/modals/view-user/view-user.component';
+import { MenuItems } from './shared/sidebar/menu-items';
+import { SidebarComponent } from './shared/sidebar/sidebar.component';
+import { SpinnerComponent } from './shared/spinner.component';
+import { JwtInterceptor } from './_helpers';
+import { StatusTranslators } from './_helpers/statusTranslators';
+import { httpRequestInterceptor } from './_interceptors/httpRequestInterceptor';
+import { SharedServiceProvider } from './_providers/shared-provider';
+import { UtilityProvider } from './_providers/utility';
+import { OrganizationService } from './_services/organization/organization.service';
+import { GetViewLocationComponent } from './shared/modals/get-view-location/get-view-location.component';
+import { EditOrganizationAboutComponent } from './shared/modals/organization/edit-organization-about/edit-organization-about.component';
+import { ValidatorErrorMessageComponent } from './shared/custom-validators/validator-error-message/validator-error-message.component';
+import { FormErrorService } from './_services/form-error/form-error.service';
+import { UserContactCommunicateComponent } from './shared/components/user/user-contact/user-contact-communicate/user-contact-communicate.component';
+import { UserContactAddressesComponent } from './shared/components/user/user-contact/user-contact-addresses/user-contact-addresses.component';
+import { UserContactComponent } from './shared/components/user/user-contact/user-contact.component';
+import { SharedModule } from './shared/shared.module';
+
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true,
   wheelSpeed: 1,
   wheelPropagation: true,
   minScrollbarLength: 20
-};          
+};
 
 @NgModule({
   declarations: [
@@ -91,10 +89,12 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     ViewComponent,
     ApplyComponent,
     ViewApplicantComponent
+    GetViewLocationComponent,
+    EditOrganizationAboutComponent,
   ],
   entryComponents: [
-    ViewUserComponent, 
-    ViewUserCvComponent, 
+    ViewUserComponent,
+    ViewUserCvComponent,
     AddUserComponent,
     EditAboutComponent,
     EditContactComponent,
@@ -109,6 +109,8 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     ViewComponent,
     ViewApplicantComponent,
     ApplyComponent
+    GetViewLocationComponent,
+    EditOrganizationAboutComponent,
   ],
 
   imports: [
@@ -126,17 +128,20 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     NgxPrintModule,
     HttpClientModule,
     NgbModule,
+    SharedModule,
     RouterModule.forRoot(Approutes),
     PerfectScrollbarModule,
     NgMultiSelectDropDownModule.forRoot(),
     AgmCoreModule.forRoot({ apiKey: 'AIzaSyDP6cGriBm9-_8g42-j6DiI1BEl3WHdOhk',
-      libraries: ["places"] })
+      libraries: ['places'] })
   ],
   providers: [
     StatusTranslators,
     SharedServiceProvider,
     UtilityProvider,
     MenuItems,
+    OrganizationService,
+    FormErrorService,
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     // { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: httpRequestInterceptor, multi: true },

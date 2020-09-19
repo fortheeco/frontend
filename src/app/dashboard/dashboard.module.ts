@@ -28,6 +28,15 @@ import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { CreateProblemComponent } from './problem/create-problem/create-problem.component';
 import { OrganizationComponent } from './organization/organization.component';
 import { NotificationsComponent } from './notifications/notifications.component';
+import { ProblemCardComponent } from '../shared/components/problems/problem-card/problem-card.component';
+import { TaskCardComponent } from '../shared/components/tasks/task-card/task-card.component';
+import { ViewOrganizationProblemsComponent } from './organization/view-organization-problems/view-organization-problems.component';
+import { ViewOrganizationTasksComponent } from './organization/view-organization-tasks/view-organization-tasks.component';
+import { ViewOrganizationHeaderComponent } from './organization/view-organization-header/view-organization-header.component';
+import { OrganizationAboutComponent } from './organization/organization-about/organization-about.component';
+import { OrganizationAboutOverviewComponent } from './organization/organization-about/organization-about-overview/organization-about-overview.component';
+import { OrganizationAboutStatisticsComponent } from './organization/organization-about/organization-about-statistics/organization-about-statistics.component';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   imports: [
@@ -45,7 +54,10 @@ import { NotificationsComponent } from './notifications/notifications.component'
     ReactiveFormsModule,
     DragulaModule,
     NgxDatatableModule,
-    NgxPrintModule
+    NgxPrintModule,
+
+    // Modules used accross all other modules
+    SharedModule,
   ],
   declarations: [
     HomeComponent,
@@ -56,6 +68,14 @@ import { NotificationsComponent } from './notifications/notifications.component'
     CreateProblemComponent,
     OrganizationComponent,
     NotificationsComponent,
+    ViewOrganizationProblemsComponent,
+    ViewOrganizationTasksComponent,
+    ProblemCardComponent,
+    TaskCardComponent,
+    ViewOrganizationHeaderComponent,
+    OrganizationAboutComponent,
+    OrganizationAboutOverviewComponent,
+    OrganizationAboutStatisticsComponent,
    ],
     entryComponents: [
     ]
