@@ -3,7 +3,7 @@
   <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
     <span aria-hidden="true">&times;</span>
   </button>
-</div>
+</div> 
 <div class="modal-body">  
   <div class="row">
     <div class="col-sm-12">
@@ -24,18 +24,26 @@
                             <div class="col-12 ">
                                 <fieldset class="border p-2">
                                     <legend  class="w-auto">First name</legend>                                
-                                    <input formControlName="title" class="form-control form-control-md fieldset-input" [ngClass]="{ 'is-invalid': submitted && f.price.errors }" type="text" required=" " placeholder="First name">
+                                    <input formControlName="firstName" class="form-control form-control-md fieldset-input" type="text" required=" " placeholder="First name">
                                 </fieldset>
                               </div>
+                              <div class="col-12">
+                                <br>
+                                <p *ngIf="errors && errors['firstName']"><span class="err-message" *ngFor="let err of errors['firstName']">{{err}} <br></span></p>    
+                              </div> 
                           </div>
                           <div class="col-5">
                             <div class="col-12 ">
                                 <fieldset class="border p-2">
                                     <legend  class="w-auto">Last name</legend>                                
-                                    <input class="form-control form-control-md fieldset-input" [ngClass]="{ 'is-invalid': submitted && f.price.errors }" type="text" required=" " placeholder="Last name">
+                                    <input formControlName="lastName" class="form-control form-control-md fieldset-input" type="text" required=" " placeholder="Last name">
                                 </fieldset>
                               </div>
                           </div>
+                          <div class="col-12">
+                            <br>
+                            <p *ngIf="errors && errors['lastName']"><span class="err-message" *ngFor="let err of errors['lastName']">{{err}} <br></span></p>    
+                          </div> 
                       </div>
                       <div class="form-group row ">
                           <div class="col-3">
@@ -45,12 +53,16 @@
                             <div class="col-12 ">
                                 <fieldset class="border p-2">
                                     <legend  class="w-auto">Other names</legend>                                
-                                    <input class="form-control form-control-md fieldset-input" [ngClass]="{ 'is-invalid': submitted && f.price.errors }" type="text" required=" " placeholder="optional">
+                                    <input formControlName="otherName" class="form-control form-control-md fieldset-input" type="text" required=" " placeholder="optional">
                                 </fieldset>
                               </div>
+                              <div class="col-12">
+                                <br>
+                                <p *ngIf="errors && errors['otherName']"><span class="err-message" *ngFor="let err of errors['otherName']">{{err}} <br></span></p>    
+                              </div> 
                           </div>
                       </div>
-                      <div class="form-group row ">
+                      <!-- <div class="form-group row ">
                           <div class="col-3">
                             <div class="col-12 ">
                               <p class="modal-lbl">Title</p>
@@ -64,7 +76,7 @@
                                 </fieldset>
                               </div>
                           </div>
-                      </div>
+                      </div> -->
                       <div class="form-group row ">
                           <div class="col-3">
                             <div class="col-12 ">
@@ -76,9 +88,13 @@
                                 <fieldset class="border p-2">
                                     <legend  class="w-auto">Bio</legend>                                
                                     <!-- <input class="form-control form-control-md fieldset-input" [ngClass]="{ 'is-invalid': submitted && f.price.errors }" type="text" required=" " placeholder="Title"> -->
-                                    <textarea  rows="6" class="form-control form-control-md fieldset-input2" [ngClass]="{ 'is-invalid': submitted && f.notes.errors }"></textarea>
+                                    <textarea formControlName="aboutMe"  rows="6" class="form-control form-control-md fieldset-input2"></textarea>
                                 </fieldset>
-                              </div>
+                            </div>
+                            <div class="col-12">
+                              <br>
+                              <p *ngIf="errors && errors['aboutMe']"><span class="err-message" *ngFor="let err of errors['aboutMe']">{{err}} <br></span></p>    
+                            </div> 
                           </div>
                       </div>
                       <div class="form-group row ">
@@ -90,16 +106,20 @@
                           <div class="col-9">
                             <div class="col-12 ">
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
+                                    <input formControlName="gender"  class="form-check-input" type="radio" id="inlineRadio1" value="m">
                                     <label class="form-check-label" for="inlineRadio1">Male</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
+                                    <input formControlName="gender"  class="form-check-input" type="radio"  id="inlineRadio2" value="f">
                                     <label class="form-check-label" for="inlineRadio2">Female</label>
                                 </div>
-                              </div>
+                            </div>
+                            <div class="col-12">
+                              <br>
+                              <p *ngIf="errors && errors['gender']"><span class="err-message" *ngFor="let err of errors['gender']">{{err}} <br></span></p>    
+                            </div> 
                           </div>
-                      </div>
+                      </div>    
                       <div class="form-group row ">
                           <div class="col-3">
                             <div class="col-12 ">
@@ -110,9 +130,13 @@
                             <div class="col-12 ">
                                 <fieldset class="border p-2">
                                     <legend  class="w-auto">Date of birth</legend>       
-                                    <input class="form-control form-control-md fieldset-input" ngbDatepicker #d3="ngbDatepicker" (click)="d3.toggle()" [ngClass]="{ 'is-invalid': submitted && f.price.errors }" type="text" required=" " placeholder="DD-MM-YYYY">
+                                    <input class="form-control form-control-md fieldset-input" formControlName="dateOfBirth" ngbDatepicker #d3="ngbDatepicker" (click)="d3.toggle()" type="text" required=" " placeholder="DD-MM-YYYY">
                                 </fieldset>
                               </div>
+                              <div class="col-12">
+                                <br>
+                                <p *ngIf="errors && errors['dateOfBirth']"><span class="err-message" *ngFor="let err of errors['dateOfBirth']">{{err}} <br></span></p>    
+                              </div> 
                           </div>
                       </div>
                     </form>
@@ -124,5 +148,5 @@
 </div>
 <div class="modal-footer">
   <button type="button" class="btn btn-rounded btn-2" (click)="modal.close('Close click')">Cancel</button>
-  <button type="button" class="btn btn-rounded btn-1" (click)="modal.close('Close click')">Save changes</button>
+  <button type="button" class="btn btn-rounded btn-1" (click)="onSubmit()" [disabled]="dataForm.invalid">Save changes</button>
 </div>

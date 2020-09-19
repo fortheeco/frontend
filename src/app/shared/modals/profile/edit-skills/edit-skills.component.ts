@@ -32,9 +32,11 @@ export class EditSkillsComponent implements OnInit {
   ngOnInit() {
     this.getUserSkills()
   }
+
   close(){
     this.activeModal.close()
   }
+  
   filterItems(ev: any) {
     console.log(ev)
     // set val to the value of the searchbar
@@ -75,6 +77,7 @@ export class EditSkillsComponent implements OnInit {
     // }
     // this.form.suggestion.requiredSkills.push(d)
   }
+  
   onSubmit(){
     this.submitted = true;
     console.log(this.form)
@@ -83,11 +86,30 @@ export class EditSkillsComponent implements OnInit {
       this.rest.addSkill(this.form).subscribe(response => {
           // this.isLoading = false;
           // this.states = response.json();
-          // this.close();
+          this.getUserSkills();
           this.form.skillName = "";
           this.utility.showToast('success', 'Skill successfully added')
 
           console.log(response.json())
+      },
+        error => {  
+          // this.isLoading = false;
+          // this.showSuccess()
+        });
+  //  });
+  }
+  
+  deleteSkill(id){
+    console.log(this.form)
+    // this.form.forEach(form=> {
+
+      this.rest.deleteSkill(id).subscribe(response => {
+          // this.isLoading = false;
+          // this.states = response.json();
+          this.getUserSkills();
+          this.utility.showToast('success', 'Skill successfully deleted')
+
+          // console.log(response.json())
       },
         error => {  
           // this.isLoading = false;

@@ -91,6 +91,18 @@ export class AuthenticationService {
     
 
 
+    changeProfilePhoto(passedData) {
+        const url = `${this.BASE_URL}api/User/profile-picture`;
+        // return this.http.post<any>(url, passedData)
+        //     .pipe(map(user => {
+                
+        //     }));
+        const userToken: string = 'Bearer ' + this.currentUserValue.token;
+        this.headers = new Headers({'Content-Type': 'application/json'});
+        this.headers.append('Authorization', userToken);
+        return this.httpc.put(url, passedData ,{headers: this.headers});
+    }
+
     /**
      * RETURN User Contacts
      *
@@ -108,6 +120,34 @@ export class AuthenticationService {
 	    this.headers = new Headers({'Content-Type': 'application/json'});
 	    this.headers.append('Authorization', userToken);
 	    return this.httpc.get(url,{headers: this.headers});
+    }
+
+    /**
+     * RETURN User Address
+     *
+     * @param id
+     * @return Response
+     */
+
+
+	getUserAddresses(data): Observable<any> {
+		// console.log(this.currentUserValue)
+		let id = this.currentUserValue.user.id;
+	    const userToken: string = 'Bearer ' + this.currentUserValue.token;
+		const url = `${this.BASE_URL}api/User/more-address`;
+
+	    this.headers = new Headers({'Content-Type': 'application/json'});
+	    this.headers.append('Authorization', userToken);
+        return this.httpc.post(url, data ,{headers: this.headers});
+    }
+    
+
+    updateAbout(passedData) {
+        const url = `${this.BASE_URL}api/Individual/about`;
+        const userToken: string = 'Bearer ' + this.currentUserValue.token;
+        this.headers = new Headers({'Content-Type': 'application/json'});
+        this.headers.append('Authorization', userToken);
+        return this.httpc.put(url, passedData ,{headers: this.headers});
     }
     
     logout() {
