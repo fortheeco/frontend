@@ -11,6 +11,8 @@ import { EditProblemComponent } from '../../shared/modals/problems/edit-problem/
 import {RestService} from "../../_services/rest.service";
 import {AuthenticationService} from "../../_services/authentication.service";
 import { SharedServiceProvider } from '../../_providers/shared-provider';
+import { FormGroup, Validators, FormBuilder } from '@angular/forms';
+import { first } from 'rxjs/operators';
 
 
 @Component({
@@ -22,13 +24,37 @@ export class ProfileComponent implements OnInit {
   profile: any;
   problems: any;
   modalRef: NgbModalRef;
+  contact: any;
+  photoForm: FormGroup;
+  pageParams ={
+    "filter": {
+      "userId": "",
+      "title": "",
+      "countryId": "",
+      "stateId": "",
+      "createdBefore": "",
+      "createdAfter": "",
+      "endedBefore": "",
+      "endedAfter": "",
+      "postType": ""
+    },
+    "pageNumber": "0",
+    "pageSize": "0"
+  }
+  tasks: any;
+
+  
 
   constructor(
     private modalService: NgbModal,
+    private formBuilder: FormBuilder,
     private authenticationService: AuthenticationService,
     private rest: RestService,
     private sharedService: SharedServiceProvider, 
   ) { 
+      this.photoForm = this.formBuilder.group({
+        ProfilePicture: ['', Validators.required],
+      });
     // this.sharedService.passedProblem$().subscribe((data) => {
     //   this.GdprConsentDetails = data;
     // });
@@ -37,15 +63,73 @@ export class ProfileComponent implements OnInit {
   ngOnInit() {
     this.getUserProfile()
     this.getUserPosts()
+    this.getUserContacts()
   }
 
+  selectedFile: File
+
+  get f() { return this.photoForm.controls; }
+  onFileChange(event) {
+    if (event.target.files.length > 0) {
+      // const file = event.target.files[0];
+      this.selectedFile = event.target.files[0]
+      // this.photoForm.get('ProfilePicture').setValue(file);
+      this.onSubmitPhoto()
+    }
+  }
+
+  onSubmitPhoto() {
+    console.log('get here');
+    // this.loading = true;
+    // console.log(this.photoForm.value);
+    // console.log(this.photoForm.get('ProfilePicture').value);
+    const formData = new FormData();
+    // formData.append('ProfilePicture', this.photoForm.get('ProfilePicture').value);
+    formData.append('ProfilePicture', this.selectedFile, this.selectedFile.name);
+    console.log(formData.get('ProfilePicture'));
+
+   
+
+    // let data = {ProfilePicture:this.selectedFile}
+    this.authenticationService.changeProfilePhoto(formData)
+      .pipe(first())
+      .subscribe(
+        data => {
+          if (data['body'].status) {
+            // this.data = data['body'].data;
+            // this.loading = false;
+            // this.onSecondSubmit();
+          }
+          else {
+            // this.success_msg = data['message'];
+          }
+        },
+        error => {
+          // this.alertService.error(error);
+          // this.loading = false;
+        });
+  }
   getUserProfile(){
     // this.isLoading = true;
     this.authenticationService.getIndividualData().subscribe(response => {
         // this.isLoading = false;
         this.profile = response.json();
+        this.sharedService.updateProfile(this.profile);
         // this.temp = response.json().data;
-        console.log(this.profile.detail)
+        console.log(this.profile)
+    },
+      error => {  
+        // this.isLoading = false;
+      });
+  }
+  getUserContacts(){
+    // this.isLoading = true;
+    this.authenticationService.getUserContacts().subscribe(response => {
+        // this.isLoading = false;
+        this.contact = response.json();
+        this.sharedService.updateContact(this.contact);
+        // this.temp = response.json().data;
+        console.log(response.json())
     },
       error => {  
         // this.isLoading = false;
@@ -87,11 +171,12 @@ export class ProfileComponent implements OnInit {
   
   getUserPosts(){
     // this.isLoading = true;
-    this.rest.getUserPosts().subscribe(response => {
+    this.rest.getUserPosts(this.pageParams).subscribe(response => {
         // this.isLoading = false;
         let d = response.json();
         this.problems = d.problems;
-        console.log(this.problems)
+        this.tasks = d.tasks;
+        console.log(this.tasks)
     },
       error => {  
         // this.isLoading = false;
@@ -109,6 +194,7 @@ export class ProfileComponent implements OnInit {
     const modalRef = this.modalService.open(EditAboutComponent, { size: 'lg',centered: true  });
     modalRef.componentInstance.inputData = 'this.profile';
     modalRef.result.then((result) => {
+      this.getUserProfile();
       // this._success.next("Successfully Deleted");
     })
   }

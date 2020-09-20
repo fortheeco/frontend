@@ -88,6 +88,13 @@ export class CreateComponent implements OnInit {
     }
   }
 */
+
+  addressParams = {
+    "userId": "",
+    "pageNumber": 0,
+    "pageSize": 0
+  }
+
   skill ='';
   selectedAddress: any;
   profile: any;
@@ -130,8 +137,9 @@ export class CreateComponent implements OnInit {
   ngOnInit() {
     // this.editSkills()
     this.getUserProfile()
-    this.getUserContacts()
+    // this.getUserContacts()
     this.getEcoDetails();
+    this.getUserAddresses();
 
     this.dropdownSettings = {
       singleSelection: false,
@@ -183,18 +191,32 @@ export class CreateComponent implements OnInit {
     };
  }
 
-  getUserContacts(){
-    // this.isLoading = true;
-    this.authenticationService.getUserContacts().subscribe(response => {
-        // this.isLoading = false;
-        let d = response.json();
-        this.addresses = d.addresses.entities;
-        console.log(this.addresses.entities)
-    },
-      error => {  
-        // this.isLoading = false;
-      });
-  }
+ getUserContacts(){
+   // this.isLoading = true;
+   this.authenticationService.getUserContacts().subscribe(response => {
+       // this.isLoading = false;
+       let d = response.json();
+       this.addresses = d.addresses.entities;
+       console.log(this.addresses.entities)
+   },
+     error => {  
+       // this.isLoading = false;
+     });
+ }
+
+ getUserAddresses(){
+   this.addressParams.userId = this.authenticationService.currentUserValue.user.id;
+   // this.isLoading = true;
+   this.authenticationService.getUserAddresses(this.addressParams).subscribe(response => {
+       // this.isLoading = false;
+       let d = response.json();
+       this.addresses = d.entities;
+       console.log(this.addresses)
+   },
+     error => {  
+       // this.isLoading = false;
+     });
+ }
 
   icoSelected(event,id,name){
     // console.log('Selected Ids ', event.target.checked);

@@ -226,8 +226,27 @@ td{
     font-size: 0.8em;
 }
 
+.clear-btn{
+    background-color: transparent;
+    border: 0px;
+}
+
+.pull-right{
+    float: right;
+}
 
 
+.err-message{
+    background: #f3c4d1 !important;
+    color: #c51244;
+    width: 100%;
+    padding: 10px !important;
+    border-radius: 2px !important;
+    position: relative; 
+    display: inline-block !important;
+    margin-bottom: 10px;
+  }
+  
 /* modal styling */
 
 

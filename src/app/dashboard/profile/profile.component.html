@@ -4,11 +4,13 @@
       <div class="cover-photo-container"></div>
       <div class="row profile-bottom profile-bottom-1">
         <div class="col col-md-2">
-          <img class="user-avatar" src="assets/images/avatar-default.png" />
+          <img class="user-avatar" style="cursor: pointer;" (click)="file.click()" src="assets/images/avatar-default.png" />
+          <!-- <button type="button" [disabled]="form.photos.length > 4" style="width: 100%;" class="btn btn-block btn-rounded upload-btn" (click)="file.click()">Upload +</button> -->
+          <input style="opacity: 0; height: 1px;" #file nbInput fullWidth type="file" name="photo" (change)="onFileChange($event)" accept="image/*">
         </div>
         <div class="col col-md-8">
           <h4 class="color-darkgreen">{{ profile?profile.detail.firstName + ' ' + profile.detail.lastName:'' }}</h4>
-          <h6 class="color-darkgreen intro-title">Not yet set</h6>
+          <h6 class="color-darkgreen intro-title">Not set</h6>
           <!-- <h6 class="color-darkgreen">{{ profile?profile.detail.aboutMe:'not yet set' }}</h6> -->
         </div>
         <div class="col col-md-2">
@@ -32,10 +34,10 @@
           <div class="row">
             <div class="col col-md-3">
                 <!-- <p><i class="icon-location-pin"></i> {{ profile?profile.detail.location:'not yet set' }}</p> -->
-                <p><i class="icon-location-pin"></i> not yet set</p>
+                <p><i class="icon-location-pin"></i> not set</p>
             </div>
             <div class="col col-md-2">
-              <p><i class="icon-symble-male"></i> {{ profile?profile.detail.gender:'' }}</p>
+              <p><i class="mdi mdi-gender-male"></i> {{ profile?profile.detail.gender:'' }}</p>
             </div>
             <div class="col col-md-2">
               <!-- <p><i class="icon-calender"></i> {{ profile?profile.detail.dateOfBirth|date:'dd mm YYYY':'' }}</p> -->
@@ -59,8 +61,7 @@
         </div>
       </div>
       <div class="row  profile-bottom profile-bottom-3">
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-          Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident</p>
+        <p>{{ profile?profile.detail.aboutMe:'not set' }}</p>
       </div>
 
     </div>
@@ -69,7 +70,7 @@
       <ngb-tab title="Task">
         <ng-template ngbTabContent>
           <div class="tab-container">
-            <div class="card card-shadow" (click)="editAbout()">
+            <div class="card card-shadow"  *ngFor="let post of tasks; index as i" >
                 <div class="row">
                     <div class="col-md-9">
                         <div class="card-body">
@@ -77,20 +78,15 @@
                                 <div class="round align-self-center round-success card-round">
                                 </div>
                                 <div class="m-l-10 align-self-center">
-                                    <h4 class="m-b-0 green-text">John Smith</h4>
-                                    <p class="sq1"><span class="text-muted">Posted a task</span>  <span>May 4 2020 at 7:30pm</span></p>
+                                    <h4 class="m-b-0 green-text">{{ post.task.owner.fullName }}</h4>
+                                    <p class="sq1"><span class="text-muted">Posted a task</span>  <span>{{ post.task.dateCreated | date }}</span></p>
                                 </div>
                             </div>
-                            <div class="card-content">
+                            <div class="card-content" (click)="viewPost(post)">
                                 <div class="d-flex no-block al m-r-15ign-items-center">
                                     <div class="m-t-10">
-                                        <h4 class="text-dark font-medium">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                                            eiusmod tempor incididunt ut labore et dolore magna aliqua.</h4>
-                                        <p class="card-text">
-                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-      
-                                            Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                                        </p>
+                                        <h4 class="text-dark font-medium">{{ post.task.title }}</h4>
+                                        <p class="card-text">{{ post.task.description }}</p>
                                     </div>
                                     <div class="ml-auto m-t-15">
                                         <div class="crypto1"></div>
@@ -99,15 +95,15 @@
                                 <div class="row  text-dark m-t-30 footer-btns">
                                     <div class="col-1">
                                         <p class="font-medium">
-                                            <i class="fa fa-arrow-up"></i> 2.5k</p>
+                                            <i class="fa fa-arrow-up"></i> {{ post.collection.votes }}</p>
                                     </div>
                                     <div class="col-1">
                                         <p class="font-medium">
-                                            <i class="far fa-comment-alt"></i> 1.3k</p>
+                                            <i class="far fa-comment-alt"></i> {{ post.collection.comments }}</p>
                                     </div>
                                     <div class="col-1">
                                         <p class="font-medium">
-                                        <i class="fa fa-eye"></i> 250</p>
+                                        <i class="fa fa-eye"></i> {{ post.collection.ideas }}</p>
                                     </div>
                                     <div class="col-6">
                                     </div>
@@ -123,7 +119,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-3 card-right">
+                    <div class="col-md-3 card-right" (click)="viewPost(post)">
                         <div class="d-flex no-block align-items-center">
                             <div class="ml-auto card-right-top">
                                 <span class="text-success display-8">
@@ -133,106 +129,9 @@
                         </div>
                         <div class="feed-widget scrollable" style="height:auto;">
                             <ul class="list-style-none feed-body m-0 p-b-20">
-                                <li class="feed-item">
+                                <li class="feed-item"  *ngFor="let goal of post.task.ecoDetail.unSDGGoals">
                                     <div class="feed-icon bg-info">
-                                    </div> Community
-                                </li>
-                                <li class="feed-item">
-                                    <div class="feed-icon bg-info">
-                                    </div> Good health and well being...
-                                </li>
-                                <li class="feed-item">
-                                    <div class="feed-icon bg-info">
-                                    </div> Manchester, United Kingdom
-                                </li>
-                                <li class="feed-item">
-                                    <div class="feed-icon bg-info">
-                                    </div> 2 applications left
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="card card-shadow">
-                <div class="row">
-                    <div class="col-md-9">
-                        <div class="card-body">
-                            <div class="d-flex flex-row">
-                                <div class="round align-self-center round-success card-round">
-                                </div>
-                                <div class="m-l-10 align-self-center">
-                                    <h4 class="m-b-0 green-text">John Smith</h4>
-                                    <p class="sq1"><span class="text-muted">Posted a task</span>  <span>May 4 2020 at 7:30pm</span></p>
-                                </div>
-                            </div>
-                            <div class="card-content">
-                                <div class="d-flex no-block al m-r-15ign-items-center">
-                                    <div class="m-t-10">
-                                        <h4 class="text-dark font-medium">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                                            eiusmod tempor incididunt ut labore et dolore magna aliqua.</h4>
-                                            <img class="card-img-right" src="assets/images/article.png" alt="Card image cap">
-                                            <p class="card-text">
-                                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                                                Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                                            </p>
-                                    </div>
-                                    <div class="ml-auto m-t-15">
-                                        <div class="crypto1"></div>
-                                    </div>
-                                </div>
-                                <div class="row  text-dark m-t-30 footer-btns">
-                                    <div class="col-1">
-                                        <p class="font-medium">
-                                            <i class="fa fa-arrow-up"></i> 2.5k</p>
-                                    </div>
-                                    <div class="col-1">
-                                        <p class="font-medium">
-                                            <i class="far fa-comment-alt"></i> 1.3k</p>
-                                    </div>
-                                    <div class="col-1">
-                                        <p class="font-medium">
-                                        <i class="fa fa-eye"></i> 250</p>
-                                    </div>
-                                    <div class="col-6">
-                                    </div>
-                                    <div class="col-1">
-                                        <p class="font-medium">
-                                            <i class="far fa-list-alt"></i> 80</p>
-                                    </div>
-                                    <div class="col-1">
-                                        <p class="font-medium">
-                                            <i class="icon-share"></i> 1.3k</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3 card-right">
-                        <div class="d-flex no-block align-items-center">
-                            <div class="ml-auto card-right-top">
-                                <span class="text-success display-8">
-                                    <i class="icon-options"></i>
-                                </span>
-                            </div>
-                        </div>
-                        <div class="feed-widget scrollable" style="height:auto;">
-                            <ul class="list-style-none feed-body m-0 p-b-20">
-                                <li class="feed-item">
-                                    <div class="feed-icon bg-info">
-                                    </div> Community
-                                </li>
-                                <li class="feed-item">
-                                    <div class="feed-icon bg-info">
-                                    </div> Good health and well being...
-                                </li>
-                                <li class="feed-item">
-                                    <div class="feed-icon bg-info">
-                                    </div> Manchester, United Kingdom
-                                </li>
-                                <li class="feed-item">
-                                    <div class="feed-icon bg-info">
-                                    </div> 2 applications left
+                                    </div> {{goal.name}}
                                 </li>
                             </ul>
                         </div>
@@ -241,7 +140,7 @@
             </div>
           </div>
         </ng-template>
-      </ngb-tab>
+      </ngb-tab> 
       <ngb-tab title="Problem">
         <ng-template ngbTabContent>
           <div class="tab-container" *ngIf="problems">
