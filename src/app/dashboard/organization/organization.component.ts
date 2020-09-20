@@ -97,7 +97,7 @@ export class OrganizationComponent implements OnInit {
 
   getUserPosts() {
     // this.isLoading = true;
-    this.rest.getUserPosts().subscribe(response => {
+    this.rest.getUserPosts({}).subscribe(response => {
         // this.isLoading = false;
         const d = response.json();
         this.problems = d.problems;

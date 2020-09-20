@@ -102,7 +102,7 @@ export class UserContactAddressesComponent implements OnInit, OnDestroy {
 
     const sub = modalRef.componentInstance.newAddress.subscribe(x => {
       this.addresses.unshift(new EntityAddress(x));
-      this.isThereEmptyFreeAddresses();
+      this.getAvaliableFreeAddress();
     });
 
     this.subscriptions.push(sub);
