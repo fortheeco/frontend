@@ -1,24 +1,12 @@
 <div class="card card-shadow">
 
-  <img class="pl-2 general-loading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+  <img *ngIf="loading" class="pl-2 general-loading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
 
   
   <div class="card-body">
     <h5 class="card-title border-bottom">Employees and Skills
-      <i  class="fa fa-search pointer custom-text-green float-right" data-toggle="collapse" data-target="#openServiceSearch" aria-expanded="false" aria-controls="openServiceSearch" ></i>
     </h5>
 
-    <div class="collapse mb-2" id="openServiceSearch">
-      <fieldset class="border p-2" style="position: relative;">
-                                  
-        <legend  class="w-auto"> <span class="d-none d-lg-block" >Service Name</span> </legend>   
-
-        <i  class="fa fa-times text-danger pointer clear-form-button" ></i>
-
-        <input class="form-control form-control-md fieldset-input" placeholder="Search for a service">
-                                        
-      </fieldset>    
-    </div>
 
     <div class="row">
 
@@ -31,13 +19,13 @@
         <div class="row">
           <div class="col-md-5 custom-text-green custom-border-green p-2 mb-2 custom-rounded custom-bg-lighter-green mr-3">
             <span>Total Employees</span>
-            <span class="h5 d-block">50</span>
+            <span class="d-block"><strong>{{ response?.numberOfEmployees }}</strong></span>
           </div>
   
           <div class="col-md-5 custom-text-green custom-border-green p-2 mb-2 custom-rounded custom-bg-lighter-green mr-3">
             <span>Total Skills owned</span>
-            <span class="h5 d-block">50</span>
-            <span class="pointer"> view skills</span>
+            <span class="d-block"><strong>{{ organizationSkills?.totalSkills }}</strong></span>
+            <small *ngIf="organizationSkills?.totalSkills > 0" class="pointer"> <strong>view top 10 skills</strong></small>
           </div>
         </div>
 
@@ -45,42 +33,79 @@
       </div>
 
     </div>
+
+
 
     <div class="row">
 
-      <div class="col-12">
-        <hr>
+      <div class="col-12 border-bottom mb-2">
+        <small *ngIf="avaliableFilter()?.length > 0" class="text-primary pointer float-left" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample" >view filters</small>
+        <span> <i (click)="openFilterModal()" class="pointer fa fa-filter custom-text-green float-right"></i> </span>
       </div>
 
-      <div class="col-md-2 h5">
-        Employees
+      <div class="collapse col-12 py-1 my-1 border" id="collapseExample">
+        <div class="col-12">
+          <h5 *ngFor="let filter of avaliableFilter()" class="d-inline mr-2"><span [class]="'badge-primary badge p-1'"><strong>{{filter.name}}:</strong> {{filter.value}}</span></h5>
+        </div>
       </div>
 
-      <div class="col-md-10">
+
+
+      <div class="col-md-12">
         
-        <div class="row">
-          <div class=" d-flex justify-content-start col-md-12 custom-text-green custom-border-green p-2 custom-rounded custom-bg-lighter-green mr-3">
+          <div *ngFor="let employee of employees; index as i" class=" d-flex justify-content-start custom-text-green custom-border-green p-2 custom-rounded custom-bg-lighter-green mb-3">
             
             <div>
-              <img src="/assets/images/users/blank-profile-pic.png" class="rounded-circle profile-pic-sm mr-2" alt="">
+              <img src="/assets/images/users/1.jpg" class="rounded-circle profile-pic-sm mr-2" alt="">
             </div>
-            <div>
-              <span>John Doe <i class="fa fa-user-circle ml-1"></i> </span>
-              <small class="d-block text-dark">Full Stack web developer</small>
-              <small>Total of 10 skills owned</small>
+
+
+            <div style="width: 100%;" >
+              <span>{{ employee?.fullName }} <i class="fa fa-user-circle ml-1"></i> </span>
+
+              <!-- EMployee address -->
+              <small *ngIf="employee?.localAddress.id" class="d-block text-dark">
+                {{ employee?.localAddress?.displayAddress() }}
+                  <i *ngIf="employee?.localAddress?.verifiedInLocation" class="fas fa-check-circle text-success"></i> 
+                  <i *ngIf="!employee?.localAddress?.verifiedInLocation" class="fas fa-times-circle text-danger"></i> 
+              </small>
+
+              <!-- Position -->
+              <small class="d-block text-dark">{{ employee?.position }}</small>
+
+              <!-- Button to view more information -->
+              <span class="pointer" data-toggle="collapse" [attr.data-target]="'#collapse' + (i + 1)" aria-expanded="false" ><strong>view more</strong></span>
+
+              <!-- more menu -->
+              <div class="collapse multi-collapse custom-text-green custom-bg-lighter-green" [id]="'collapse' + (i + 1)">
+                <div class="border-top">
+
+                  <span *ngIf="employee?.department" class="d-block">Department: <span class="text-dark">{{ employee?.department }}</span> </span>
+                  
+                  <span class="d-block">
+                    Date Started: <span class="text-dark">{{ employee?.dateStarted | date: 'MM yyyy' }} </span><span *ngIf="employee.dateLeft"> - Date Left: <span class="text-dark">{{ employee?.dateLeft | date: 'MM yyyy' }}</span> </span>
+                  </span>
+
+                  <span class="d-block">Total Skills: <span class="text-dark">{{ employee?.totalSkills }}</span> </span>
+
+                  <small *ngIf="employee?.totalSkills > 0" class="d-block pointer"><strong>View top 10 skills</strong></small>
+
+                </div>
+              </div>
             </div>
 
           </div>
-        </div>
 
 
       </div>
 
     </div>
 
-    <div >
-      <button class="btn custom-bg-green btn-block mt-3">view more 
-        <img  class="pl-2" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+
+
+    <div *ngIf="isThereMoreEntities()" >
+      <button (click)="loadMoreEntities()" class="btn custom-bg-green btn-block mt-3">view more 
+        <img *ngIf="loading" class="pl-2" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
       </button>
     </div>
 

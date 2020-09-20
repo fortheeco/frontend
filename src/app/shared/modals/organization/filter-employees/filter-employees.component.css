@@ -1,0 +1,72 @@
+.close{
+    color: #33DB60;
+}
+
+.modal-header {
+    border-bottom: none;
+    background-color: #EAFBEF;
+    color: #517258;
+}
+
+.modal-footer {
+    border-top: none;
+    background-color: #EAFBEF;
+}
+
+.modal-content{
+    border: none;
+    border-radius: 10px;
+}
+
+legend{
+    font-size: 0.9em;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+legend:active{
+    background-color: red;
+}
+.fieldset-input{
+    border: none;
+    /* padding-top: 0px; */
+    /* padding-bottom: 5px; */
+    /* height: 25px; */
+}
+.fieldset-input2{
+    border: none;
+}
+.border{    
+    border: solid 1px #517258;
+    border-radius: 10px;
+    color: #517258;
+
+}
+
+.btn-rounded{
+    border-radius: 10px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    padding-left: 22px;
+    padding-right: 22px;
+    font-size: 16px;
+    width: 140px;
+}
+
+.btn-1{
+    background-color: #33DB60 !important;
+    color: #ffffff;
+}
+.btn-2{
+    background-color: #D8F8E1 !important;
+    color: #33DB60;
+}
+
+
+.modal-lbl{
+    color: #517258;
+    font-weight: bold;
+}
+
+.form-control{
+    color: #33DB60;
+}
