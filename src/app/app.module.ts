@@ -63,6 +63,7 @@ import { EditUserAddressComponent } from './shared/modals/user/edit-user-address
 import { AddFreeAddressesComponent } from './shared/modals/user/add-free-addresses/add-free-addresses.component';
 import { ClickoutsideDirective } from './shared/directive/clickoutside.directive';
 import { AddOrganizationServiceComponent } from './shared/modals/organization/add-organization-service/add-organization-service.component';
+import { FilterEmployeesComponent } from './shared/modals/organization/filter-employees/filter-employees.component';
 
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
@@ -103,8 +104,9 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     ConfirmActionComponent,
     NewUserAddressComponent,
     EditUserAddressComponent,
-    AddFreeAddressesComponent,    
+    AddFreeAddressesComponent,
     AddOrganizationServiceComponent,
+    FilterEmployeesComponent,
   ],
   entryComponents: [
     ViewUserComponent,
@@ -131,7 +133,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     EditUserAddressComponent,
     AddFreeAddressesComponent,
     AddOrganizationServiceComponent,
-
+    FilterEmployeesComponent,
   ],
 
   imports: [

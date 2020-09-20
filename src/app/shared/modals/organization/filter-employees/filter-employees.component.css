@@ -1,4 +1,6 @@
-
+.close{
+    color: #33DB60;
+}
 
 .modal-header {
     border-bottom: none;
@@ -15,22 +17,26 @@
     border: none;
     border-radius: 10px;
 }
+
 legend{
     font-size: 0.9em;
     padding-left: 5px;
     padding-right: 5px;
 }
+legend:active{
+    background-color: red;
+}
 .fieldset-input{
     border: none;
     /* padding-top: 0px; */
     /* padding-bottom: 5px; */
-    height: 15px;
+    /* height: 25px; */
 }
 .fieldset-input2{
     border: none;
 }
 .border{    
-    border: solid 1px #517258 !important;
+    border: solid 1px #517258;
     border-radius: 10px;
     color: #517258;
 
@@ -63,43 +69,4 @@ legend{
 
 .form-control{
     color: #33DB60;
-}
-
-.legend-select{
-    border: none;
-    margin: -6px;
-}
-
-.skill-card{
-    background-color: #EAFBEF;
-    height: 100px;
-    color: #33DB60;
-    border-radius: 5px;
-    padding: 15px;
-    font-weight: bold;
-    margin-top: 10px;
-}
-
-.filteredcontainer{
-    box-shadow: 0 1px 13px rgba(66, 66, 66, 0.12), 0 1px 12px rgba(66, 66, 66, 0.12);
-    transition: all 0.3s cubic-bezier(.25,.8,.25,1);
-    border-radius: 10px !important;
-    min-height: 150px;
-    margin-top: 10px;
-    overflow: scroll;
-}
-
-.filteredcontainer p{
-    color: #33DB60;
-    padding: 8px;
-    padding-left: 16px;
-    cursor: pointer;
-}
-
-.filteredcontainer p:hover{
-    background-color: #eafbef;
-}
-
-.icon-red{
-    color: red;
 }

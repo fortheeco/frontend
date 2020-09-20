@@ -120,6 +120,35 @@ export class OrganizationService {
     this.headers.append('Authorization', userToken);
 
     return this.httpc.delete(url, {headers: this.headers, body: data});
-}
+  }
+
+    /**
+   * @description Get the total number of skills and top ten skills
+   * @return Response
+   */
+  getOrganizationSkillsInfo(data: any): Observable<any> {
+    data = new URLSearchParams(data as {}).toString();
+    
+    const id = this.currentUserValue.user.id;
+      const userToken: string = 'Bearer ' + this.currentUserValue.token;
+    const url = `${this.BASE_URL}api/organization/skills?${data}`;
+
+      this.headers = new Headers({'Content-Type': 'application/json'});
+      this.headers.append('Authorization', userToken);
+      return this.httpc.get(url, {headers: this.headers});
+  }
+
+  /**
+   * @description Get the organization employees (either, left, accepted or pending request)
+   * @return Response
+   */
+  getOrganizationEmployees(data: any): Observable<any> {
+    const userToken: string = 'Bearer ' + this.currentUserValue.token;
+    const url = `${this.BASE_URL}api/organization/employees`;
+
+      this.headers = new Headers({'Content-Type': 'application/json'});
+      this.headers.append('Authorization', userToken);
+      return this.httpc.post(url, data, {headers: this.headers});
+  }
 
 }

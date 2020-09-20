@@ -20,9 +20,9 @@ export class IAppAddress {
 
         if (this.postCode) { addr += this.postCode + ', '; }
 
-        addr += this.state.name + ', ';
+        addr += this.state ? this.state.name + ', ' : '';
 
-        addr += this.country.name;
+        addr += this.country ? this.country.name : '';
 
         return addr;
 

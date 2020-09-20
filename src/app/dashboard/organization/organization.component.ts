@@ -55,7 +55,7 @@ export class OrganizationComponent implements OnInit {
       // this.isLoading = false;
       this.profile = new AppOrganization(response.json());
       // this.temp = response.json().data;
-      console.log(response.json());
+      // console.log(response.json());
     },
       error => {
         // this.isLoading = false;
@@ -97,7 +97,7 @@ export class OrganizationComponent implements OnInit {
 
   getUserPosts() {
     // this.isLoading = true;
-    this.rest.getUserPosts().subscribe(response => {
+    this.rest.getUserPosts({}).subscribe(response => {
         // this.isLoading = false;
         const d = response.json();
         this.problems = d.problems;

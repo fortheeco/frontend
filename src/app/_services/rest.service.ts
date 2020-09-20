@@ -122,14 +122,14 @@ private headers_formdata: Headers = new Headers({'Content-Type': undefined});
        */
   
   
-      getUserPosts(): Observable<any> {
+      getUserPosts(data): Observable<any> {
         // console.log(this.currentUserValue)
           const userToken: string = 'Bearer ' + this.authenticationService.currentUserValue.token;
         const url = `${this.BASE_URL}api/Post/personal`;
     
           this.headers = new Headers({'Content-Type': 'application/json'});
           this.headers.append('Authorization', userToken);
-          return this.httpc.get(url,{headers: this.headers});
+          return this.httpc.post(url, data ,{headers: this.headers});
         }
 
 
@@ -216,6 +216,25 @@ private headers_formdata: Headers = new Headers({'Content-Type': undefined});
       this.headers.append('Authorization', userToken);
       return this.httpc.post(url, data ,{headers: this.headers});
   }
+
+  deleteSkill(id): Observable<any> {
+    let data = {skillId:id}
+    const userToken: string = 'Bearer ' + this.authenticationService.currentUserValue.token;
+    const url = `${this.BASE_URL}api/Individual/skill`;
+
+    let httpOptions = {
+        headers: new HttpHeaders({ 'Content-Type': 'application/json' }), body: data
+    };
+    
+    this.headers = new Headers({'Content-Type': 'application/json'});
+    httpOptions.headers.append('Authorization', userToken);
+    
+    // return this.httpc.delete(url, data ,{headers: this.headers});
+
+    let req = new HttpRequest('DELETE', url);
+      let newReq = req.clone({body: data});
+     return this.http.request(newReq);
+}
 
   createProblem(data): Observable<any> {
     const userToken: string = 'Bearer ' + this.authenticationService.currentUserValue.token;

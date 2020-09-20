@@ -17,8 +17,8 @@
         <span class="color-darkgreen h4">{{ profile?.detail?.name  }}</span>
         <span *ngIf="profile?.localAddress"  class="color-darkgreen intro-title h6 d-block"> 
           {{ profile?.localAddress.displayAddress() }}
-          <i *ngIf="profile?.localAddress?.varifiedInLocation" class="fas fa-check-circle text-success"></i> 
-          <i *ngIf="!profile?.localAddress?.varifiedInLocation" class="fas fa-times-circle text-danger"></i> 
+          <i *ngIf="profile?.localAddress?.verifiedInLocation" class="fas fa-check-circle text-success"></i> 
+          <i *ngIf="!profile?.localAddress?.verifiedInLocation" class="fas fa-times-circle text-danger"></i> 
         </span>
         <span *ngIf="!profile?.localAddress"  class="color-darkgreen intro-title h6 d-block"> Address not given yet</span>
       </div>

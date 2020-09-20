@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {RestService} from "../../../../_services/rest.service";
 import { NgbModal, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { SharedServiceProvider } from '../../../../_providers/shared-provider';
 
 @Component({
   selector: 'app-edit-contact',
@@ -21,12 +22,24 @@ export class EditContactComponent implements OnInit {
     postCode: ""
   }
   submitted = false;
+  passedProfile: any;
+  passedContact: any;
 
   constructor(
     public modal: NgbActiveModal,
     public activeModal: NgbActiveModal,
-    private rest: RestService
-  ) { }
+    private rest: RestService,
+    private sharedService: SharedServiceProvider, 
+  ) {
+    this.sharedService.userProfile$.subscribe((data) => {
+      this.passedProfile = data;
+      console.log(data)
+    });
+    this.sharedService.userContact$.subscribe((data) => {
+      this.passedContact = data;
+      console.log(data)
+    });
+   }
 
   ngOnInit() {
     this.getCountries();

@@ -9,7 +9,7 @@ export class EntityAddress extends IAppAddress
     isLocal: boolean;
     nextChange: moment.Moment;
     payments: any[];
-    varifiedInLocation: boolean;
+    verifiedInLocation: boolean;
 
     constructor(data: Partial<EntityAddress>) {
         super(data);
