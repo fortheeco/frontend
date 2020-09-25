@@ -43,7 +43,14 @@ export class ProfileComponent implements OnInit {
   }
   tasks: any;
 
-  
+  params = {
+    "userId": "",
+    "pageNumber": 0,
+    "pageSize": 0
+  }
+  userSkills: any;
+  professions: any;
+  educationList: any;
 
   constructor(
     private modalService: NgbModal,
@@ -64,6 +71,10 @@ export class ProfileComponent implements OnInit {
     this.getUserProfile()
     this.getUserPosts()
     this.getUserContacts()
+    this.getUserAddresses()
+    this.getUserSkills()
+    this.getWorkExperience()
+    this.getUserEducation()
   }
 
   selectedFile: File
@@ -76,6 +87,39 @@ export class ProfileComponent implements OnInit {
       // this.photoForm.get('ProfilePicture').setValue(file);
       this.onSubmitPhoto()
     }
+  }
+    
+  getUserEducation(){
+    this.params.userId = this.authenticationService.currentUserValue.user.id;
+    this.authenticationService.getUserEducation(this.params).subscribe(response => {
+        let u = response.json();
+        this.educationList = u.entities; 
+        // console.log(response.json())
+    },
+      error => {  
+      });
+  }
+
+  getUserSkills(){
+    this.rest.getUserSkills().subscribe(response => {
+        let data = response.json();
+        this.userSkills = data.entities;
+        
+        console.log(response.json())
+    },
+      error => {  
+      });
+  }
+    
+  getWorkExperience(){
+    this.params.userId = this.authenticationService.currentUserValue.user.id;
+    this.authenticationService.getWorkExperience(this.params).subscribe(response => {
+        let u = response.json();
+        this.professions = u.entities;
+        // console.log(response.json())
+    },
+      error => {  
+      });
   }
 
   onSubmitPhoto() {
@@ -125,6 +169,22 @@ export class ProfileComponent implements OnInit {
   getUserContacts(){
     // this.isLoading = true;
     this.authenticationService.getUserContacts().subscribe(response => {
+        // this.isLoading = false;
+        this.contact = response.json();
+        this.sharedService.updateContact(this.contact);
+        // this.temp = response.json().data;
+        console.log(response.json())
+    },
+      error => {  
+        // this.isLoading = false;
+      });
+  }
+
+  getUserAddresses(){
+    this.params.userId = this.authenticationService.currentUserValue.user.id;
+
+    // this.isLoading = true;
+    this.authenticationService.getUserAddresses(this.params).subscribe(response => {
         // this.isLoading = false;
         this.contact = response.json();
         this.sharedService.updateContact(this.contact);
@@ -199,6 +259,24 @@ export class ProfileComponent implements OnInit {
     })
   }
 
+  manageWork() {
+    const modalRef = this.modalService.open(AddWorkComponent, { size: 'lg',centered: true  });
+    modalRef.componentInstance.inputData = 'this.profile';
+    modalRef.result.then((result) => {
+      this.getUserProfile();
+      // this._success.next("Successfully Deleted");
+    })
+  }
+
+  manageEducation() {
+    const modalRef = this.modalService.open(AddEducationComponent, { size: 'lg',centered: true  });
+    modalRef.componentInstance.inputData = 'this.profile';
+    modalRef.result.then((result) => {
+      this.getUserProfile();
+      // this._success.next("Successfully Deleted");
+    })
+  }
+  
   showEditContactModal(row) {
     const modalRef = this.modalService.open(EditContactComponent, { size: 'lg',centered: true  });
     modalRef.componentInstance.inputData = row;

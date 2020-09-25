@@ -25,10 +25,23 @@ export class OrganizationComponent implements OnInit {
 
   problems: any;
   modalRef: NgbModalRef;
-
   viewSection = 'problem';
-
   showMobileMenu = false;
+  pageParams ={
+    "filter": {
+      "userId": "",
+      "title": "",
+      "countryId": "",
+      "stateId": "",
+      "createdBefore": "",
+      "createdAfter": "",
+      "endedBefore": "",
+      "endedAfter": "",
+      "postType": ""
+    },
+    "pageNumber": "0",
+    "pageSize": "0"
+  }
 
   constructor(
     private modalService: NgbModal,
@@ -94,7 +107,7 @@ export class OrganizationComponent implements OnInit {
 
   getUserPosts() {
     // this.isLoading = true;
-    this.rest.getUserPosts().subscribe(response => {
+    this.rest.getUserPosts(this.pageParams).subscribe(response => {
         // this.isLoading = false;
         const d = response.json();
         this.problems = d.problems;

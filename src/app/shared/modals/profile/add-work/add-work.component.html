@@ -1,4 +1,4 @@
-<!-- <div class="modal-header">
+<div class="modal-header">
   <h4 class="modal-title" id="modal-basic-title">Add work</h4>
   <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
     <span aria-hidden="true">&times;</span>
@@ -12,121 +12,126 @@
                 <div class="row col-sm-12" style="margin-top: 20px">
                     <ngb-alert *ngIf="responseMessage" [type]="messageType" (close)="responseMessage = null">{{ responseMessage }}</ngb-alert>   
                 </div>
-                <div class="col-sm-12">                                      
-                    <form [formGroup]="dataForm" class="form-horizontal m-t-25" id="signupform" (ngSubmit)="onSubmit()">
-                      <div class="form-group row ">
-                          <div class="col-3">
-                            <div class="col-12 ">
-                              <p class="modal-lbl">Job title</p>
+                <div class="col-sm-12"> 
+                      <h5 *ngIf="!addingWork">Your Professions <br> <br></h5> 
+                      <p *ngIf="isLoading">loading...</p>
+                      <div *ngIf="!addingWork">
+                        <div *ngFor="let profession of professions" class="work-card">
+                          <p>
+                            {{profession.position}} ({{profession.organizationNameIfNotInDatabase}})
+                          </p>
+                          <p>From: {{profession.dateJoined}} </p>
+                          <p>To: {{profession.dateLeft}} </p>
+                          <button type="button" class="pull-right icon-red clear-btn" (click)="deleteProfession(profession.professionId)">
+                            <span class="fa fa-trash"></span>
+                          </button>
+                        </div>
+                      </div> 
+                      <div *ngIf="addingWork">                                 
+                        <div class="form-group row ">
+                            <div class="col-3">
+                              <div class="col-12 ">
+                                <p class="modal-lbl">Job title</p>
+                              </div>
                             </div>
-                          </div>
-                          <div class="col-9">
-                            <div class="col-12 ">
-                                <fieldset class="border p-2">
-                                    <legend  class="w-auto">Job title</legend>                                
-                                    <input class="form-control form-control-md fieldset-input" [ngClass]="{ 'is-invalid': submitted && f.price.errors }" type="text" required=" " placeholder="Job title">
-                                </fieldset>
-                              </div>
-                              <div *ngIf="submitted && f.price.errors" class="invalid-feedback">
-                                  <div *ngIf="f.price.errors.required">Price is required</div>
-                              </div>
-                          </div>
-                      </div>
-                      <div class="form-group row ">
-                          <div class="col-3">
-                            <div class="col-12 ">
-                              <p class="modal-lbl">Company name</p>
+                            <div class="col-9">
+                              <div class="col-12 ">
+                                  <fieldset class="border p-2">
+                                      <legend  class="w-auto">Job title</legend>                                
+                                      <input class="form-control form-control-md fieldset-input" [(ngModel)]="form.position" type="text" required=" " placeholder="Job title">
+                                  </fieldset>
+                                </div>
                             </div>
-                          </div>
-                          <div class="col-9">
-                            <div class="col-12 ">
-                                <fieldset class="border p-2">
-                                    <legend  class="w-auto">Company name</legend>                                
-                                    <input class="form-control form-control-md fieldset-input" [ngClass]="{ 'is-invalid': submitted && f.price.errors }" type="text" required=" " placeholder="Company name">
-                                </fieldset>
+                        </div>
+                        <div class="form-group row ">
+                            <div class="col-3">
+                              <div class="col-12 ">
+                                <p class="modal-lbl">Company name</p>
                               </div>
-                              <div *ngIf="submitted && f.price.errors" class="invalid-feedback">
-                                  <div *ngIf="f.price.errors.required">Price is required</div>
-                              </div>
-                          </div>
-                      </div>
-                      <div class="form-group row">
-                          <div class="col-3">
-                            <div class="col-12 ">
-                              <p class="modal-lbl">Company address</p>
                             </div>
-                          </div>
-                          <div class="col-5">
-                            <div class="col-12 ">
-                                <fieldset class="border p-2">
-                                    <legend  class="w-auto">Country</legend>                                
-                                    <input class="form-control form-control-md fieldset-input" [ngClass]="{ 'is-invalid': submitted && f.price.errors }" type="text" required=" " >
-                                </fieldset>
-                              </div>
-                              <div *ngIf="submitted && f.price.errors" class="invalid-feedback">
-                                  <div *ngIf="f.price.errors.required">Price is required</div>
-                              </div>
-                          </div>
-                          <div class="col-4">
-                            <div class="col-12 ">
-                                <fieldset class="border p-2">
-                                    <legend  class="w-auto">State</legend>                                
-                                    <input class="form-control form-control-md fieldset-input" [ngClass]="{ 'is-invalid': submitted && f.price.errors }" type="text" required=" ">
-                                </fieldset>
-                              </div>
-                              <div *ngIf="submitted && f.price.errors" class="invalid-feedback">
-                                  <div *ngIf="f.price.errors.required">Price is required</div>
-                              </div>
-                          </div>
-                      </div>
-                      <div class="form-group row">
-                          <div class="col-3">
-                            <div class="col-12 ">
-                              <p class="modal-lbl"></p>
+                            <div class="col-9">
+                              <div class="col-12 ">
+                                  <fieldset class="border p-2">
+                                      <legend  class="w-auto">Company name</legend>                                
+                                      <input class="form-control form-control-md fieldset-input" [(ngModel)]="form.organizationNameIfNotInDatabase" type="text" required=" " placeholder="Company name">
+                                  </fieldset>
+                                </div>
                             </div>
-                          </div>
-                          <div class="col-5">
-                            <div class="col-12 ">
-                                <fieldset class="border p-2">
-                                    <legend  class="w-auto">Street</legend>                                
-                                    <input class="form-control form-control-md fieldset-input" [ngClass]="{ 'is-invalid': submitted && f.price.errors }" type="text" required=" " >
-                                </fieldset>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-3">
+                              <div class="col-12 ">
+                                <p class="modal-lbl">Company address</p>
                               </div>
-                              <div *ngIf="submitted && f.price.errors" class="invalid-feedback">
-                                  <div *ngIf="f.price.errors.required">Price is required</div>
-                              </div>
-                          </div>
-                          <div class="col-4">
-                            <div class="col-12 ">
-                                <fieldset class="border p-2">
-                                    <legend  class="w-auto">Post/ZIP code</legend>                                
-                                    <input class="form-control form-control-md fieldset-input" [ngClass]="{ 'is-invalid': submitted && f.price.errors }" type="text" required=" ">
-                                </fieldset>
-                              </div>
-                              <div *ngIf="submitted && f.price.errors" class="invalid-feedback">
-                                  <div *ngIf="f.price.errors.required">Price is required</div>
-                              </div>
-                          </div>
-                      </div>
-                      <div class="form-group row ">
-                          <div class="col-3">
-                            <div class="col-12 ">
-                              <p class="modal-lbl">Roles</p>
                             </div>
-                          </div>
-                          <div class="col-9">
-                            <div class="col-12 ">
-                                <fieldset class="border p-2">
-                                    <legend  class="w-auto">Roles</legend>                                
-                                    <input class="form-control form-control-md fieldset-input" [ngClass]="{ 'is-invalid': submitted && f.price.errors }" type="text" required=" " placeholder="">
-                                </fieldset>
+                            <div class="col-5">
+                              <div class="col-12 ">
+                                  <fieldset class="border p-2">
+                                      <legend  class="w-auto">Country</legend>                                
+                                      <select class="form-control legend-select" id="selectCountries" [(ngModel)]="form.organizationAddressIfNotInDatabase.countryId" (ngModelChange)="getStates(form.organizationAddressIfNotInDatabase.countryId)">
+                                          <option *ngFor="let country of countries" [value]="country.id">{{ country?.name}}</option>
+                                      </select>  
+                                  </fieldset>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                              <div class="col-12 ">
+                                  <fieldset class="border p-2">
+                                      <legend  class="w-auto">State</legend>                                                               
+                                      <select class="form-control legend-select" id="selectState" [(ngModel)]="form.organizationAddressIfNotInDatabase.stateId">
+                                          <option *ngFor="let state of states" [value]="state.id">{{ state?.name}}</option>
+                                      </select>   
+                                  </fieldset>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-3">
+                              <div class="col-12 ">
+                                <p class="modal-lbl"></p>
                               </div>
-                              <div *ngIf="submitted && f.price.errors" class="invalid-feedback">
-                                  <div *ngIf="f.price.errors.required">Price is required</div>
+                            </div>
+                            <div class="col-5">
+                              <div class="col-12 ">
+                                  <fieldset class="border p-2">
+                                      <legend  class="w-auto">Street</legend>                                
+                                      <input class="form-control form-control-md fieldset-input" [(ngModel)]="form.organizationAddressIfNotInDatabase.street" type="text" required=" " >
+                                  </fieldset>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                              <div class="col-12 ">
+                                  <fieldset class="border p-2">
+                                      <legend  class="w-auto">Post/ZIP code</legend>                                
+                                      <input class="form-control form-control-md fieldset-input" [(ngModel)]="form.organizationAddressIfNotInDatabase.postCode" type="text" required=" ">
+                                  </fieldset>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-3">
+                              <div class="col-12 ">
+                                <p class="modal-lbl">Work Date</p>
                               </div>
-                          </div>
-                      </div>
-                    </form>
+                            </div>
+                            <div class="col-5">
+                              <div class="col-12 ">
+                                  <fieldset class="border p-2">
+                                      <legend  class="w-auto">Date Started</legend>                                
+                                      <input class="form-control form-control-md fieldset-input" [(ngModel)]="form.dateStarted" ngbDatepicker #d3="ngbDatepicker" (click)="d3.toggle()" type="text" required=" " placeholder="DD-MM-YYYY">
+                                  </fieldset>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                              <div class="col-12 ">
+                                  <fieldset class="border p-2">
+                                      <legend  class="w-auto">Date Left</legend>                                                               
+                                      <input class="form-control form-control-md fieldset-input" [(ngModel)]="form.dateLeft" ngbDatepicker #d4="ngbDatepicker" (click)="d4.toggle()" type="text" required=" " placeholder="DD-MM-YYYY">
+                                  </fieldset>
+                                </div>
+                            </div>
+                        </div>
+                      </div>  
               </div>
             </div>
         </div>
@@ -135,5 +140,6 @@
 </div>
 <div class="modal-footer">
   <button type="button" class="btn btn-rounded btn-2" (click)="modal.close('Close click')">Cancel</button>
-  <button type="button" class="btn btn-rounded btn-1" (click)="modal.close('Close click')">Save changes</button>
-</div> -->
+  <button *ngIf="addingWork" type="button" class="btn btn-rounded btn-1" (click)="onSubmit()">Save changes</button>
+  <button *ngIf="!addingWork" type="button" class="btn btn-rounded btn-1" (click)="toggleAdding()">Add Profession</button>
+</div>

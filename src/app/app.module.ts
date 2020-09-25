@@ -88,7 +88,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     ViewProblemComponent,
     ViewComponent,
     ApplyComponent,
-    ViewApplicantComponent
+    ViewApplicantComponent,
     GetViewLocationComponent,
     EditOrganizationAboutComponent,
   ],
@@ -108,7 +108,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     CreateOptionsComponent,
     ViewComponent,
     ViewApplicantComponent,
-    ApplyComponent
+    ApplyComponent,
     GetViewLocationComponent,
     EditOrganizationAboutComponent,
   ],

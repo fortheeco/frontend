@@ -236,6 +236,30 @@ private headers_formdata: Headers = new Headers({'Content-Type': undefined});
      return this.http.request(newReq);
 }
 
+
+getUniversities(data): Observable<any> {
+  // console.log(this.currentUserValue)
+  let id = this.authenticationService.currentUserValue.user.id;
+    const userToken: string = 'Bearer ' + this.authenticationService.currentUserValue.token;
+      const url = `${this.BASE_URL}api/Education/search-university?UniversityName=${data.UniversityName}&pageNumber=${data.pageNumber}&pageSize=${data.pageSize}`;
+
+    this.headers = new Headers({'Content-Type': 'application/json'});
+    this.headers.append('Authorization', userToken);
+    return this.httpc.get(url,{headers: this.headers});
+  }
+
+
+  getUniversityLevels(): Observable<any> {
+    // console.log(this.currentUserValue)
+    let id = this.authenticationService.currentUserValue.user.id;
+      const userToken: string = 'Bearer ' + this.authenticationService.currentUserValue.token;
+        const url = `${this.BASE_URL}api/Education/university-level`;
+  
+      this.headers = new Headers({'Content-Type': 'application/json'});
+      this.headers.append('Authorization', userToken);
+      return this.httpc.get(url,{headers: this.headers});
+  }
+
   createProblem(data): Observable<any> {
     const userToken: string = 'Bearer ' + this.authenticationService.currentUserValue.token;
       const url = `${this.BASE_URL}api/Problem`;
