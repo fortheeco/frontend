@@ -1,0 +1,73 @@
+<!-- <div class="row"> -->
+
+  <div *ngFor="let employee of employees; index as i" class="d-block" style="width: 100%;">
+    <div class=" d-flex justify-content-start custom-text-green custom-border-green p-2 custom-rounded custom-bg-lighter-green mb-3">
+              
+      <div>
+        <img src="/assets/images/users/1.jpg" class="rounded-circle profile-pic-sm mr-2" alt="">
+      </div>
+    
+    
+      <div style="width: 100%; position: relative;" >
+
+
+        <!-- Option to perform on employee -->
+
+        <div *ngIf="currentUser?.user?.isOwner(organization.id) && (status === 'accepted' || status === 'requestSentPendingReply')" class="dropdown edit-button dropleft">
+          <span class="pointer" id="moreOprion" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fa fa-ellipsis-v"></i>
+          </span>
+
+          <div class="dropdown-menu" aria-labelledby="moreOprion">
+
+            <span *ngIf="status === 'accepted'">
+              <span class="dropdown-item text-danger pointer" (click)="confirmRemoveEmployee(employee)" >Remove Employee</span>
+            </span>
+            
+            <span *ngIf="status === 'requestSentPendingReply'" >
+              <span class="dropdown-item text-success pointer" (click)="acceptEmployee(employee)" >Accept</span>
+              <div class="dropdown-divider"></div>
+              <span class="dropdown-item text-danger pointer" (click)="confirmRejectEmployee(employee)" >Reject</span>
+            </span>
+
+          </div>
+
+        </div>
+  
+
+        <span>{{ employee?.fullName }} <i class="fa fa-user-circle ml-1"></i> </span>
+    
+        <!-- EMployee address -->
+        <small *ngIf="employee?.localAddress.id" class="d-block text-dark">
+          {{ employee?.localAddress?.displayAddress() }}
+            <i *ngIf="employee?.localAddress?.verifiedInLocation" class="fas fa-check-circle text-success"></i> 
+            <i *ngIf="!employee?.localAddress?.verifiedInLocation" class="fas fa-times-circle text-danger"></i> 
+        </small>
+    
+        <!-- Position -->
+        <small class="d-block text-dark">{{ employee?.position }}</small>
+    
+        <!-- Button to view more information -->
+        <span class="pointer" data-toggle="collapse" [attr.data-target]="'#collapse' + (i + 1)" aria-expanded="false" ><strong>view more</strong></span>
+    
+        <!-- more menu -->
+        <div class="collapse multi-collapse custom-text-green custom-bg-lighter-green" [id]="'collapse' + (i + 1)">
+          <div class="border-top">
+    
+            <span *ngIf="employee?.department" class="d-block">Department: <span class="text-dark">{{ employee?.department }}</span> </span>
+            
+            <span class="d-block">
+              Date Started: <span class="text-dark">{{ employee?.dateStarted | date: 'MM yyyy' }} </span><span *ngIf="employee.dateLeft"> - Date Left: <span class="text-dark">{{ employee?.dateLeft | date: 'MM yyyy' }}</span> </span>
+            </span>
+    
+            <span class="d-block">Total Skills: <span class="text-dark">{{ employee?.totalSkills }}</span> </span>
+    
+            <small *ngIf="employee?.totalSkills > 0" (click)="showSkills(employee.fullName, employee.topTenSkills)" class="d-block pointer"><strong>View top 10 skills</strong></small>
+    
+          </div>
+        </div>
+      </div>
+    
+    </div>
+  </div>
+<!-- </div> -->

@@ -5,6 +5,19 @@
   
   <div class="card-body">
     <h5 class="card-title border-bottom">Employees and Skills
+
+      <div *ngIf="currentUser?.user?.isOwner(organization.id)" class="dropdown edit-button dropleft">
+        <span class="pointer" id="moreOprion" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <i class="fa fa-ellipsis-v"></i>
+        </span>
+        <div class="dropdown-menu" aria-labelledby="moreOprion">
+          <!-- <span class="dropdown-item" (click)="openEditUserAddress(address)" >Edit</span> -->
+          <span (click)="toggleAllowIndividualToSendRequest()" *ngIf="response?.allowRequest" class="dropdown-item text-danger pointer" >Disable Request from individual</span>
+          <span (click)="toggleAllowIndividualToSendRequest()" *ngIf="!response?.allowRequest" class="dropdown-item text-success pointer" >Enable Request from individual</span>
+        </div>
+      </div>
+
+
     </h5>
 
 
@@ -25,7 +38,7 @@
           <div class="col-md-5 custom-text-green custom-border-green p-2 mb-2 custom-rounded custom-bg-lighter-green mr-3">
             <span>Total Skills owned</span>
             <span class="d-block"><strong>{{ organizationSkills?.totalSkills }}</strong></span>
-            <small *ngIf="organizationSkills?.totalSkills > 0" class="pointer"> <strong>view top 10 skills</strong></small>
+            <small *ngIf="organizationSkills?.totalSkills > 0" (click)="showSkills(organization?.detail?.name, organizationSkills?.topTenSkills)" class="pointer"> <strong>view top 10 skills</strong></small>
           </div>
         </div>
 
@@ -50,56 +63,16 @@
       </div>
 
 
-
-      <div class="col-md-12">
-        
-          <div *ngFor="let employee of employees; index as i" class=" d-flex justify-content-start custom-text-green custom-border-green p-2 custom-rounded custom-bg-lighter-green mb-3">
-            
-            <div>
-              <img src="/assets/images/users/1.jpg" class="rounded-circle profile-pic-sm mr-2" alt="">
-            </div>
-
-
-            <div style="width: 100%;" >
-              <span>{{ employee?.fullName }} <i class="fa fa-user-circle ml-1"></i> </span>
-
-              <!-- EMployee address -->
-              <small *ngIf="employee?.localAddress.id" class="d-block text-dark">
-                {{ employee?.localAddress?.displayAddress() }}
-                  <i *ngIf="employee?.localAddress?.verifiedInLocation" class="fas fa-check-circle text-success"></i> 
-                  <i *ngIf="!employee?.localAddress?.verifiedInLocation" class="fas fa-times-circle text-danger"></i> 
-              </small>
-
-              <!-- Position -->
-              <small class="d-block text-dark">{{ employee?.position }}</small>
-
-              <!-- Button to view more information -->
-              <span class="pointer" data-toggle="collapse" [attr.data-target]="'#collapse' + (i + 1)" aria-expanded="false" ><strong>view more</strong></span>
-
-              <!-- more menu -->
-              <div class="collapse multi-collapse custom-text-green custom-bg-lighter-green" [id]="'collapse' + (i + 1)">
-                <div class="border-top">
-
-                  <span *ngIf="employee?.department" class="d-block">Department: <span class="text-dark">{{ employee?.department }}</span> </span>
-                  
-                  <span class="d-block">
-                    Date Started: <span class="text-dark">{{ employee?.dateStarted | date: 'MM yyyy' }} </span><span *ngIf="employee.dateLeft"> - Date Left: <span class="text-dark">{{ employee?.dateLeft | date: 'MM yyyy' }}</span> </span>
-                  </span>
-
-                  <span class="d-block">Total Skills: <span class="text-dark">{{ employee?.totalSkills }}</span> </span>
-
-                  <small *ngIf="employee?.totalSkills > 0" class="d-block pointer"><strong>View top 10 skills</strong></small>
-
-                </div>
-              </div>
-            </div>
-
-          </div>
-
-
-      </div>
-
     </div>
+
+      <app-employees 
+        [employees]="employees" 
+        [status]="request?.filter?.status" 
+        [organization]="organization" 
+        (reload)="refreshEmployees()" 
+        (loading)="loading = $event"
+        ></app-employees>
+
 
 
 

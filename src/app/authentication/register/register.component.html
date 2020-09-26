@@ -1,15 +1,17 @@
 
-<div class="auth-wrapper d-flex no-block">
-    <div class="col-6 col-xs-12">
+<div class="auth-wrapper m-auto text-center pt-5">
+<div class="row pt-5">
+    <div class="col-md-6  text-center">
         <span class="db"><img height="60" src="assets/images/logo.png" alt="logo" /></span>
         
         <h3 class="big-text">Join the Task force and build credibility</h3>
     </div>
 
-    <div class="auth-box col-6 col-xs-12">
+    <div class="auth-box mx-auto ml-md-0 col-md-6">
         <app-register-as-individual *ngIf="isIndividual" (registerAsOrganization)="toggoleIndividual()" ></app-register-as-individual>
         <app-register-as-organization *ngIf="!isIndividual" (registerAsIndividual)="toggoleIndividual()" ></app-register-as-organization>
     </div>
 
+</div>
 </div>
 <!-- <app-register-as-organization></app-register-as-organization> -->

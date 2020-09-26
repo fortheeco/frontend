@@ -1,5 +1,4 @@
 import { AgmCoreModule } from '@agm/core';
-import { CommonModule } from '@angular/common';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -23,7 +22,13 @@ import { FullComponent } from './layouts/full/full.component';
 import { BreadcrumbComponent } from './shared/breadcrumb/breadcrumb.component';
 import { NavigationComponent } from './shared/header-navigation/navigation.component';
 import { AddUserComponent } from './shared/modals/add-user/add-user.component';
+import { ConfirmActionComponent } from './shared/modals/confirm-action/confirm-action.component';
 import { CreateOptionsComponent } from './shared/modals/create-options/create-options.component';
+import { GetViewLocationComponent } from './shared/modals/get-view-location/get-view-location.component';
+import { AcceptEmployeeComponent } from './shared/modals/organization/accept-employee/accept-employee.component';
+import { AddOrganizationServiceComponent } from './shared/modals/organization/add-organization-service/add-organization-service.component';
+import { EditOrganizationAboutComponent } from './shared/modals/organization/edit-organization-about/edit-organization-about.component';
+import { FilterEmployeesComponent } from './shared/modals/organization/filter-employees/filter-employees.component';
 import { EditProblemComponent } from './shared/modals/problems/edit-problem/edit-problem.component';
 import { ViewProblemComponent } from './shared/modals/problems/view-problem/view-problem.component';
 import { AddEducationComponent } from './shared/modals/profile/add-education/add-education.component';
@@ -33,11 +38,16 @@ import { EditContactComponent } from './shared/modals/profile/edit-contact/edit-
 import { EditEducationComponent } from './shared/modals/profile/edit-education/edit-education.component';
 import { EditGlobaladdressComponent } from './shared/modals/profile/edit-globaladdress/edit-globaladdress.component';
 import { EditSkillsComponent } from './shared/modals/profile/edit-skills/edit-skills.component';
-import { ViewComponent } from './shared/modals/tasks/view/view.component';
 import { ApplyComponent } from './shared/modals/tasks/apply/apply.component';
 import { ViewApplicantComponent } from './shared/modals/tasks/view-applicant/view-applicant.component';
+import { ViewComponent } from './shared/modals/tasks/view/view.component';
+import { AddFreeAddressesComponent } from './shared/modals/user/add-free-addresses/add-free-addresses.component';
+import { AddUserContactComponent } from './shared/modals/user/add-user-contact/add-user-contact.component';
+import { EditUserAddressComponent } from './shared/modals/user/edit-user-address/edit-user-address.component';
+import { NewUserAddressComponent } from './shared/modals/user/new-user-address/new-user-address.component';
 import { ViewUserCvComponent } from './shared/modals/view-user-cv/view-user-cv.component';
 import { ViewUserComponent } from './shared/modals/view-user/view-user.component';
+import { SharedModule } from './shared/shared.module';
 import { MenuItems } from './shared/sidebar/menu-items';
 import { SidebarComponent } from './shared/sidebar/sidebar.component';
 import { SpinnerComponent } from './shared/spinner.component';
@@ -46,24 +56,13 @@ import { StatusTranslators } from './_helpers/statusTranslators';
 import { httpRequestInterceptor } from './_interceptors/httpRequestInterceptor';
 import { SharedServiceProvider } from './_providers/shared-provider';
 import { UtilityProvider } from './_providers/utility';
-import { OrganizationService } from './_services/organization/organization.service';
-import { GetViewLocationComponent } from './shared/modals/get-view-location/get-view-location.component';
-import { EditOrganizationAboutComponent } from './shared/modals/organization/edit-organization-about/edit-organization-about.component';
-import { ValidatorErrorMessageComponent } from './shared/custom-validators/validator-error-message/validator-error-message.component';
-import { FormErrorService } from './_services/form-error/form-error.service';
-import { UserContactCommunicateComponent } from './shared/components/user/user-contact/user-contact-communicate/user-contact-communicate.component';
-import { UserContactAddressesComponent } from './shared/components/user/user-contact/user-contact-addresses/user-contact-addresses.component';
-import { UserContactComponent } from './shared/components/user/user-contact/user-contact.component';
-import { SharedModule } from './shared/shared.module';
 import { UserService } from './_services';
-import { AddUserContactComponent } from './shared/modals/user/add-user-contact/add-user-contact.component';
-import { ConfirmActionComponent } from './shared/modals/confirm-action/confirm-action.component';
-import { NewUserAddressComponent } from './shared/modals/user/new-user-address/new-user-address.component';
-import { EditUserAddressComponent } from './shared/modals/user/edit-user-address/edit-user-address.component';
-import { AddFreeAddressesComponent } from './shared/modals/user/add-free-addresses/add-free-addresses.component';
-import { ClickoutsideDirective } from './shared/directive/clickoutside.directive';
-import { AddOrganizationServiceComponent } from './shared/modals/organization/add-organization-service/add-organization-service.component';
-import { FilterEmployeesComponent } from './shared/modals/organization/filter-employees/filter-employees.component';
+import { FormErrorService } from './_services/form-error/form-error.service';
+import { OrganizationService } from './_services/organization/organization.service';
+import { ShowSomeSkillsComponent } from './shared/modals/user/show-some-skills/show-some-skills.component';
+import { SearchOrganizationAutocompleteComponent } from './shared/modals/organization/search-organization-autocomplete/search-organization-autocomplete.component';
+import { JoinOrganizationComponent } from './shared/modals/organization/join-organization/join-organization.component';
+import { FilterOrganizationBranchesComponent } from './shared/modals/organization/filter-organization-branches/filter-organization-branches.component';
 
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
@@ -107,6 +106,10 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     AddFreeAddressesComponent,
     AddOrganizationServiceComponent,
     FilterEmployeesComponent,
+    AcceptEmployeeComponent,
+    ShowSomeSkillsComponent,
+    JoinOrganizationComponent,
+    FilterOrganizationBranchesComponent,
   ],
   entryComponents: [
     ViewUserComponent,
@@ -134,6 +137,10 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     AddFreeAddressesComponent,
     AddOrganizationServiceComponent,
     FilterEmployeesComponent,
+    AcceptEmployeeComponent,
+    ShowSomeSkillsComponent,
+    JoinOrganizationComponent,
+    FilterOrganizationBranchesComponent,
   ],
 
   imports: [

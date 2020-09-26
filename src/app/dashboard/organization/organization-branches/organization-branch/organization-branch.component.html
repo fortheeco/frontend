@@ -1,0 +1,64 @@
+<div class="col-md-12" >
+        
+  <div class="row">
+
+    <div *ngFor="let branch of branches" class=" d-flex justify-content-start col-md-12 custom-text-green custom-border-green p-4 custom-rounded custom-bg-lighter-green mb-2">
+      
+      <div>
+        <img src="/assets/images/users/1.jpg" class="rounded-circle profile-pic-sm mr-2" alt="">
+      </div>
+      <div>
+
+        <!-- More options -->
+        <div class="dropdown edit-button_2 dropleft" *ngIf="branch.branchStatus !== 'Independent' && isHeadQuarters">
+          <span class="pointer" id="moreOprion" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fa fa-ellipsis-v"></i>
+          </span>
+  
+          <div class="dropdown-menu" aria-labelledby="moreOprion">
+            
+            <span *ngIf="branch.branchStatus === 'RequestSent'" >
+              <span  class="dropdown-item pointer text-success" (click)="confirmAcceptOrganization(branch)" >Accept</span>
+              <span  class="dropdown-item pointer text-danger" (click)="confirmRejectOrganization(branch)" >Reject</span>
+            </span>
+  
+            <span *ngIf="branch.branchStatus === 'Accepted'">
+              <span class="dropdown-item pointer text-danger" (click)="confirmRemoveBranch(branch)" >Remove</span>
+            </span>
+  
+          </div>
+  
+        </div>
+        <!-- End of more options -->
+
+        <span class="pointer" 
+          (click)="navigate('/dashboard/organization/'+ branch.organizationId)">
+          {{branch.organizationName}}
+          <i class="fa fa-building ml-1"></i> 
+        </span>
+        <small class="d-block text-dark"> 
+          <strong *ngIf="branch.isHeadQuarters" >HeadQuarters: </strong>
+          <strong *ngIf="!branch.isHeadQuarters" >Branch 
+
+            <span>
+              <i *ngIf="branch.branchStatus === 'RequestSent'" class="fa fa-clock text-dark" ></i>
+              <i *ngIf="branch.branchStatus === 'Accepted'"class="fa fa-check-circle text-success" ></i>
+              <i *ngIf="branch.branchStatus === 'Rejected'" class="fa fa-times-circle text-danger" ></i>
+            </span> :
+          </strong> 
+
+
+          {{branch?.localAddress?.displayAddress()}}
+          
+          <i *ngIf="branch?.localAddress?.verifiedInLocation" class="fas fa-check-circle text-success"></i> 
+          <i *ngIf="!branch?.localAddress?.verifiedInLocation" class="fas fa-times-circle text-danger"></i> 
+        </small>
+      </div>
+
+    </div>
+
+
+  </div>
+
+
+</div>

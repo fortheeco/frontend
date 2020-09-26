@@ -1,5 +1,5 @@
 import { ApplicationRequestPagination, ApplicationResponsePagination } from 'src/app/_models/iheritable/app-pagination';
-import { AppOrganizationSkills, AppOrganizationEmployees, AppEmploymentStatus } from 'src/app/_models/organization/app-organization-employee-skills';
+import { AppOrganizationSkills, AppOrganizationEmployee, AppEmploymentStatus } from 'src/app/_models/organization/app-organization-employee-skills';
 
 export const AppFilterConstant = {
     staffName: {
@@ -64,8 +64,9 @@ export class EmployeeSkillsFilter {
 }
 
 
-export class EmployeeSkillsResponsePagination extends ApplicationResponsePagination<AppOrganizationEmployees> {
+export class EmployeeSkillsResponsePagination extends ApplicationResponsePagination<AppOrganizationEmployee> {
     numberOfEmployees: number;
+    allowRequest: boolean;
 }
 
 

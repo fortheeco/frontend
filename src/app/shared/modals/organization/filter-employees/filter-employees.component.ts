@@ -32,6 +32,7 @@ export class FilterEmployeesComponent implements OnInit {
   }
 
   initializeForm() {
+    this.formError.genericError = null;
     this.filterEmployeesForm = this.fb.group({
       staffName: [this.currentFilter.staffName, [CustomValidator.MinLength(3), CustomValidator.MaxLength(256)]],
       position: [this.currentFilter.position, [CustomValidator.MinLength(3), CustomValidator.MaxLength(256)]],
@@ -54,6 +55,9 @@ export class FilterEmployeesComponent implements OnInit {
   }
 
   updateFilter() {
+
+    if (this.filterEmployeesForm.invalid) { this.formError.validateAllFields(this.filterEmployeesForm); return; }
+
     this.updatedFilter.emit(this.filterEmployeesForm.value);
     this.activeModal.close();
   }

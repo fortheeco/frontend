@@ -3,8 +3,7 @@ import { ICountry, IState } from './app-country';
 import * as moment from 'moment';
 
 
-export class EntityAddress extends IAppAddress
-{
+export class EntityAddress extends IAppAddress {
     isFree: boolean;
     isLocal: boolean;
     nextChange: moment.Moment;

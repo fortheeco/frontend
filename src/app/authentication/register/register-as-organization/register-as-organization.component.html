@@ -67,7 +67,7 @@
                               <i *ngIf="!showPassword" (click)="showPassword = true" class="pointer fa fa-eye" ></i>
                               <i *ngIf="showPassword" (click)="showPassword = false" class="pointer fa fa-eye-slash" ></i>
                           </span>
-                            <input class="form-control border-input"  type="password" placeholder="Password"  formControlName="password">
+                            <input class="form-control border-input"  [type]="showPassword ? 'text' : 'password'" placeholder="Password"  formControlName="password">
                         </div>
                         <app-validator-error-message  [form]="registerOrganizationForm" [field]="'password'"  ></app-validator-error-message> 
 

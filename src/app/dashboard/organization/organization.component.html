@@ -46,7 +46,7 @@
     <app-user-contact [userId]="organizationId" *ngIf="viewSection === 'contact'" ></app-user-contact>
     <app-organization-services [organization]="profile" *ngIf="viewSection === 'services'" ></app-organization-services>
     <app-organization-employees-skills [organization]="profile" *ngIf="viewSection === 'employeeAndSkills'" ></app-organization-employees-skills>
-    <app-organization-branches *ngIf="viewSection === 'branches'" ></app-organization-branches>
+    <app-organization-branches [organizationId]="organizationId" *ngIf="viewSection === 'branches'" ></app-organization-branches>
     <app-organization-community *ngIf="viewSection === 'community'" ></app-organization-community>
   </div>
 

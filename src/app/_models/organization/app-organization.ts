@@ -12,6 +12,7 @@ export class AppOrganization {
     media: IProfileMedia;
     numberOfEmployees: number;
     rating: number;
+    branchStatus: string;
 
     constructor(data: Partial<AppOrganization>) {
         Object.assign(this, data);

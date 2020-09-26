@@ -4,7 +4,7 @@ import { EditOrganizationAboutComponent } from 'src/app/shared/modals/organizati
 import { AppOrganization } from 'src/app/_models/organization/app-organization';
 import { Subscription } from 'rxjs';
 import { AppOrganizationetails } from 'src/app/_models/organization/app-organization-detail';
-import { ApplicationConstant } from 'src/app/_models/app-constant';
+import { CustomApplicationConstant } from 'src/app/_models/app-constant';
 import { User } from 'src/app/_models';
 import { UserService } from 'src/app/_services';
 
@@ -19,7 +19,7 @@ export class OrganizationAboutOverviewComponent implements OnInit, OnDestroy {
 
   subscriptions: Subscription[] = [];
 
-  organizationTye = ApplicationConstant.organizationType;
+  organizationTye = CustomApplicationConstant.organizationType;
 
   currentUser: User = {} as User;
 

@@ -16,6 +16,17 @@
       <div>
         <span class="color-darkgreen h4">{{ profile?.detail?.name  }}</span>
         <span *ngIf="profile?.localAddress"  class="color-darkgreen intro-title h6 d-block"> 
+
+          <strong *ngIf="profile?.branchStatus === 'Independent'" >HeadQuarters: </strong>
+          <strong *ngIf="profile?.branchStatus !== 'Independent'"  >Branch 
+
+            <span>
+              <i *ngIf="profile?.branchStatus === 'RequestSent'" class="fa fa-clock text-dark" ></i>
+              <i *ngIf="profile?.branchStatus === 'Accepted'"class="fa fa-check-circle text-success" ></i>
+              <i *ngIf="profile?.branchStatus === 'Rejected'" class="fa fa-times-circle text-danger" ></i>
+            </span>:
+          </strong> 
+
           {{ profile?.localAddress.displayAddress() }}
           <i *ngIf="profile?.localAddress?.verifiedInLocation" class="fas fa-check-circle text-success"></i> 
           <i *ngIf="!profile?.localAddress?.verifiedInLocation" class="fas fa-times-circle text-danger"></i> 

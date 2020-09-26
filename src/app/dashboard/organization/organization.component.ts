@@ -101,7 +101,7 @@ export class OrganizationComponent implements OnInit {
         // this.isLoading = false;
         const d = response.json();
         this.problems = d.problems;
-        console.log(this.problems);
+        // console.log(this.problems);
     },
       error => {
         // this.isLoading = false;
