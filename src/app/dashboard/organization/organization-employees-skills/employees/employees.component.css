@@ -1,0 +1,8 @@
+.custom-rounded {
+    border-radius: 10px;
+}
+
+.edit-button {
+    position: absolute;
+    right: 0px;
+}

@@ -6,9 +6,11 @@ import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { UserContactAddressesComponent } from './components/user/user-contact/user-contact-addresses/user-contact-addresses.component';
+// tslint:disable-next-line: max-line-length
 import { UserContactCommunicateComponent } from './components/user/user-contact/user-contact-communicate/user-contact-communicate.component';
 import { UserContactComponent } from './components/user/user-contact/user-contact.component';
 import { ValidatorErrorMessageComponent } from './custom-validators/validator-error-message/validator-error-message.component';
+import { SearchOrganizationAutocompleteComponent } from './modals/organization/search-organization-autocomplete/search-organization-autocomplete.component';
 
 @NgModule({
   declarations:[
@@ -16,6 +18,7 @@ import { ValidatorErrorMessageComponent } from './custom-validators/validator-er
     UserContactAddressesComponent,
     UserContactComponent,
     ValidatorErrorMessageComponent,
+    SearchOrganizationAutocompleteComponent,
   ],
   imports: [
     CommonModule,
@@ -42,7 +45,8 @@ import { ValidatorErrorMessageComponent } from './custom-validators/validator-er
     UserContactCommunicateComponent,
     UserContactAddressesComponent,
     UserContactComponent,
-    ValidatorErrorMessageComponent
+    ValidatorErrorMessageComponent,
+    SearchOrganizationAutocompleteComponent,
   ]
 })
 export class SharedModule { }

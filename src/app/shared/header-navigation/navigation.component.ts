@@ -32,7 +32,7 @@ export class NavigationComponent implements AfterViewInit {
 
     let u = this.authenticationService.currentUserValue;
     this.profile = u.user;
-    console.log(this.profile);
+    // console.log(this.profile);
   }
 
 

@@ -40,6 +40,9 @@ import { OrganizationServicesComponent } from './organization/organization-servi
 import { OrganizationEmployeesSkillsComponent } from './organization/organization-employees-skills/organization-employees-skills.component';
 import { OrganizationBranchesComponent } from './organization/organization-branches/organization-branches.component';
 import { OrganizationCommunityComponent } from './organization/organization-community/organization-community.component';
+import { EmployeesComponent } from './organization/organization-employees-skills/employees/employees.component';
+import { SkillsComponent } from './organization/organization-employees-skills/skills/skills.component';
+import { OrganizationBranchComponent } from './organization/organization-branches/organization-branch/organization-branch.component';
 
 @NgModule({
   imports: [
@@ -79,6 +82,9 @@ import { OrganizationCommunityComponent } from './organization/organization-comm
     OrganizationEmployeesSkillsComponent,
     OrganizationBranchesComponent,
     OrganizationCommunityComponent,
+    EmployeesComponent,
+    SkillsComponent,
+    OrganizationBranchComponent,
    ],
     entryComponents: [
     ]

@@ -3,11 +3,14 @@ import { OrganizationService } from 'src/app/_services/organization/organization
 import { Subscription } from 'rxjs';
 import { AppOrganization } from 'src/app/_models/organization/app-organization';
 import { finalize } from 'rxjs/operators';
-import { AppOrganizationSkills, AppOrganizationEmployees, AppEmploymentStatus } from 'src/app/_models/organization/app-organization-employee-skills';
+import { AppOrganizationSkills, AppOrganizationEmployee, AppEmploymentStatus } from 'src/app/_models/organization/app-organization-employee-skills';
 import { EmployeeSkillsRequestPagination, EmployeeSkillsResponsePagination, OrganizationEmpployeesSKillsFunctions } from './organization-employees-skills-functions';
 import { UtilityProvider } from 'src/app/_providers/utility';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { FilterEmployeesComponent } from 'src/app/shared/modals/organization/filter-employees/filter-employees.component';
+import { User } from 'src/app/_models';
+import { AppIndividualSkill } from 'src/app/_models/individual/individual-skill';
+import { ShowSomeSkillsComponent } from 'src/app/shared/modals/user/show-some-skills/show-some-skills.component';
 
 @Component({
   selector: 'app-organization-employees-skills',
@@ -28,7 +31,9 @@ export class OrganizationEmployeesSkillsComponent implements OnInit, OnDestroy {
 
   response: EmployeeSkillsResponsePagination = {} as EmployeeSkillsResponsePagination;
 
-  employees: AppOrganizationEmployees[] = [];
+  employees: AppOrganizationEmployee[] = [];
+
+  currentUser: User = {} as User;
 
   constructor(
     private organizationService: OrganizationService,
@@ -37,6 +42,7 @@ export class OrganizationEmployeesSkillsComponent implements OnInit, OnDestroy {
     ) { }
 
   ngOnInit() {
+    this.setCurrentUser();
     this.initializeRequest();
     this.getSkills();
     this.getEmployees();
@@ -47,7 +53,7 @@ export class OrganizationEmployeesSkillsComponent implements OnInit, OnDestroy {
     const sub = this.organizationService.getOrganizationSkillsInfo({ organizationId: this.organization.id })
       .pipe(finalize(() => this.loading = false))
       .subscribe(x => {
-        // console.log(x.json());
+        console.log(x.json());
         this.organizationSkills = x.json();
       });
 
@@ -60,9 +66,10 @@ export class OrganizationEmployeesSkillsComponent implements OnInit, OnDestroy {
       .pipe(finalize(() => this.loading = false))
       .subscribe(x => {
         this.response = x.json();
-        this.employees = this.employees.concat(this.response.entities.map(e => new AppOrganizationEmployees(e)));
-        console.log(this.employees);
-      });
+        this.employees = this.employees.concat(this.response.entities.map(e => new AppOrganizationEmployee(e)));
+      },
+        error => console.log(error.json())
+      );
 
     this.subscriptions.push(sub);
   }
@@ -88,7 +95,6 @@ export class OrganizationEmployeesSkillsComponent implements OnInit, OnDestroy {
       this.request.filter = x;
       this.request.pageNumber = 1;
       this.employees = [];
-      console.log(this.request);
       this.getEmployees();
     });
 
@@ -108,6 +114,39 @@ export class OrganizationEmployeesSkillsComponent implements OnInit, OnDestroy {
   loadMoreEntities() {
     this.request.pageNumber = this.request.pageNumber + 1;
     this.getEmployees();
+  }
+
+  setCurrentUser() {
+    const sub = this.organizationService.currentUser.subscribe(x => {
+      this.currentUser = new User(x);
+    });
+  }
+
+  toggleAllowIndividualToSendRequest() {
+    this.loading = true;
+    const sub = this.organizationService.toggleAcceptIndividualRequest()
+        .pipe(finalize(() => this.loading = false))
+        .subscribe((x) => {
+          this.response.allowRequest = x.json().accepting;
+          if (this.response.allowRequest) {
+            this.utility.showToast('success', 'Individual can now request to join organization');
+          } else {
+            this.utility.showToast('warning', 'Individual\'s request to join has been disabled');
+          }
+        },
+          error => this.utility.showToast('danger', 'Failed to make changes at the moment')
+        );
+  }
+
+  refreshEmployees() {
+    this.employees = [];
+    this.getEmployees();
+  }
+
+  showSkills(name: string, skills: AppIndividualSkill[]) {
+    const modalRef = this.modalService.open(ShowSomeSkillsComponent);
+    modalRef.componentInstance.userName = name;
+    modalRef.componentInstance.skills = skills;
   }
 
   ngOnDestroy() {

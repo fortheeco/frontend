@@ -4,10 +4,10 @@ import { EntityAddress } from '../address/entity-address';
 
 export interface AppOrganizationSkills {
     totalSkills: number;
-    topTenSKills: AppIndividualSkill[];
+    topTenSkills: AppIndividualSkill[];
 }
 
-export class AppOrganizationEmployees {
+export class AppOrganizationEmployee {
     individualId: string;
     professionId: string;
     entityType: string;
@@ -21,7 +21,7 @@ export class AppOrganizationEmployees {
     dateLeft: Date;
     localAddress: EntityAddress;
 
-    constructor(data: Partial<AppOrganizationEmployees>) {
+    constructor(data: Partial<AppOrganizationEmployee>) {
         Object.assign(this, data);
         this.localAddress = new EntityAddress(this.localAddress);
     }
@@ -30,5 +30,6 @@ export class AppOrganizationEmployees {
 export enum AppEmploymentStatus {
     accepted = 'Accepted',
     left = 'Left',
-    requestSentPendingReply = 'Request Sent and Pending Reply From Organization'
+    requestSentPendingReply = 'Request Sent and Pending Reply From Organization',
+    rejected = 'Rejected'
 }

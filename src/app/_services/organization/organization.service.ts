@@ -151,4 +151,151 @@ export class OrganizationService {
       return this.httpc.post(url, data, {headers: this.headers});
   }
 
+      /**
+   * @description Toggle accepting or rejecting individual request to join organization
+   * @return Response
+   */
+  toggleAcceptIndividualRequest(): Observable<any> {
+    const id = this.currentUserValue.user.id;
+      const userToken: string = 'Bearer ' + this.currentUserValue.token;
+    const url = `${this.BASE_URL}api/organization/toggle-accept-individual`;
+
+      this.headers = new Headers({'Content-Type': 'application/json'});
+      this.headers.append('Authorization', userToken);
+      return this.httpc.get(url, {headers: this.headers});
+  }
+
+  /**
+   * @description As the name implies either accepts or reject employee wanting to join an organization
+   * @return Response
+   */
+  acceptOrRejectEmployee(data: any): Observable<any> {
+    const id = this.currentUserValue.user.id;
+      const userToken: string = 'Bearer ' + this.currentUserValue.token;
+    const url = `${this.BASE_URL}api/organization/answer-individual`;
+
+      this.headers = new Headers({'Content-Type': 'application/json'});
+      this.headers.append('Authorization', userToken);
+      return this.httpc.patch(url, data, {headers: this.headers});
+  }
+
+  /**
+   * @description Organization terminate the profession of an individual
+   * @return Response
+   */
+  terminateProfession(data: any): Observable<any> {
+    const id = this.currentUserValue.user.id;
+      const userToken: string = 'Bearer ' + this.currentUserValue.token;
+    const url = `${this.BASE_URL}api/organization/terminate-profession`;
+
+      this.headers = new Headers({'Content-Type': 'application/json'});
+      this.headers.append('Authorization', userToken);
+      return this.httpc.patch(url, data, { headers: this.headers });
+  }
+
+  /**
+   * @description Toggle professions to either as main place of work or not
+   * @return Response
+   */
+  toggleProfessions(data: any): Observable<any> {
+    const id = this.currentUserValue.user.id;
+      const userToken: string = 'Bearer ' + this.currentUserValue.token;
+    const url = `${this.BASE_URL}api/organization/toggle-place-of-work`;
+
+      this.headers = new Headers({'Content-Type': 'application/json'});
+      this.headers.append('Authorization', userToken);
+      return this.httpc.patch(url, data, { headers: this.headers });
+  }
+
+    /**
+   * @description Get the list of branches from an organization
+   * @return Response
+   */
+  getBranches(data: any): Observable<any> {
+    const id = this.currentUserValue.user.id;
+      const userToken: string = 'Bearer ' + this.currentUserValue.token;
+    const url = `${this.BASE_URL}api/organization/branches`;
+
+      this.headers = new Headers({'Content-Type': 'application/json'});
+      this.headers.append('Authorization', userToken);
+      return this.httpc.post(url, data, { headers: this.headers });
+  }
+
+    /**
+   * @description Get the list of searched organization
+   * @return Response
+   */
+  searchOrganization(data: any): Observable<any> {
+
+    data = new URLSearchParams(data as {}).toString();
+
+    const id = this.currentUserValue.user.id;
+      const userToken: string = 'Bearer ' + this.currentUserValue.token;
+    const url = `${this.BASE_URL}api/organization/search?${data}`;
+
+      this.headers = new Headers({'Content-Type': 'application/json'});
+      this.headers.append('Authorization', userToken);
+      return this.httpc.get(url, { headers: this.headers });
+  }
+
+  /**
+   * @description request to join an organization
+   * @return Response
+   */
+  requestToJoin(data: any): Observable<any> {
+    const id = this.currentUserValue.user.id;
+      const userToken: string = 'Bearer ' + this.currentUserValue.token;
+    const url = `${this.BASE_URL}api/organization/request-branch`;
+
+      this.headers = new Headers({'Content-Type': 'application/json'});
+      this.headers.append('Authorization', userToken);
+      return this.httpc.patch(url, data, { headers: this.headers });
+  }
+
+  /**
+   * @description Remove organization service, I hope you know what you are doing
+   * @return Response
+   */
+  leaveOrganization(): Observable<any> {
+
+    const userToken: string = 'Bearer ' + this.currentUserValue.token;
+    const url = `${this.BASE_URL}api/organization/leave-headquarter`;
+
+    this.headers = new Headers({'Content-Type': 'application/json'});
+    this.headers.append('Authorization', userToken);
+
+    return this.httpc.delete(url, {headers: this.headers, body: {}});
+  }
+
+  /**
+   * @description Answer an organization's request
+   * @return Response
+   */
+  answerOrganization(data: any): Observable<any> {
+    const id = this.currentUserValue.user.id;
+      const userToken: string = 'Bearer ' + this.currentUserValue.token;
+    const url = `${this.BASE_URL}api/organization/answer-organization`;
+
+    console.log(data);
+
+      this.headers = new Headers({'Content-Type': 'application/json'});
+      this.headers.append('Authorization', userToken);
+      return this.httpc.patch(url, data, { headers: this.headers });
+  }
+
+  /**
+   * @description Remove organization service, I hope you know what you are doing
+   * @return Response
+   */
+  removeBranch(data: any): Observable<any> {
+
+    const userToken: string = 'Bearer ' + this.currentUserValue.token;
+    const url = `${this.BASE_URL}api/organization/remove-branch`;
+
+    this.headers = new Headers({'Content-Type': 'application/json'});
+    this.headers.append('Authorization', userToken);
+
+    return this.httpc.delete(url, {headers: this.headers, body: data});
+  }
+
 }

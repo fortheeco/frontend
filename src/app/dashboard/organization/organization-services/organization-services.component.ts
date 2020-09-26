@@ -52,6 +52,8 @@ export class OrganizationServicesComponent implements OnInit, OnDestroy {
     const sub = this.organizationService.currentUser.subscribe(x => {
       this.currentUser = new User(x);
     });
+
+    this.subscriptions.push(sub);
   }
 
   getOrganizationServices() {
