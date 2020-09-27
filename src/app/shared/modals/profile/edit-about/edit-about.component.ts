@@ -27,23 +27,13 @@ export class EditAboutComponent implements OnInit {
   submitted = false;
   error = '';
   processing = false;
-	// inputData = {
-	// 	name: "",
-	// 	fda: "",
-	// 	price: "",
-	// 	notes: "",
-	// 	unit: "",
-	// 	unit_amount: "",
-	// 	sku: "",
-	// 	tags: "",
-	// };
-
   // End the Closeable Alert
   // This is for the self closing alert
   private _message = new Subject<string>();
+  countries: any;
+  states: any;
 
   staticAlertClosed = false;
-  uploadSuccess = false;
   responseMessage: string;
   messageType:any;
   profile: any;
@@ -51,12 +41,11 @@ export class EditAboutComponent implements OnInit {
   errors: any;
   
   constructor(
-    private rest: RestService,
-    private papa: Papa,
     private sharedService: SharedServiceProvider, 
     private formBuilder: FormBuilder,
     private ngbDateParserFormatter: NgbDateParserFormatter,
     public modal: NgbActiveModal,
+    private rest: RestService,
     public activeModal: NgbActiveModal,
     private authenticationService: AuthenticationService
     ) 
@@ -97,8 +86,33 @@ export class EditAboutComponent implements OnInit {
 
         });
 
-    }
-  
+        this.getCountries();
+      }
+    
+      getCountries(){
+        // this.isLoading = true;
+        this.rest.getLocationsCountries().subscribe(response => {
+            // this.isLoading = false;
+            this.countries = response.json();
+            // console.log(response.json())
+        },
+          error => {  
+            // this.isLoading = false;
+          });
+      }
+    
+      getStates(id){
+        // this.isLoading = true;
+        this.rest.getStates(id).subscribe(response => {
+            // this.isLoading = false;
+            this.states = response.json();
+            // console.log(response.json())
+        },
+          error => {  
+            // this.isLoading = false;
+          });
+      }
+
     getUserProfile(){
       // this.isLoading = true;
       this.authenticationService.getIndividualData().subscribe(response => {

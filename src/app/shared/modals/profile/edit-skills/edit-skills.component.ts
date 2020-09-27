@@ -70,11 +70,6 @@ export class EditSkillsComponent implements OnInit {
     this.form.skillName = s;
     this.filteredSkills = undefined;
     // this.skill ='';
-
-    // let d= {
-    //   "name": s,
-    //   "level": 0
-    // }
     // this.form.suggestion.requiredSkills.push(d)
   }
   

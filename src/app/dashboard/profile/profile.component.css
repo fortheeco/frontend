@@ -85,3 +85,36 @@
 .user-stats  p{
     font-size: 0.7em;
 }
+
+
+.skill-card{
+    background-color: #EAFBEF;
+    height: 100px;
+    color: #33DB60;
+    border-radius: 5px;
+    padding: 15px;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.lbl-c1{
+    font-size: 0.8em;
+    font-weight: 800;
+    color: #a2a5a2;
+}
+
+.txt-c1{
+    /* font-size: 0.8em;
+    font-weight: 800; */
+    color: #517258;
+    text-transform: capitalize;
+}
+
+.edu-c{
+    border-bottom: #DBF9E3 solid 1px;
+    margin-bottom: 20px;
+}
+
+.edu-c-last{
+    border-bottom: #DBF9E3 solid 0px;
+}

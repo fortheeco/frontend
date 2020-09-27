@@ -64,3 +64,26 @@ legend{
 .form-control{
     color: #33DB60;
 }
+.legend-select{
+    border: none;
+    margin: -6px;
+}
+
+
+
+.work-card{
+    background-color: #EAFBEF;
+    height: 150px;
+    color: #33DB60;
+    border-radius: 5px;
+    padding: 15px;
+    font-weight: bold;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+
+.icon-red{
+    color: red;
+    cursor: pointer;
+}

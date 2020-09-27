@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpEvent, HttpErrorResponse, HttpEventType } from  '@angular/common/http';
+import { HttpClient, HttpEvent, HttpErrorResponse, HttpEventType, HttpHeaders, HttpRequest } from  '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import {Headers, Http} from "@angular/http";
@@ -193,6 +193,82 @@ export class AuthenticationService {
 		let id = this.currentUserValue.user.id;
 	    const userToken: string = 'Bearer ' + this.currentUserValue.token;
 		const url = `${this.BASE_URL}api/User/more-address`;
+
+	    this.headers = new Headers({'Content-Type': 'application/json'});
+	    this.headers.append('Authorization', userToken);
+        return this.httpc.post(url, data ,{headers: this.headers});
+    }
+    
+
+
+	getUserEducation(data): Observable<any> {
+		// console.log(this.currentUserValue)
+		let id = this.currentUserValue.user.id;
+	    const userToken: string = 'Bearer ' + this.currentUserValue.token;
+        const url = `${this.BASE_URL}api/Education/education?IndividualId=${data.userId}&pageNumber=${data.pageNumber}&pageSize=${data.pageSize}`;
+
+	    this.headers = new Headers({'Content-Type': 'application/json'});
+	    this.headers.append('Authorization', userToken);
+	    return this.httpc.get(url,{headers: this.headers});
+    }
+
+	getWorkExperience(data): Observable<any> {
+		// console.log(this.currentUserValue)
+		let id = this.currentUserValue.user.id;
+	    const userToken: string = 'Bearer ' + this.currentUserValue.token;
+        const url = `${this.BASE_URL}api/Individual/professions?IndividualId=${data.userId}&pageNumber=${data.pageNumber}&pageSize=${data.pageSize}`;
+
+	    this.headers = new Headers({'Content-Type': 'application/json'});
+	    this.headers.append('Authorization', userToken);
+	    return this.httpc.get(url,{headers: this.headers});
+    }
+
+    deleteWorkExperience(id): Observable<any> {
+        let data = {professionId:id}
+        const userToken: string = 'Bearer ' + this.currentUserValue.token;
+          const url = `${this.BASE_URL}api/Individual/profession
+          `;
+    
+        let httpOptions = {
+            headers: new HttpHeaders({ 'Content-Type': 'application/json' }), body: data
+        };
+        
+        this.headers = new Headers({'Content-Type': 'application/json'});
+        httpOptions.headers.append('Authorization', userToken);
+        
+        // return this.httpc.delete(url, data ,{headers: this.headers});
+    
+        let req = new HttpRequest('DELETE', url);
+          let newReq = req.clone({body: data});
+         return this.http.request(newReq);
+    }
+  
+    deleteEducation(id): Observable<any> {
+        let data = {educationId:id}
+        const userToken: string = 'Bearer ' + this.currentUserValue.token;
+          const url = `${this.BASE_URL}api/Education/education
+          `;
+    
+        let httpOptions = {
+            headers: new HttpHeaders({ 'Content-Type': 'application/json' }), body: data
+        };
+        
+        this.headers = new Headers({'Content-Type': 'application/json'});
+        httpOptions.headers.append('Authorization', userToken);
+        
+        // return this.httpc.delete(url, data ,{headers: this.headers});
+    
+        let req = new HttpRequest('DELETE', url);
+          let newReq = req.clone({body: data});
+         return this.http.request(newReq);
+    }
+      
+    
+
+	addWork(data): Observable<any> {
+		let id = this.currentUserValue.user.id;
+	    const userToken: string = 'Bearer ' + this.currentUserValue.token;
+		const url = `${this.BASE_URL}api/Education/education`;
 
 	    this.headers = new Headers({'Content-Type': 'application/json'});
 	    this.headers.append('Authorization', userToken);
