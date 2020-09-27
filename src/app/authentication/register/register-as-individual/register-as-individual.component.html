@@ -89,71 +89,98 @@
     <div class="row col-sm-12" style="margin-top: 20px">
         <ngb-alert *ngIf="responseMessage" [type]="messageType" (close)="responseMessage = null">{{ responseMessage }}</ngb-alert>   
     </div>
-      <div id="loginform" [ngClass]="{'d-none': recoverform}">
+
+      <div>
           <div class="row">
               <div class="col-12">
-                  <form [formGroup]="signupForm" class="form-horizontal m-t-20" id="signupform" (ngSubmit)="onSubmit()">
+
+                  <form [formGroup]="signupForm" class="form-horizontal m-t-20" id="signupform">
+                    
                     <div class="input-group mb-3">
+
+
                         <div class="col-6 ">
-                            <input formControlName="firstName" [(ngModel)]="registerCredentials.firstName" class="form-control border-input" [ngClass]="{ 'is-invalid': submitted && f.firstName.errors }" type="text" required=" " placeholder="first name">
+                            <input formControlName="firstName" class="form-control border-input" type="text" placeholder="first name">
+                            <app-validator-error-message  [form]="signupForm" [field]="'firstName'"  ></app-validator-error-message>
                         </div>
+
+
                         <div class="col-6 ">
-                            <input formControlName="lastName" [(ngModel)]="registerCredentials.lastName" class="form-control border-input" [ngClass]="{ 'is-invalid': submitted && f.lastName.errors }" type="text" required=" " placeholder="last name">
+                            <input formControlName="lastName" class="form-control border-input" type="text" placeholder="last name">
+                            <app-validator-error-message  [form]="signupForm" [field]="'lastName'"  ></app-validator-error-message>
                         </div> 
-                        <div *ngIf="submitted && f.lastName.errors" class="invalid-feedback">
-                            <div *ngIf="f.lastName.errors.required">first name is required</div>
-                        </div>
+                        
+
                     </div>
                     
                     <div class="input-group mb-3">
                       <div class="input-group">
+
                         <div class="col-12 ">
-                          <input type="text" name="emailAddress" [(ngModel)]="registerCredentials.emailAddress" formControlName="emailAddress" autocomplete="off" class="form-control border-input" [ngClass]="{ 'is-invalid': submitted && f.emailAddress.errors }" placeholder="Enter Email" aria-label="Email" aria-describedby="basic-addon1">
-                          <div *ngIf="submitted && f.emailAddress.errors" class="invalid-feedback">
-                              <div *ngIf="f.emailAddress.errors.required">Email is required</div>
-                          </div>
+
+                          <input type="text" formControlName="emailAddress" autocomplete="off" class="form-control border-input" placeholder="Enter Email">
+                          <app-validator-error-message  [form]="signupForm" [field]="'emailAddress'"  ></app-validator-error-message>
+
                         </div>
+
                       </div>
                     </div>
+
+
                     <div class="input-group mb-3">
+
                       <div class="input-group">
+
                             <div class="col-12 ">
-                              <input class="form-control border-input" autocomplete="off" (click)="d3.toggle()" formControlName="dateOfBirth" placeholder="yyyy-mm-dd" name="dp2" [(ngModel)]="registerCredentials.dateOfBirth"
-                                  ngbDatepicker #d3="ngbDatepicker">
+                              <input class="form-control border-input" autocomplete="off" (click)="d3.toggle()" 
+                              [maxDate]="{year: newDate.getFullYear() - 10, month: 1, day: 31}" [minDate]="{year: newDate.getFullYear()-100, month: 1, day: 31}"
+                                formControlName="dateOfBirth" placeholder="yyyy-mm-dd" ngbDatepicker #d3="ngbDatepicker">
+
+                                <app-validator-error-message  [form]="signupForm" [field]="'dateOfBirth'"  ></app-validator-error-message>
+
                             </div>
+
                           </div>
                       </div>
+
+
                       <div class="input-group mb-3">
                           <div class="col-12 ">
-                              <input formControlName="password" [(ngModel)]="registerCredentials.password" class="form-control border-input" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" type="password" required=" " placeholder="password">
+                              <span class="show-password">
+                                  <i *ngIf="!showPassword" (click)="showPassword = true" class="pointer fa fa-eye" ></i>
+                                  <i *ngIf="showPassword" (click)="showPassword = false" class="pointer fa fa-eye-slash" ></i>
+                              </span>
+                              <input formControlName="password" class="form-control border-input" [type]="showPassword ? 'text' : 'password'" placeholder="password">
+                              <app-validator-error-message  [form]="signupForm" [field]="'password'"  ></app-validator-error-message>
                           </div>
-                          <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
-                              <div *ngIf="f.password.errors.required">password is required</div>
-                          </div>
+                          
                       </div>
+
+
                       <div class="input-group mb-3">
                           <div class="col-12 ">
-                              <input formControlName="password2" [(ngModel)]="registerCredentials.password2" class="form-control border-input" [ngClass]="{ 'is-invalid': submitted && f.password2.errors }" type="password" required=" " placeholder="confirm password">
+                              <input formControlName="confirmPassword" class="form-control border-input" type="password" required=" " placeholder="confirm password">
+                              <app-validator-error-message  [form]="signupForm" [field]="'confirmPassword'"  ></app-validator-error-message>
+
                           </div>
-                          <div *ngIf="submitted && f.password2.errors" class="invalid-feedback">
-                              <div *ngIf="f.password2.errors.required">Password confirmation is required</div>
-                          </div>
-                          <div class="col-12 " *ngIf="registerCredentials.password && registerCredentials.password2 && registerCredentials.password2 !== registerCredentials.password" class="invalid-feedback">
-                              <div>Second password does not match first password</div>
-                          </div>
+                          
                       </div>
+
+
                       <div class="form-group">
                           <div class="col-xs-12 p-b-20">
                               <a class="grey-link"  routerLink="/authentication/login">
                                 Would you rather <span class="green-text">Sign in</span>
                               </a>
-                              <button type="button" [disabled]="signupForm.invalid ||loading" (click)="onSubmit()" class="btn btn-dark btn-curved float-right">
+                              <button type="button" [disabled]="loading" (click)="onSubmit()" class="btn btn-dark btn-curved float-right">
                                   <img *ngIf="loading" class="pl-2" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
                                   Sign Up 
                               </button>
                           </div>
-                          <div *ngIf="error" class="alert alert-danger">{{error}}</div>
+                          <!-- <div *ngIf="error" class="alert alert-danger">{{error}}</div> -->
                       </div>
+
+
                   </form>
 
                   <div (click)="registerAsOrganizationAction()" class="text-center pointer green-text">

@@ -1,4 +1,4 @@
-<div class="modal-header">
+<!-- <div class="modal-header">
   <h4 class="modal-title">Edit Organization</h4>
   <button type="button" class="close" aria-label="Close" (click)="activeModal.close()">
     <span aria-hidden="true">&times;</span>
@@ -11,9 +11,6 @@
 
 
             <div class="card-body">
-                <!-- <div class="row col-sm-12" style="margin-top: 20px">
-                    <ngb-alert *ngIf="responseMessage" [type]="messageType" (close)="responseMessage = null">{{ responseMessage }}</ngb-alert>   
-                </div> -->
             <div class="col-sm-12">                  
 
                     
@@ -74,15 +71,6 @@
                         </fieldset>
                       </div>
 
-                        <!-- <div class="row form-group">
-                            <div class="col-xs-12 p-b-20 ">
-                                <button type="button" (click)="onSubmit()" class="btn btn-rex rex-dark">
-                                    <img *ngIf="loading" class="pl-2" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
-                                    Create Job
-                                    <i class="fas fa-arrow-right"></i>
-                                </button>
-                            </div>
-                        </div> -->
                   </form>
               </div>
             </div>
@@ -92,6 +80,146 @@
   </div>
 </div>
 
+<div class="modal-footer">
+  <button type="button" class="btn btn-rounded btn-2" (click)="activeModal.close()" >Cancel</button>
+  <button type="button" [disabled]="loading" (click)="updateOrganization()" class="btn btn-rounded btn-1">Save
+    <img *ngIf="loading" class="pl-2" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+  </button>
+</div> -->
+
+<div class="modal-header">
+  <h4 class="modal-title" id="modal-basic-title">Edit About Organization</h4>
+  <button type="button" class="close" aria-label="Close" (click)="activeModal.close()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+
+<div class="modal-body">  
+  <div class="row">
+    <div class="col-sm-12">
+        <div class="card">
+            <div class="card-body">   
+
+                <!-- <div class="row col-sm-12" style="margin-top: 20px">
+                    <ngb-alert *ngIf="responseMessage" [type]="messageType" (close)="responseMessage = null">{{ responseMessage }}</ngb-alert>   
+                </div> -->
+
+                <div class="col-sm-12">                                      
+                    <form [formGroup]="editOrganizationDetailsForm" class="form-horizontal m-t-25">
+                      
+                      <div class="form-group row ">
+
+                          <div class="col-lg-3">
+                            <div class="col-12 ">
+                              <p class="modal-lbl">About Organization</p>
+                            </div>
+                          </div>
+
+                          <div class="col-lg-9">
+                            <div class="col-12 ">
+                                <fieldset [ngClass]="{ 'border-danger': formError.isInvalid(editOrganizationDetailsForm, 'about') }" class="border p-2">
+                                    
+                                    <legend  class="w-auto"> <span class="d-none d-lg-block" >About Organization</span> </legend>                                
+                                    
+                                    <textarea formControlName="about" cols="6" rows="3" class="form-control fieldset-input" placeholder="Brief overview about the organization"></textarea>
+                                                                      
+                                  </fieldset>
+
+                                  <app-validator-error-message [form]="editOrganizationDetailsForm" [field]="'about'" ></app-validator-error-message>   
+
+                              </div>
+                          </div>
+
+                      </div>
+
+                      <div class="form-group row ">
+
+                        <div class="col-lg-3">
+                          <div class="col-12 ">
+                            <p class="modal-lbl">Website</p>
+                          </div>
+                        </div>
+
+                        <div class="col-lg-9">
+                          <div class="col-12 ">
+                              <fieldset [ngClass]="{ 'border-danger': formError.isInvalid(editOrganizationDetailsForm, 'website') }" class="border p-2">
+                                  
+                                  <legend  class="w-auto"> <span class="d-none d-lg-block" >Website</span> </legend>                                
+                                  
+                                  <input formControlName="website" rows="6" class="form-control form-control-md fieldset-input" placeholder="http://www.example.com">
+                                                                  
+                                </fieldset>
+
+                                <app-validator-error-message [form]="editOrganizationDetailsForm" [field]="'website'" ></app-validator-error-message>   
+
+                            </div>
+                        </div>
+                        
+                      </div>
+
+                      <div class="form-group row ">
+
+                        <div class="col-lg-3">
+                          <div class="col-12 ">
+                            <p class="modal-lbl">Type of Organization</p>
+                          </div>
+                        </div>
+
+                        <div class="col-lg-9">
+                          <div class="col-12 ">
+                              <fieldset [ngClass]="{ 'border-danger': formError.isInvalid(editOrganizationDetailsForm, 'organizationType') }" class="border p-2">
+                                  
+                                  <legend  class="w-auto"> <span class="d-none d-lg-block" >Type of Organization</span> </legend>                                
+                                  
+                                  <select class="form-control border-success form-control-md fieldset-input" formControlName="organizationType" >
+                                    <option *ngFor="let type of organizationTypes" [value]="type.key" >{{type.value}}</option>
+                                  </select>
+                                
+                                </fieldset>
+
+                                <app-validator-error-message [form]="editOrganizationDetailsForm" [field]="'organizationType'" ></app-validator-error-message>   
+
+                            </div>
+                        </div>
+                        
+                      </div>
+
+                      <div class="form-group row ">
+
+                        <div class="col-lg-3">
+                          <div class="col-12 ">
+                            <p class="modal-lbl">Industry</p>
+                          </div>
+                        </div>
+
+                        <div class="col-lg-9">
+                          <div class="col-12 ">
+                              <fieldset  [ngClass]="{ 'border-danger': formError.isInvalid(editOrganizationDetailsForm, 'industry') }" class="border p-2">
+                                  
+                                  <legend  class="w-auto"> <span class="d-none d-lg-block" >Industry</span> </legend>                                
+                                  
+                                  <select class="form-control border-success form-control-md fieldset-input" formControlName="industry" >
+                                    <option *ngFor="let industry of industries" [value]="industry" >{{industry}}</option>
+                                  </select>
+                                              
+                                </fieldset>
+
+                                <app-validator-error-message [form]="editOrganizationDetailsForm" [field]="'industry'" ></app-validator-error-message>   
+
+                            </div>
+                        </div>
+                        
+                      </div>
+
+                    </form>
+              </div>
+
+
+            </div>
+        </div>
+    </div>
+  </div>
+</div>
 <div class="modal-footer">
   <button type="button" class="btn btn-rounded btn-2" (click)="activeModal.close()" >Cancel</button>
   <button type="button" [disabled]="loading" (click)="updateOrganization()" class="btn btn-rounded btn-1">Save

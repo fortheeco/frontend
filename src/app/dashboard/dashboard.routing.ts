@@ -101,7 +101,7 @@ export const DashboardRoutes: Routes = [
         }
       },
       {
-        path: 'organization',
+        path: 'organization/:organizationId',
         component: OrganizationComponent,
         data: {
           title: 'Organization',

@@ -13,7 +13,6 @@ export class OrganizationAboutComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    console.log(this.organization);
   }
 
 }

@@ -3,7 +3,11 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Subject, Subscription } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthenticationService } from 'src/app/_services';
-import { debounceTime, first } from 'rxjs/operators';
+import { debounceTime, first, finalize } from 'rxjs/operators';
+import { RegisterAsIndividual } from './register-as-individual';
+import { UtilityProvider } from 'src/app/_providers/utility';
+import { FormErrorService } from 'src/app/_services/form-error/form-error.service';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-register-as-individual',
@@ -11,20 +15,11 @@ import { debounceTime, first } from 'rxjs/operators';
   styleUrls: ['./register-as-individual.component.css']
 })
   export class RegisterAsIndividualComponent implements OnInit, OnDestroy {
+
     signupForm: FormGroup;
     loading = false;
-    submitted = false;
-    returnUrl: string;
-    error = '';
-    recoverform = false;
-    registerCredentials = {
-      firstName: '',
-      lastName: '',
-      emailAddress: '',
-      password: '',
-      password2: '',
-      dateOfBirth: '',
-    };
+
+    showPassword = false;
 
     // close all subscriptions
     subscriptions: Subscription[] = [];
@@ -32,90 +27,53 @@ import { debounceTime, first } from 'rxjs/operators';
     // Register as organization
     @Output() registerAsOrganization = new EventEmitter<any>();
 
-  // End the Closeable Alert
-  // This is for the self closing alert
-  private _message = new Subject<string>();
+    // For manipulating the date field
+    newDate = new Date();
 
-  staticAlertClosed = false;
-  uploadSuccess = false;
-  responseMessage: string;
-  messageType: any;
+    staticAlertClosed = false;
+    uploadSuccess = false;
+    responseMessage: string;
+    messageType: any;
 
-  constructor(
-        private formBuilder: FormBuilder,
-        private route: ActivatedRoute,
-        private router: Router,
-        private authenticationService: AuthenticationService
-  ) {
-    // set up Alert
-      setTimeout(() => (this.staticAlertClosed = true), 20000);
+    constructor(
+          private formBuilder: FormBuilder,
+          private route: ActivatedRoute,
+          private router: Router,
+          private authenticationService: AuthenticationService,
+          private utility: UtilityProvider,
+          private formError: FormErrorService
+    ) {
 
-      this._message.subscribe(message => (this.responseMessage = message));
-      this._message.pipe(debounceTime(5000)).subscribe(() => (this.responseMessage = null));
-  }
+    }
 
-  ngOnInit() {
-      this.signupForm = this.formBuilder.group({
-        firstName: ['', Validators.required],
-        lastName: ['', Validators.required],
-        emailAddress: ['', Validators.required],
-        dateOfBirth: ['', Validators.required],
-        password: ['', Validators.required],
-        password2: ['', Validators.required]
-      });
+    ngOnInit() {
+      this.initialeForm();
+    }
 
-      // get return url from route parameters or default to '/'
-      this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
-  }
-
-  validEmail() {
-    const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    return re.test(this.registerCredentials.emailAddress);
-  }
-
-    // convenience getter for easy access to form fields
-    get f() { return this.signupForm.controls; }
+    initialeForm() {
+      this.signupForm = RegisterAsIndividual.createForm(this.formBuilder);
+    }
 
     onSubmit() {
-        this.submitted = true;
-        // stop here if form is invalid
-        if (this.signupForm.invalid) {
-            return;
-        }
-        this.registerCredentials.dateOfBirth = this.format(this.registerCredentials.dateOfBirth);
 
-        console.log(this.registerCredentials);
+      if (this.signupForm.invalid) { this.formError.validateAllFields(this.signupForm); return null; }
 
-        this.loading = true;
-      const sub =  this.authenticationService.signup(this.registerCredentials)
-            .pipe(first())
-            .subscribe(
-                data => {
-                    this.registerCredentials = {
-                                                firstName: '',
-                                                lastName: '',
-                                                emailAddress: '',
-                                                password: '',
-                                                password2: '',
-                                                dateOfBirth: '',
-                                            };
-                    this.router.navigate(['/authentication/login']);
-                },
-                error => {
-                	console.log(error);
-                    // this.error = error;
-                     // send alert
-                  this.messageType = 'danger';
-                  this._message.next(`iii`);
-                  this.loading = false;
-                });
+      this.loading = true;
 
-        // track subscription to remove on destroy
-        this.subscriptions.push(sub);
-    }
-    // format date from bootstrap date plugin
-    format(str): string {
-      return `${str.year}-${str.month}-${str.day}`;
+      // quick fix to reformart the date entered
+      const data = this.signupForm.value;
+      data.dateOfBirth = moment(this.signupForm.get('dateOfBirth').value);
+
+      const sub = this.authenticationService.signup(data)
+        .pipe(finalize(() => this.loading = false))
+        .subscribe(x => {
+          this.utility.showToast('success', 'Account created. kindly check your email');
+          this.router.navigate(['/authentication/login']);
+        },
+          error => this.formError.setFormErrors(error.json(), this.signupForm)
+        );
+
+      this.subscriptions.push(sub);
     }
 
     registerAsOrganizationAction() {

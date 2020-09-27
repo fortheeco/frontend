@@ -1,3 +1,99 @@
-<p>
-  user-contact-addresses works!
-</p>
+<div class="card card-shadow">
+
+  <img *ngIf="deleting" class="pl-2 general-loading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+  
+  <div class="card-body">
+
+    <p *ngIf="currentUser?.user?.isOwner(userId) && isThereEmptyFreeAddresses()" (click)="openNewFreeAddressModal()" class="text-primary pointer" >You have free addresses avaliable</p>
+
+
+    <h5 class="card-title border-bottom">Addresses 
+      <i *ngIf="currentUser?.user?.isOwner(userId)" (click)="openNewAddressModal()" class="fa fa-plus-circle pointer custom-text-green" ></i>
+    </h5>
+
+    <div class="row">
+
+      <div class="col-sm-12" *ngFor="let address of addresses" style="position: relative;">
+
+        <div *ngIf="currentUser?.user?.isOwner(userId)" class="dropdown address-menu dropleft">
+          <span class="pointer" id="moreOprion" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fa fa-ellipsis-v"></i>
+          </span>
+          <div class="dropdown-menu" aria-labelledby="moreOprion">
+            <!-- <span class="dropdown-item" (click)="openEditUserAddress(address)" >Edit</span> -->
+            <span (click)="confirmRemoveContact(address)" class="dropdown-item text-danger pointer" >Delete</span>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-sm-4">
+            <p *ngIf="address?.isLocal" class="card-text"><b>Local Address</b></p>
+            <p *ngIf="!address?.isLocal" class="card-text"><b>Global Address</b></p>
+          </div>
+          <div class="col-sm-8">
+  
+            {{ address?.displayAddress() }}
+
+            <span class="d-block">
+              <span class="d-block">
+                <strong>Status: </strong> 
+                  <span *ngIf="!address?.verifiedInLocation" class="text-danger">Not verified <i class="ml-1 fas fa-times-circle text-danger"></i> </span>
+                  <span *ngIf="address?.verifiedInLocation" class="text-success">verified <i class="ml-1 fas fa-check-circle text-success"></i>  </span>
+              </span>
+            </span>
+
+            <span class="d-block">
+              <span class="d-block">
+                <strong>Duration: </strong> 
+
+                  <span *ngIf="address?.isFree" >Free</span>
+
+                  <span *ngIf="!address?.isFree" >
+
+                    <span *ngIf="address?.payments?.length === 0" class="text-danger">Expired</span>
+                    
+                    <span *ngIf="address?.payments?.length > 0" >
+  
+                    </span>
+                    
+                  </span>
+
+                  <!-- <span *ngIf="!address?.varifiedInLocation" class="text-danger">Not verified <i class="ml-1 fas fa-times-circle text-danger"></i> </span>
+                  <span *ngIf="address?.varifiedInLocation" class="text-success">verified <i class="ml-1 fas fa-check-circle text-success"></i>  </span> -->
+              </span>
+            </span>
+
+            <span *ngIf="currentUser?.user?.isOwner(userId)" class="d-block">
+              <span class="d-block">
+                <strong>Next Update: </strong> 
+
+                  <span *ngIf="address?.canUpdate()" ><button (click)="openEditUserAddress(address)" class="btn btn-sm custom-bg-green"> Update</button></span>
+                  
+                  <span *ngIf="!address?.canUpdate()" > 
+                    {{ address?.nextChange | date: 'medium' }}
+                  </span>
+
+                  <!-- <span *ngIf="!address?.varifiedInLocation" class="text-danger">Not verified <i class="ml-1 fas fa-times-circle text-danger"></i> </span>
+                  <span *ngIf="address?.varifiedInLocation" class="text-success">verified <i class="ml-1 fas fa-check-circle text-success"></i>  </span> -->
+              </span>
+            </span>
+  
+          </div>
+  
+          <div class="col-12">
+            <hr>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+    <div *ngIf="isThereMoreAddresses()">
+      <button [disabled]="loading"  (click)="getMoreAddresses()" class="btn custom-bg-green btn-block mt-3">view more 
+        <img *ngIf="loading" class="pl-2" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+      </button>
+    </div>
+
+  </div>
+</div>

@@ -1,0 +1,149 @@
+
+
+<div class="modal-header">
+  <h4 class="modal-title" id="modal-basic-title">Add new address</h4>
+  <button type="button" class="close" aria-label="Close" (click)="activeModal.close()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+
+<div class="modal-body">  
+  <div class="row">
+    <div class="col-sm-12">
+        <div class="card">
+            <div class="card-body">   
+
+              <div *ngIf="formError.genericError" class="alert alert-danger">
+                {{formError.genericError}}
+              </div>
+
+                <div class="col-sm-12">                                      
+                    <form [formGroup]="updatedUserAddressForm" class="form-horizontal m-t-25">
+                      
+                      <div class="form-group row ">
+
+                          <div class="col-lg-3">
+                            <div class="col-12">
+                              <p class="modal-lbl d-flex justify-content-start">Country
+                                <img *ngIf="loadingCountry"  height="17" width="17" class="pl-2" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+
+                              </p>
+                            </div>
+                          </div>
+
+                          <div class="col-lg-9">
+                            <div class="col-12 ">
+                                <fieldset [ngClass]="{ 'border-danger': formError.isInvalid(updatedUserAddressForm, 'countryId') }" class="border p-2">
+                                    
+                                    <legend  class="w-auto"> <span class="d-none d-lg-block" >Country</span> </legend>                                
+                                    
+
+                                    <select class="form-control legend-select" #country (change)="getState(country.value)" formControlName="countryId" >
+                                      <option>---</option>
+                                        <option *ngFor="let country of countries" [value]="country.id" >{{country.name}}</option>
+                                    </select> 
+
+                                  </fieldset>
+                                  <app-validator-error-message [form]="updatedUserAddressForm" [field]="'countryId'" ></app-validator-error-message>   
+                              </div>
+
+                          </div>
+
+                      </div>
+
+                      <div class="form-group row ">
+
+                        <div class="col-lg-3">
+                          <div class="col-12 ">
+                            <p class="modal-lbl d-flex justify-content-start">State
+                              <img *ngIf="loadingState" height="17" width="17" class="pl-2" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+
+                            </p>
+                          </div>
+                        </div>
+
+                        <div class="col-lg-9">
+                          <div class="col-12 ">
+                              <fieldset [ngClass]="{ 'border-danger': formError.isInvalid(updatedUserAddressForm, 'stateId') }" class="border p-2">
+                                  
+                                  <legend  class="w-auto"> <span class="d-none d-lg-block" >State</span> </legend>                                
+                                                               
+                                  <select class="form-control legend-select" formControlName="stateId">
+                                      <option>---</option>
+                                      <option *ngFor="let item of states" [value]="item.id" >{{item.name}}</option>
+                                  </select> 
+
+                                </fieldset>
+
+                                <app-validator-error-message [form]="updatedUserAddressForm" [field]="'stateId'" ></app-validator-error-message>   
+
+                            </div>
+                        </div>
+                        
+                      </div>
+
+                      <div class="form-group row ">
+
+                        <div class="col-lg-3">
+                          <div class="col-12 ">
+                            <p class="modal-lbl">Street</p>
+                          </div>
+                        </div>
+
+                        <div class="col-lg-9">
+                          <div class="col-12 ">
+                              <fieldset [ngClass]="{ 'border-danger': formError.isInvalid(updatedUserAddressForm, 'street') }" class="border p-2">
+                                  
+                                  <legend  class="w-auto"> <span class="d-none d-lg-block" >Street</span> </legend>                                
+                                  
+                                  <input maxlength="500" class="form-control form-control-md fieldset-input" type="text" formControlName="street" >
+
+                                </fieldset>
+
+                                <app-validator-error-message [form]="updatedUserAddressForm" [field]="'street'" ></app-validator-error-message>   
+
+                            </div>
+                        </div>
+                        
+                      </div>
+
+                      <div class="form-group row ">
+
+                        <div class="col-lg-3">
+                          <div class="col-12 ">
+                            <p class="modal-lbl">Post code</p>
+                          </div>
+                        </div>
+
+                        <div class="col-lg-9">
+                          <div class="col-12 ">
+                              <fieldset  [ngClass]="{ 'border-danger': formError.isInvalid(updatedUserAddressForm, 'postCode') }" class="border p-2">
+                                  
+                                  <legend  class="w-auto"> <span class="d-none d-lg-block" >Post Code</span> </legend>                                
+                                  
+                                  <input maxlength="500" class="form-control form-control-md fieldset-input" type="text" formControlName="postCode" >
+                                              
+                                </fieldset>
+
+                                <app-validator-error-message [form]="updatedUserAddressForm" [field]="'postCode'" ></app-validator-error-message>   
+
+                            </div>
+                        </div>
+                        
+                      </div>
+
+                    </form>
+              </div>
+
+
+            </div>
+        </div>
+    </div>
+  </div>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-rounded btn-2" (click)="activeModal.close()" >Cancel</button>
+  <button type="button" [disabled]="loading" (click)="updateUserAddress()"  class="btn btn-rounded btn-1">Update
+    <img *ngIf="loading" class="pl-2" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+  </button>
+</div>

@@ -1,0 +1,42 @@
+
+
+.custom-rounded {
+    border-radius: 10px;
+}
+
+legend{
+    font-size: 0.9em;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+legend:active{
+    background-color: red;
+}
+.fieldset-input{
+    border: none;
+    /* padding-top: 0px; */
+    /* padding-bottom: 5px; */
+    /* height: 25px; */
+}
+.fieldset-input2{
+    border: none;
+}
+
+.form-control{
+    color: #33DB60;
+}
+
+.clear-form-button {
+    position: absolute;
+    right: 5px;
+}
+
+.edit-button, .edit-button_2 {
+    position: absolute;
+    right: 0px;
+    top: 0px;
+}
+
+.edit-button_2 {
+    right: 10px;
+}

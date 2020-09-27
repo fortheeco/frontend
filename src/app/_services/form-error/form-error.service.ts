@@ -8,6 +8,8 @@ import { UtilityProvider } from 'src/app/_providers/utility';
 })
 export class FormErrorService {
 
+  public genericError;
+
   constructor(
     private utility: UtilityProvider
   ) { }
@@ -46,6 +48,9 @@ export class FormErrorService {
 
     console.log(error);
 
+    // Display and set single error if available
+    if (appError.error) { this.displayGenericError(appError.error); }
+
     // Check if there are actually errors
     if (!appError.errors || Object.entries(appError.errors).length === 0) { return; }
 
@@ -71,13 +76,22 @@ export class FormErrorService {
     });
 
     if (developerError.length > 0) {
-      this.utility.showToast('danger', developerError[0][0]);
+      this.displayGenericError(developerError[0][0]);
     }
 
     // Make a notification if in development stage
     // this.notifyDevelopersOnly(appError, developerError);
 
     return reactiveForm;
+  }
+
+  isInvalid(form: FormGroup, field: string) {
+    return form && form.get(field) && (form.get(field).touched && form.get(field).invalid);
+  }
+
+  private displayGenericError(errorMessage: string) {
+    this.genericError = errorMessage;
+    this.utility.showToast('danger', this.genericError);
   }
 
 

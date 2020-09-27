@@ -42,7 +42,7 @@
 
 
 .profile-info{
-    height: 300px;
+    height: 340px;
     position: relative;
 }
 .profile-bottom{
@@ -84,4 +84,10 @@
 
 .user-stats  p{
     font-size: 0.7em;
+}
+
+
+.follow-button {
+    position: absolute;
+    right: 0px;
 }

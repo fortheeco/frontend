@@ -4,9 +4,9 @@
 }
 .auth-wrapper{
     background-color: #F3FDF5;
-    padding: 20%;
+    /* padding: 20%;
     padding-top: 10%;
-    justify-content: flex-end;
+    justify-content: flex-end; */
     background-image:url("../../../assets/images/login_map_bg.png");
     background-size: cover;
 }
@@ -30,7 +30,7 @@ h4{
     line-height: 40pt;
     color: #33DB60;
     width: 200pt;
-    margin-top: 5%;
+    margin: auto;
 }
 
 .auth-wrapper .auth-box .logo {

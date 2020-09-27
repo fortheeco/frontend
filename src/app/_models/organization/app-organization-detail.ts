@@ -1,5 +1,5 @@
 import * as moment from 'moment';
-import { ApplicationConstant } from '../app-constant';
+import { CustomApplicationConstant } from '../app-constant';
 
 
 export class AppOrganizationetails {
@@ -22,7 +22,7 @@ export class AppOrganizationetails {
 
         if (!this.organizationType) { return null; }
 
-        const type =  ApplicationConstant.organizationType.find(x => x.key === this.organizationType);
+        const type =  CustomApplicationConstant.organizationType.find(x => x.key === this.organizationType);
         return type.value;
 
     }

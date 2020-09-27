@@ -1,0 +1,164 @@
+<div class="modal-header">
+  <h4 class="modal-title" id="modal-basic-title">Accept Employee into organization</h4>
+  <button type="button" class="close" aria-label="Close" (click)="activeModal.close()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+
+<div class="modal-body">  
+  <div class="row">
+    <div class="col-sm-12">
+        <div class="card">
+            <div class="card-body">   
+
+              <div *ngIf="formError.genericError" class="col-12 alert alert-danger" role="alert">
+                {{formError.genericError}}
+              </div>
+
+                <div class="col-sm-12">                                      
+                    <form [formGroup]="acceptEmployeeForm" class="form-horizontal m-t-25">
+
+                      <!-- Name of the employee -->
+                      <div class="form-group row ">
+
+                        <div class="col-lg-3">
+                          <div class="col-12 ">
+                            <p class="modal-lbl">Employee Name</p>
+                          </div>
+                        </div>
+
+                        <div class="col-lg-9">
+                          <div class="col-12 ">
+                              <fieldset [ngClass]="{ 'border-danger': formError.isInvalid(acceptEmployeeForm, 'fullName') }" class="border p-2">
+                                  
+                                  <legend  class="w-auto"> <span class="d-none d-lg-block" >Employee Name</span> </legend>                                
+                                  
+                                  <input formControlName="fullName" maxlength="256" class="form-control form-control-md fieldset-input" placeholder="Name of the Employee">
+                                                                  
+                                </fieldset>
+
+                                <app-validator-error-message [form]="acceptEmployeeForm" [field]="'fullName'" ></app-validator-error-message>   
+
+                            </div>
+                        </div>
+                        
+                      </div>
+
+                      <!-- Position of the employee -->
+                      <div class="form-group row ">
+
+                        <div class="col-lg-3">
+                          <div class="col-12 ">
+                            <p class="modal-lbl">Position</p>
+                          </div>
+                        </div>
+
+                        <div class="col-lg-9">
+                          <div class="col-12 ">
+                              <fieldset [ngClass]="{ 'border-danger': formError.isInvalid(acceptEmployeeForm, 'positionIfAccepted') }" class="border p-2">
+                                  
+                                  <legend  class="w-auto"> <span class="d-none d-lg-block" >Position</span> </legend>                                
+                                  
+                                  <input formControlName="positionIfAccepted" maxlength="256" class="form-control form-control-md fieldset-input" placeholder="Position">
+                                                                  
+                                </fieldset>
+
+                                <app-validator-error-message [form]="acceptEmployeeForm" [field]="'positionIfAccepted'" ></app-validator-error-message>   
+
+                            </div>
+                        </div>
+                        
+                      </div>
+
+                      <!-- Department of the employee -->
+                      <div class="form-group row ">
+
+                        <div class="col-lg-3">
+                          <div class="col-12 ">
+                            <p class="modal-lbl">Department</p>
+                          </div>
+                        </div>
+
+                        <div class="col-lg-9">
+                          <div class="col-12 ">
+                              <fieldset [ngClass]="{ 'border-danger': formError.isInvalid(acceptEmployeeForm, 'departmentIfAccepted') }" class="border p-2">
+                                  
+                                  <legend  class="w-auto"> <span class="d-none d-lg-block" >Department</span> </legend>                                
+                                  
+                                  <input formControlName="departmentIfAccepted" maxlength="256" class="form-control form-control-md fieldset-input" placeholder="Department in the orgaization">
+                                                                  
+                                </fieldset>
+
+                                <app-validator-error-message [form]="acceptEmployeeForm" [field]="'departmentIfAccepted'" ></app-validator-error-message>   
+
+                            </div>
+                        </div>
+                        
+                      </div>
+
+                      <!-- Date started by the employee -->
+                      <div class="form-group row ">
+
+                          <div class="col-lg-3">
+                            <div class="col-12 ">
+                              <p class="modal-lbl">Date Started</p>
+                            </div>
+                          </div>
+
+                          <div class="col-lg-9">
+                            <div class="col-12 ">
+                                <fieldset [ngClass]="{ 'border-danger': formError.isInvalid(acceptEmployeeForm, 'dateStared') }" class="border p-2">
+                                    
+                                    <legend  class="w-auto"> <span class="d-none d-lg-block" >Date Started</span> </legend>                                
+                                    
+                                    <input formControlName="dateStared" maxlength="256" class="form-control form-control-md fieldset-input" placeholder="Date employee started">
+                                                                    
+                                  </fieldset>
+
+                                  <app-validator-error-message [form]="acceptEmployeeForm" [field]="'dateStared'" ></app-validator-error-message>   
+
+                              </div>
+                          </div>
+                          
+                        </div>
+
+                      <!-- Date left by the employee -->
+                      <div class="form-group row ">
+
+                        <div class="col-lg-3">
+                          <div class="col-12 ">
+                            <p class="modal-lbl">Date Left</p>
+                          </div>
+                        </div>
+
+                        <div class="col-lg-9">
+                          <div class="col-12 ">
+                              <fieldset [ngClass]="{ 'border-danger': formError.isInvalid(acceptEmployeeForm, 'dateLeft') }" class="border p-2">
+                                  
+                                  <legend  class="w-auto"> <span class="d-none d-lg-block" >Date Left</span> </legend>                                
+                                  
+                                  <input formControlName="dateLeft" maxlength="256" class="form-control form-control-md fieldset-input" placeholder="Date employee Left">
+                                                                  
+                                </fieldset>
+
+                                <app-validator-error-message [form]="acceptEmployeeForm" [field]="'dateLeft'" ></app-validator-error-message>   
+
+                            </div>
+                        </div>
+                        
+                      </div>
+
+                    </form>
+              </div>
+
+
+            </div>
+        </div>
+    </div>
+  </div>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-rounded btn-2" (click)="activeModal.close()" >Close</button>
+  <button type="button" (click)="acceptThisIndividual()" class="btn btn-rounded btn-1">Accept
+  </button>
+</div>

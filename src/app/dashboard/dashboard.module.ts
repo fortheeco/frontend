@@ -1,20 +1,17 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { Routes, RouterModule } from '@angular/router';
+import { RouterModule } from '@angular/router';
 
 import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
 
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ChartsModule } from 'ng2-charts';
 import { ChartistModule } from 'ng-chartist';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
-import { CalendarModule, CalendarDateFormatter } from 'angular-calendar';
+import { CalendarModule } from 'angular-calendar';
 
 import { DashboardRoutes } from './dashboard.routing';
 
 import { HomeComponent } from './home/home.component';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AgmCoreModule } from '@agm/core';
 import { DragulaModule } from 'ng2-dragula';
 
@@ -34,15 +31,21 @@ import { ViewOrganizationProblemsComponent } from './organization/view-organizat
 import { ViewOrganizationTasksComponent } from './organization/view-organization-tasks/view-organization-tasks.component';
 import { ViewOrganizationHeaderComponent } from './organization/view-organization-header/view-organization-header.component';
 import { OrganizationAboutComponent } from './organization/organization-about/organization-about.component';
+// tslint:disable-next-line: max-line-length
 import { OrganizationAboutOverviewComponent } from './organization/organization-about/organization-about-overview/organization-about-overview.component';
+// tslint:disable-next-line: max-line-length
 import { OrganizationAboutStatisticsComponent } from './organization/organization-about/organization-about-statistics/organization-about-statistics.component';
 import { SharedModule } from '../shared/shared.module';
+import { OrganizationServicesComponent } from './organization/organization-services/organization-services.component';
+import { OrganizationEmployeesSkillsComponent } from './organization/organization-employees-skills/organization-employees-skills.component';
+import { OrganizationBranchesComponent } from './organization/organization-branches/organization-branches.component';
+import { OrganizationCommunityComponent } from './organization/organization-community/organization-community.component';
+import { EmployeesComponent } from './organization/organization-employees-skills/employees/employees.component';
+import { SkillsComponent } from './organization/organization-employees-skills/skills/skills.component';
+import { OrganizationBranchComponent } from './organization/organization-branches/organization-branch/organization-branch.component';
 
 @NgModule({
   imports: [
-    FormsModule,
-    CommonModule,
-    NgbModule,
     ChartsModule,
     ChartistModule,
     RouterModule.forChild(DashboardRoutes),
@@ -51,7 +54,6 @@ import { SharedModule } from '../shared/shared.module';
     PerfectScrollbarModule,
     CalendarModule.forRoot(),
     NgxChartsModule,
-    ReactiveFormsModule,
     DragulaModule,
     NgxDatatableModule,
     NgxPrintModule,
@@ -76,6 +78,13 @@ import { SharedModule } from '../shared/shared.module';
     OrganizationAboutComponent,
     OrganizationAboutOverviewComponent,
     OrganizationAboutStatisticsComponent,
+    OrganizationServicesComponent,
+    OrganizationEmployeesSkillsComponent,
+    OrganizationBranchesComponent,
+    OrganizationCommunityComponent,
+    EmployeesComponent,
+    SkillsComponent,
+    OrganizationBranchComponent,
    ],
     entryComponents: [
     ]

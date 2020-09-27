@@ -20,11 +20,11 @@ import { RequestNewEmailVerificationComponent } from './request-new-email-verifi
 
 @NgModule({
   imports: [
-    CommonModule,
-    FormsModule,
-    ReactiveFormsModule,
+    // CommonModule,
+    // FormsModule,
+    // ReactiveFormsModule,
     RouterModule.forChild(AuthenticationRoutes),
-    NgbModule,
+    // NgbModule,
     SharedModule,
   ],
   declarations: [

@@ -13,6 +13,7 @@ import {AuthenticationService} from '../../_services/authentication.service';
 import { SharedServiceProvider } from '../../_providers/shared-provider';
 import { OrganizationService } from 'src/app/_services/organization/organization.service';
 import { AppOrganization } from 'src/app/_models/organization/app-organization';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-organization',
@@ -43,11 +44,14 @@ export class OrganizationComponent implements OnInit {
     "pageSize": "0"
   }
 
+  organizationId: string;
+
   constructor(
     private modalService: NgbModal,
     private organizationService: OrganizationService,
     private rest: RestService,
     private sharedService: SharedServiceProvider,
+    private route: ActivatedRoute
   ) {
     // this.sharedService.passedProblem$().subscribe((data) => {
     //   this.GdprConsentDetails = data;
@@ -55,17 +59,18 @@ export class OrganizationComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.organizationId = this.route.snapshot.paramMap.get('organizationId');
     this.getUserProfile();
     this.getUserPosts();
   }
 
   getUserProfile() {
-    // this.isLoading = true;
-    this.organizationService.getOrganizationData().subscribe(response => {
-        // this.isLoading = false;
-        this.profile = new AppOrganization(response.json());
-        // this.temp = response.json().data;
-        console.log(response.json());
+      // this.isLoading = true;
+      this.organizationService.getOrganizationData({organizationId: this.organizationId}).subscribe(response => {
+      // this.isLoading = false;
+      this.profile = new AppOrganization(response.json());
+      // this.temp = response.json().data;
+      // console.log(response.json());
     },
       error => {
         // this.isLoading = false;
@@ -111,7 +116,7 @@ export class OrganizationComponent implements OnInit {
         // this.isLoading = false;
         const d = response.json();
         this.problems = d.problems;
-        console.log(this.problems);
+        // console.log(this.problems);
     },
       error => {
         // this.isLoading = false;

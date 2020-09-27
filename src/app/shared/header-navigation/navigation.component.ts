@@ -21,6 +21,8 @@ export class NavigationComponent implements AfterViewInit {
   userProfile : any;
   notifications = [];
   profile: any;
+
+
   
   constructor(
     private modalService: NgbModal,
@@ -30,11 +32,11 @@ export class NavigationComponent implements AfterViewInit {
 
     let u = this.authenticationService.currentUserValue;
     this.profile = u.user;
-    console.log(this.profile)
+    // console.log(this.profile);
   }
 
 
-  logout(){
+  logout() {
     this.router.navigate(['/']);
     this.authenticationService.logout();
   }
@@ -43,8 +45,23 @@ export class NavigationComponent implements AfterViewInit {
     const modalRef = this.modalService.open(CreateOptionsComponent, { size: 'lg',centered: true,windowClass: 'clear-bg-modal'  });
     modalRef.result.then((result) => {
       // this._success.next("Successfully Deleted");
-    })
+    });
   }
+
+  /**
+   * @description navigate to either an individual or organization depending on the entity type
+   */
+  navigateToProfile() {
+    const userType: string = this.profile.userType;
+
+    // If an individual then go to the individual page
+    if (userType.toLocaleLowerCase() === 'individual') { this.router.navigate(['/dashboard/profile']); }
+
+    // If an organization then go to the organization page
+    if (userType.toLocaleLowerCase() === 'organization') { this.router.navigate([`/dashboard/organization/${this.profile.id}`]); }
+  }
+
+
   ngAfterViewInit() {
   }
 }

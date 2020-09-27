@@ -1,0 +1,86 @@
+<div class="card card-shadow">
+
+  <img *ngIf="loading" class="pl-2 general-loading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+
+  
+  <div class="card-body">
+    <h5 class="card-title border-bottom">Employees and Skills
+
+      <div *ngIf="currentUser?.user?.isOwner(organization.id)" class="dropdown edit-button dropleft">
+        <span class="pointer" id="moreOprion" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <i class="fa fa-ellipsis-v"></i>
+        </span>
+        <div class="dropdown-menu" aria-labelledby="moreOprion">
+          <!-- <span class="dropdown-item" (click)="openEditUserAddress(address)" >Edit</span> -->
+          <span (click)="toggleAllowIndividualToSendRequest()" *ngIf="response?.allowRequest" class="dropdown-item text-danger pointer" >Disable Request from individual</span>
+          <span (click)="toggleAllowIndividualToSendRequest()" *ngIf="!response?.allowRequest" class="dropdown-item text-success pointer" >Enable Request from individual</span>
+        </div>
+      </div>
+
+
+    </h5>
+
+
+    <div class="row">
+
+      <div class="col-md-2 h5">
+        Summary
+      </div>
+
+      <div class="col-md-10">
+        
+        <div class="row">
+          <div class="col-md-5 custom-text-green custom-border-green p-2 mb-2 custom-rounded custom-bg-lighter-green mr-3">
+            <span>Total Employees</span>
+            <span class="d-block"><strong>{{ response?.numberOfEmployees }}</strong></span>
+          </div>
+  
+          <div class="col-md-5 custom-text-green custom-border-green p-2 mb-2 custom-rounded custom-bg-lighter-green mr-3">
+            <span>Total Skills owned</span>
+            <span class="d-block"><strong>{{ organizationSkills?.totalSkills }}</strong></span>
+            <small *ngIf="organizationSkills?.totalSkills > 0" (click)="showSkills(organization?.detail?.name, organizationSkills?.topTenSkills)" class="pointer"> <strong>view top 10 skills</strong></small>
+          </div>
+        </div>
+
+
+      </div>
+
+    </div>
+
+
+
+    <div class="row">
+
+      <div class="col-12 border-bottom mb-2">
+        <small *ngIf="avaliableFilter()?.length > 0" class="text-primary pointer float-left" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample" >view filters</small>
+        <span> <i (click)="openFilterModal()" class="pointer fa fa-filter custom-text-green float-right"></i> </span>
+      </div>
+
+      <div class="collapse col-12 py-1 my-1 border" id="collapseExample">
+        <div class="col-12">
+          <h5 *ngFor="let filter of avaliableFilter()" class="d-inline mr-2"><span [class]="'badge-primary badge p-1'"><strong>{{filter.name}}:</strong> {{filter.value}}</span></h5>
+        </div>
+      </div>
+
+
+    </div>
+
+      <app-employees 
+        [employees]="employees" 
+        [status]="request?.filter?.status" 
+        [organization]="organization" 
+        (reload)="refreshEmployees()" 
+        (loading)="loading = $event"
+        ></app-employees>
+
+
+
+
+    <div *ngIf="isThereMoreEntities()" >
+      <button (click)="loadMoreEntities()" class="btn custom-bg-green btn-block mt-3">view more 
+        <img *ngIf="loading" class="pl-2" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+      </button>
+    </div>
+
+  </div>
+</div>
