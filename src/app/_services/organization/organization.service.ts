@@ -5,6 +5,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { User } from 'src/app/_models';
 import { BASE_URL } from 'src/app/_providers/config/config';
+import { environment } from 'src/environments/environment';
 
 
 @Injectable({
@@ -14,7 +15,7 @@ export class OrganizationService {
     private currentUserSubject: BehaviorSubject<User>;
     public currentUser: Observable<User>;
 
-    private BASE_URL = BASE_URL;
+    private BASE_URL = environment.BASE_URL;
     private headers: Headers = new Headers({'Content-Type': 'application/json'});
     private headers_formdata: Headers = new Headers({'Content-Type': undefined});
 
