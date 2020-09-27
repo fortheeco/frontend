@@ -239,6 +239,8 @@
       <ngb-tab title="Profile">
         <ng-template ngbTabContent>
           <div class="tab-container">
+            <app-user-contact-addresses [userId]='profile.id'></app-user-contact-addresses>
+
             <div class="card card-shadow">
                 <div class="row">
                     <div class="col-md-12">

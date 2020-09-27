@@ -52,7 +52,7 @@ export class UserContactCommunicateComponent implements OnInit, OnDestroy {
   }
 
   addNewContact() {
-    this.formError.genericError = null;
+    // this.formError.genericError = null;
     const modelRef = this.modalService.open(AddUserContactComponent, { size: 'lg' });
 
     const sub = modelRef.componentInstance.addedContact.subscribe((x: IContact) => {
