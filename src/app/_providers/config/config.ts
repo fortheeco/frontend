@@ -1,2 +1,2 @@
-export let BASE_URL = 'https://newecopeople.com';
+export let BASE_URL = 'https://newecopeople.com/';
 
