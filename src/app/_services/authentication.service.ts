@@ -7,13 +7,14 @@ import {Headers, Http} from "@angular/http";
 import { User } from '../_models';
 import { Router, ActivatedRoute } from '@angular/router';
 import {BASE_URL} from "../_providers/config/config";
+import { environment } from 'src/environments/environment';
 
 @Injectable({ providedIn: 'root' })
 export class AuthenticationService {
         private currentUserSubject: BehaviorSubject<User>;
         public currentUser: Observable<User>;
 
-        private BASE_URL = BASE_URL;
+        private BASE_URL = environment.BASE_URL;;
         private headers: Headers = new Headers({'Content-Type': 'application/json'});
         private headers_formdata: Headers = new Headers({'Content-Type': undefined});
 

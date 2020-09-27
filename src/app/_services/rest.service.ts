@@ -6,13 +6,14 @@ import { AuthenticationService } from '../_services';
 import { HttpClient, HttpEvent, HttpErrorResponse, HttpEventType } from  '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class RestService {
 
-private BASE_URL = BASE_URL;
+private BASE_URL = environment.BASE_URL;;
 private headers: Headers = new Headers({'Content-Type': 'application/json'});
 private headers_formdata: Headers = new Headers({'Content-Type': undefined});
 
