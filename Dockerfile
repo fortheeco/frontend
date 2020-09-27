@@ -3,7 +3,7 @@
 # COPY /output/dist /usr/share/nginx/html
 
 ### STAGE 1: Build ###
-FROM node:12.7-alpine AS build
+FROM node:12.7-alpine AS builder
 WORKDIR /usr/src/app
 COPY package.json package-lock.json ./
 RUN npm install
