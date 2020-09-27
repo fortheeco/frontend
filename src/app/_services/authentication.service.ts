@@ -34,7 +34,7 @@ export class AuthenticationService {
 
 
     login(emailAddress: string, password: string) {
-        const url = `${this.BASE_URL}api/auth/signin`;
+        const url = `${this.BASE_URL}/api/auth/signin`;
 
         return this.http.post<any>(url, { emailAddress, password })
             .pipe(map(user => {
