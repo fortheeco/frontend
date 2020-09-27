@@ -22,4 +22,4 @@ COPY --from=builder /usr/src/app/dist /usr/share/nginx/html
 # expose port
 EXPOSE 4200
 # Starting server. ffff
-CMD ["nginx", "-g", "daemon off;"]
+# CMD ["nginx", "-g", "daemon off;"]
