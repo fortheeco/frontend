@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-user-contact',
@@ -6,6 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./user-contact.component.css']
 })
 export class UserContactComponent implements OnInit {
+
+  @Input() userId: string;
 
   constructor() { }
 

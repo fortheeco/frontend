@@ -8,32 +8,33 @@
   <!-- Menu for the views in this organization -->
   <div class="col-lg-2">
 
-      <button class="btn custom-bg-green text-white mobile-button d-lg-none d-xl-none" (click)="showMobileMenu = !showMobileMenu" ><i class="fa fa-bars" ></i></button>
+    <div class="dropdown">
+      <button class="btn custom-bg-green text-white mobile-button d-lg-none d-xl-none" id="mobileMenu" data-toggle="dropdown" ><i class="fa fa-bars" ></i></button>
 
+      <div class="dropdown-menu" aria-labelledby="mobileMenu">
+        <span class="dropdown-item pointer success" (click)="navigateTo('problem')" [ngClass]="{'active-success': viewSection==='problem'}" >Problem</span>
+        <span class="dropdown-item pointer success" (click)="navigateTo('task')" [ngClass]="{'active-success': viewSection==='task'}">Task</span>
+        <span class="dropdown-item pointer success" (click)="navigateTo('about')" [ngClass]="{'active-success': viewSection==='about'}">About</span>
+        <span class="dropdown-item pointer success" (click)="navigateTo('contact')" [ngClass]="{'active-success': viewSection==='contact'}">Contact</span>
+        <span class="dropdown-item pointer success" (click)="navigateTo('services')" [ngClass]="{'active-success': viewSection==='services'}">Services</span>
+        <span class="dropdown-item pointer success" (click)="navigateTo('employeeAndSkills')" [ngClass]="{'active-success': viewSection==='employeeAndSkills'}">Employee and skills</span>
+        <span class="dropdown-item pointer success" (click)="navigateTo('branches')" [ngClass]="{'active-success': viewSection==='branches'}">Branches</span>
+        <span class="dropdown-item pointer success" (click)="navigateTo('community')" [ngClass]="{'active-success': viewSection==='community'}">Community</span>
+      </div>
+    </div>
 
-      <!-- Mobile view -->
-      <ul class="list-group list-group-flush shadow-sm green-text d-lg-none d-xl-none mobile-menu" *ngIf="showMobileMenu">
-          <li class="list-group-item pointer success" (click)="navigateTo('problem'); showMobileMenu = false" [ngClass]="{'active-success': viewSection==='problem'}" >Problem</li>
-          <li class="list-group-item pointer success" (click)="navigateTo('task'); showMobileMenu = false" [ngClass]="{'active-success': viewSection==='task'}">Task</li>
-          <li class="list-group-item pointer success" (click)="navigateTo('about'); showMobileMenu = false" [ngClass]="{'active-success': viewSection==='about'}">About</li>
-          <li class="list-group-item pointer success" (click)="navigateTo('contact'); showMobileMenu = false" [ngClass]="{'active-success': viewSection==='contact'}">Contact</li>
-          <li class="list-group-item pointer success" (click)="navigateTo('services'); showMobileMenu = false" [ngClass]="{'active-success': viewSection==='services'}">Services</li>
-          <li class="list-group-item pointer success" (click)="navigateTo('employeeAndSkills'); showMobileMenu = false" [ngClass]="{'active-success': viewSection==='employeeAndSkills'}">Employee and skills</li>
-          <li class="list-group-item pointer success" (click)="navigateTo('branches'); showMobileMenu = false" [ngClass]="{'active-success': viewSection==='branches'}">Branches</li>
-          <li class="list-group-item pointer success" (click)="navigateTo('community'); showMobileMenu = false" [ngClass]="{'active-success': viewSection==='community'}">Community</li>
-      </ul>
+    <!-- Desktop view -->
+    <ul class="list-group list-group-flush shadow-sm green-text d-none d-lg-block">
+      <li class="list-group-item pointer success" (click)="navigateTo('problem')" [ngClass]="{'active-success': viewSection==='problem'}" >Problem</li>
+      <li class="list-group-item pointer success" (click)="navigateTo('task')" [ngClass]="{'active-success': viewSection==='task'}">Task</li>
+      <li class="list-group-item pointer success" (click)="navigateTo('about')" [ngClass]="{'active-success': viewSection==='about'}">About</li>
+      <li class="list-group-item pointer success" (click)="navigateTo('contact')" [ngClass]="{'active-success': viewSection==='contact'}">Contact</li>
+      <li class="list-group-item pointer success" (click)="navigateTo('services')" [ngClass]="{'active-success': viewSection==='services'}">Services</li>
+      <li class="list-group-item pointer success" (click)="navigateTo('employeeAndSkills')" [ngClass]="{'active-success': viewSection==='employeeAndSkills'}">Employee and skills</li>
+      <li class="list-group-item pointer success" (click)="navigateTo('branches')" [ngClass]="{'active-success': viewSection==='branches'}">Branches</li>
+      <li class="list-group-item pointer success" (click)="navigateTo('community')" [ngClass]="{'active-success': viewSection==='community'}">Community</li>
+    </ul>
 
-      <!-- Desktop view -->
-      <ul class="list-group list-group-flush shadow-sm green-text d-none d-lg-block">
-          <li class="list-group-item pointer success" (click)="navigateTo('problem')" [ngClass]="{'active-success': viewSection==='problem'}" >Problem</li>
-          <li class="list-group-item pointer success" (click)="navigateTo('task')" [ngClass]="{'active-success': viewSection==='task'}">Task</li>
-          <li class="list-group-item pointer success" (click)="navigateTo('about')" [ngClass]="{'active-success': viewSection==='about'}">About</li>
-          <li class="list-group-item pointer success" (click)="navigateTo('contact')" [ngClass]="{'active-success': viewSection==='contact'}">Contact</li>
-          <li class="list-group-item pointer success" (click)="navigateTo('services')" [ngClass]="{'active-success': viewSection==='services'}">Services</li>
-          <li class="list-group-item pointer success" (click)="navigateTo('employeeAndSkills')" [ngClass]="{'active-success': viewSection==='employeeAndSkills'}">Employee and skills</li>
-          <li class="list-group-item pointer success" (click)="navigateTo('branches')" [ngClass]="{'active-success': viewSection==='branches'}">Branches</li>
-          <li class="list-group-item pointer success" (click)="navigateTo('community')" [ngClass]="{'active-success': viewSection==='community'}">Community</li>
-      </ul>
   </div>
 
   <!-- Views seen by the users -->
@@ -42,7 +43,11 @@
     <app-view-organization-problems *ngIf="viewSection === 'problem'"  ></app-view-organization-problems>
     <app-view-organization-tasks *ngIf="viewSection === 'task'" ></app-view-organization-tasks>
     <app-organization-about [organization]="profile" *ngIf="viewSection === 'about'"></app-organization-about>
-    <app-user-contact  *ngIf="viewSection === 'contact'" ></app-user-contact>
+    <app-user-contact [userId]="organizationId" *ngIf="viewSection === 'contact'" ></app-user-contact>
+    <app-organization-services [organization]="profile" *ngIf="viewSection === 'services'" ></app-organization-services>
+    <app-organization-employees-skills [organization]="profile" *ngIf="viewSection === 'employeeAndSkills'" ></app-organization-employees-skills>
+    <app-organization-branches [organizationId]="organizationId" *ngIf="viewSection === 'branches'" ></app-organization-branches>
+    <app-organization-community *ngIf="viewSection === 'community'" ></app-organization-community>
   </div>
 
   <!-- Coming soon -->

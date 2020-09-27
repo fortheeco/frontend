@@ -1,0 +1,18 @@
+<div class="dropdown-menu extend" aria-labelledby="dropdownMenuButton">
+
+  <p *ngIf="loading" class="dropdown-item border-bottom" href="#">
+    <span class="spinner-border spinner-border-sm mx-2" role="status" aria-hidden="true"></span>
+  </p>
+
+  <a *ngFor="let organization of organizations" class="dropdown-item border-bottom"
+    (click)="selectOrganization(organization)">
+    <span><strong>{{ organization.organizationName }}</strong></span><br>
+    <small *ngIf="organization?.localAddress">{{ organization?.localAddress?.displayAddress() }}
+
+      <i *ngIf="organization?.localAddress?.verifiedInLocation" class="fas fa-check-circle text-success"></i> 
+      <i *ngIf="!organization?.localAddress?.verifiedInLocation" class="fas fa-times-circle text-danger"></i> 
+   
+    </small>
+  </a>
+
+</div>

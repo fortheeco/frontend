@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { first } from 'rxjs/operators';
-import {RestService} from "../../_services/rest.service";
+import {RestService} from '../../_services/rest.service';
 
 import { AuthenticationService } from '../../_services';
 
@@ -11,26 +11,26 @@ import { AuthenticationService } from '../../_services';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit {
 
-	loginForm: FormGroup;
-	loading = false;
-	submitted = false;
-	returnUrl: string;
-	error = '';
+    loginForm: FormGroup;
+    loading = false;
+    submitted = false;
+    returnUrl: string;
+    error = '';
     recoverform = false;
     loginform = false;
-    bc = new BroadcastChannel("profile-update");
+    bc = new BroadcastChannel('profile-update');
 
   constructor(
         private formBuilder: FormBuilder,
         private route: ActivatedRoute,
-        private router: Router, 
+        private router: Router,
         private rest: RestService,
         private authenticationService: AuthenticationService
     ) {
         // redirect to home if already logged in
-        // if (this.authenticationService.currentUserValue) { 
+        // if (this.authenticationService.currentUserValue) {
         //     this.router.navigate(['/']);
         // }
     }
@@ -57,13 +57,13 @@ export class LoginComponent {
         if (this.loginForm.invalid) {
             return;
         }
-        
+
         this.loading = true;
         this.authenticationService.login(this.f.email.value, this.f.password.value)
             .pipe(first())
             .subscribe(
                 data => {
-                    this.bc.postMessage("Logged In")
+                    this.bc.postMessage('Logged In');
                     this.router.navigate([this.returnUrl]);
                 },
                 error => {
@@ -74,9 +74,9 @@ export class LoginComponent {
                 });
     }
 
-  showRecoverForm() {
+    showRecoverForm() {
     this.loginform = !this.loginform;
     this.recoverform = !this.recoverform;
-  }
+    }
 
 }

@@ -1,0 +1,140 @@
+<div class="modal-header">
+  <h4 class="modal-title" id="modal-basic-title">Filter Employees</h4>
+  <button type="button" class="close" aria-label="Close" (click)="activeModal.close()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+
+<div class="modal-body">  
+  <div class="row">
+    <div class="col-sm-12">
+        <div class="card">
+            <div class="card-body">   
+
+              <div *ngIf="formError.genericError" class="col-12 alert alert-danger" role="alert">
+                {{formError.genericError}}
+              </div>
+
+                <div class="col-sm-12">                                      
+                    <form [formGroup]="filterEmployeesForm" class="form-horizontal m-t-25">
+
+                      <!-- Name of the employee -->
+                      <div class="form-group row ">
+
+                        <div class="col-lg-3">
+                          <div class="col-12 ">
+                            <p class="modal-lbl">Employee Name</p>
+                          </div>
+                        </div>
+
+                        <div class="col-lg-9">
+                          <div class="col-12 ">
+                              <fieldset [ngClass]="{ 'border-danger': formError.isInvalid(filterEmployeesForm, 'staffName') }" class="border p-2">
+                                  
+                                  <legend  class="w-auto"> <span class="d-none d-lg-block" >Employee Name</span> </legend>                                
+                                  
+                                  <input formControlName="staffName" maxlength="256" class="form-control form-control-md fieldset-input" placeholder="Name of the Employee">
+                                                                  
+                                </fieldset>
+
+                                <app-validator-error-message [form]="filterEmployeesForm" [field]="'staffName'" ></app-validator-error-message>   
+
+                            </div>
+                        </div>
+                        
+                      </div>
+
+                      <!-- Position of the employee -->
+                      <div class="form-group row ">
+
+                        <div class="col-lg-3">
+                          <div class="col-12 ">
+                            <p class="modal-lbl">Position</p>
+                          </div>
+                        </div>
+
+                        <div class="col-lg-9">
+                          <div class="col-12 ">
+                              <fieldset [ngClass]="{ 'border-danger': formError.isInvalid(filterEmployeesForm, 'position') }" class="border p-2">
+                                  
+                                  <legend  class="w-auto"> <span class="d-none d-lg-block" >Position</span> </legend>                                
+                                  
+                                  <input formControlName="position" maxlength="256" class="form-control form-control-md fieldset-input" placeholder="Position/Title in the organization">
+                                                                  
+                                </fieldset>
+
+                                <app-validator-error-message [form]="filterEmployeesForm" [field]="'position'" ></app-validator-error-message>   
+
+                            </div>
+                        </div>
+                        
+                      </div>
+
+                      <!-- Department of the employee -->
+                      <div class="form-group row ">
+
+                        <div class="col-lg-3">
+                          <div class="col-12 ">
+                            <p class="modal-lbl">Department</p>
+                          </div>
+                        </div>
+
+                        <div class="col-lg-9">
+                          <div class="col-12 ">
+                              <fieldset [ngClass]="{ 'border-danger': formError.isInvalid(filterEmployeesForm, 'department') }" class="border p-2">
+                                  
+                                  <legend  class="w-auto"> <span class="d-none d-lg-block" >Department</span> </legend>                                
+                                  
+                                  <input formControlName="department" maxlength="256" class="form-control form-control-md fieldset-input" placeholder="Department in the orgaization">
+                                                                  
+                                </fieldset>
+
+                                <app-validator-error-message [form]="filterEmployeesForm" [field]="'department'" ></app-validator-error-message>   
+
+                            </div>
+                        </div>
+                        
+                      </div>
+
+                      <!-- Employment status -->
+                      <div class="form-group row ">
+
+                        <div class="col-lg-3">
+                          <div class="col-12 ">
+                            <p class="modal-lbl">Employment Status</p>
+                          </div>
+                        </div>
+
+                        <div class="col-lg-9">
+                          <div class="col-12 ">
+                              <fieldset [ngClass]="{ 'border-danger': formError.isInvalid(filterEmployeesForm, 'status') }" class="border p-2">
+                                  
+                                  <legend  class="w-auto"> <span class="d-none d-lg-block" >Employment Status</span> </legend>                                
+                                  
+                                  <select formControlName="status" maxlength="256" class="form-control form-control-md fieldset-input" placeholder="Employment Status"> 
+                                    <option *ngFor="let item of employementStatus" [value]="item.key"> {{ item.value }} </option>
+                                  </select>
+                                                                  
+                                </fieldset>
+
+                                <app-validator-error-message [form]="filterEmployeesForm" [field]="'status'" ></app-validator-error-message>   
+
+                            </div>
+                        </div>
+                        
+                      </div>
+
+                    </form>
+              </div>
+
+
+            </div>
+        </div>
+    </div>
+  </div>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-rounded btn-2" (click)="resetFilter()" >Reset filter</button>
+  <button type="button" (click)="updateFilter()" class="btn btn-rounded btn-1">Add filter
+  </button>
+</div>

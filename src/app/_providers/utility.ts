@@ -6,6 +6,10 @@ import { ToastrService } from 'ngx-toastr';
 @Injectable()
 export class UtilityProvider {
 
+  badgeColors =
+  ['badge-primary', 'badge-secondary', 'badge-success', 'badge-danger', 'badge-info', 'badge-dark', 'badge-warning', 'badge-light'];
+
+
   constructor(
       public http: HttpClient,
       private toastr: ToastrService
@@ -23,6 +27,10 @@ export class UtilityProvider {
     } else if (type == 'info') {
         this.toastr.info(text);
     }
+  }
+
+  getRandomBadgeColors() {
+    return this.badgeColors[Math.floor(Math.random() * this.badgeColors.length)];
   }
 
 }

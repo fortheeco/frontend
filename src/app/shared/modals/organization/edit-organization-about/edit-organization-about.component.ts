@@ -4,7 +4,7 @@ import { AppOrganization } from 'src/app/_models/organization/app-organization';
 import { AppOrganizationetails } from 'src/app/_models/organization/app-organization-detail';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { EditOrganizationAboutFunctions } from './edit-organization-about-functions';
-import { ApplicationConstant } from 'src/app/_models/app-constant';
+import { CustomApplicationConstant } from 'src/app/_models/app-constant';
 import { OrganizationService } from 'src/app/_services/organization/organization.service';
 import { Subscription } from 'rxjs';
 import { FormErrorService } from 'src/app/_services/form-error/form-error.service';
@@ -25,7 +25,7 @@ export class EditOrganizationAboutComponent implements OnInit, OnDestroy {
 
   editOrganizationDetailsForm: FormGroup;
 
-  organizationTypes = ApplicationConstant.organizationType;
+  organizationTypes = CustomApplicationConstant.organizationType;
   industries: string[] = [];
 
   loading = false;
@@ -34,7 +34,7 @@ export class EditOrganizationAboutComponent implements OnInit, OnDestroy {
     public activeModal: NgbActiveModal,
     private fb: FormBuilder,
     private organizationService: OrganizationService,
-    private formError: FormErrorService
+    public formError: FormErrorService
     ) { }
 
   ngOnInit() {
@@ -67,7 +67,6 @@ export class EditOrganizationAboutComponent implements OnInit, OnDestroy {
     const sub = this.organizationService.updateOrganizationDetails(this.editOrganizationDetailsForm.value)
       .pipe(finalize(() => this.loading = false))
       .subscribe(x => {
-        console.log(x);
 
         // just a slight change in the backend
         const update = this.editOrganizationDetailsForm.value as AppOrganizationetails;

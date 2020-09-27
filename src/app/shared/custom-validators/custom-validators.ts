@@ -1,5 +1,5 @@
 import { AbstractControl, ValidatorFn, Validators, ValidationErrors } from '@angular/forms';
-import { ApplicationConstant } from 'src/app/_models/app-constant';
+import { CustomApplicationConstant } from 'src/app/_models/app-constant';
 
 
 /**
@@ -155,7 +155,7 @@ export class CustomValidator {
   static OrganizationType(c: AbstractControl): ValidationErrors {
     const type = c.value;
 
-    const correctType = ApplicationConstant.organizationType.find(x => x.key === type);
+    const correctType = CustomApplicationConstant.organizationType.find(x => x.key === type);
 
     if (type) { return null; }
 

@@ -1,0 +1,41 @@
+<div class="card card-shadow">
+
+  <img *ngIf="loadingService" class="pl-2 general-loading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+
+  
+  <div class="card-body">
+    <h5 class="card-title border-bottom">Services
+      <i *ngIf="currentUser?.user?.isOwner(organization.id)" (click)="openAddOrganizationService()" class="fa fa-plus-circle pointer custom-text-green" ></i>
+      <i  class="fa fa-search pointer custom-text-green float-right" data-toggle="collapse" data-target="#openServiceSearch" aria-expanded="false" aria-controls="openServiceSearch" ></i>
+    </h5>
+
+    <div class="collapse mb-2" id="openServiceSearch">
+      <fieldset class="border p-2" style="position: relative;">
+                                  
+        <legend  class="w-auto"> <span class="d-none d-lg-block" >Service Name</span> </legend>   
+
+        <i (click)="clearSearchWord()"  class="fa fa-times text-danger pointer clear-form-button" ></i>
+
+        <input [readOnly]="loadingService" [(ngModel)]="serviceSearchWord" (keyup.enter)="searchForService()" class="form-control form-control-md fieldset-input" placeholder="Search for a service">
+                                        
+      </fieldset>    
+    </div>
+
+    <div class="row">
+
+      <span *ngFor="let service of organizationServices" class="custom-text-green custom-border-green p-3 custom-rounded custom-bg-lighter-green mr-3">
+        {{service.name}} 
+        <i *ngIf="currentUser?.user?.isOwner(organization.id)" (click)="confirmRemoveService(service)" class="fa fa-trash rounded-circle bg-light text-danger p-2 pointer" ></i>
+        <!-- <small class="d-block text-dark" >0 verification(s)</small> -->
+      </span>
+
+    </div>
+
+    <div *ngIf="isThereMoreServices()">
+      <button [disabled]="loadingService"  (click)="loadMoreServices()" class="btn custom-bg-green btn-block mt-3">view more 
+        <img *ngIf="loadingService" class="pl-2" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+      </button>
+    </div>
+
+  </div>
+</div>

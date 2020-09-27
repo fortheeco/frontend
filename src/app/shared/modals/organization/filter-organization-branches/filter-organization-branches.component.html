@@ -1,0 +1,156 @@
+<div class="modal-header">
+  <h4 class="modal-title" id="modal-basic-title">Filter branches</h4>
+  <button type="button" class="close" aria-label="Close" (click)="activeModal.close()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+
+<div class="modal-body">  
+  <div class="row">
+    <div class="col-sm-12">
+        <div class="card">
+            <div class="card-body">   
+
+              <div *ngIf="formError.genericError" class="col-12 alert alert-danger" role="alert">
+                {{formError.genericError}}
+              </div>
+
+                <div class="col-sm-12">                                      
+                    <form [formGroup]="filterOrganizationBranchFrom" class="form-horizontal m-t-25">
+
+                      <div class="form-group row ">
+
+                        <div class="col-lg-3">
+                          <div class="col-12 ">
+                            <p class="modal-lbl d-flex justify-content-start">Country
+                              <img *ngIf="loadingCountry"  height="17" width="17" class="pl-2" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+        
+                            </p>
+                          </div>
+                        </div>
+        
+                        <div class="col-lg-9">
+                          <div class="col-12 ">
+                              <fieldset [ngClass]="{ 'border-danger': formError.isInvalid(filterOrganizationBranchFrom, 'countryId') }" class="border p-2">
+                                  
+                                  <legend  class="w-auto"> <span class="d-none d-lg-block" >Country</span> </legend>                                
+                                  
+        
+                                  <select class="form-control legend-select" #country (change)="onCountrySelected(country.value); getState(country.value)" formControlName="countryId" >
+                                    <option>---</option>
+                                      <option *ngFor="let country of countries" [value]="country.id" >{{country.name}}</option>
+                                  </select> 
+        
+                                </fieldset>
+                                <app-validator-error-message [form]="filterOrganizationBranchFrom" [field]="'countryId'" ></app-validator-error-message>   
+                            </div>
+        
+                        </div>
+        
+                    </div>
+        
+                    <div class="form-group row ">
+        
+                      <div class="col-lg-3">
+                        <div class="col-12 ">
+                          <p class="modal-lbl d-flex justify-content-start">State
+                            <img *ngIf="loadingState" height="17" width="17" class="pl-2" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+        
+                          </p>
+                        </div>
+                      </div>
+        
+                      <div class="col-lg-9">
+                        <div class="col-12 ">
+                            <fieldset [ngClass]="{ 'border-danger': formError.isInvalid(filterOrganizationBranchFrom, 'stateId') }" class="border p-2">
+                                
+                                <legend  class="w-auto"> <span class="d-none d-lg-block" >State</span> </legend>                                
+                                                             
+                                <select class="form-control legend-select" formControlName="stateId"  #state (change)="onStateSelected(state.value)"  >
+                                    <option>---</option>
+                                    <option *ngFor="let item of states" [value]="item.id" >{{item.name}}</option>
+                                </select> 
+        
+                              </fieldset>
+        
+                              <app-validator-error-message [form]="filterOrganizationBranchFrom" [field]="'stateId'" ></app-validator-error-message>   
+        
+                          </div>
+                      </div>
+                      
+                    </div>
+
+                      <!-- Name of the employee -->
+                      <div class="form-group row ">
+
+                        <div class="col-lg-3">
+                          <div class="col-12 ">
+                            <p class="modal-lbl">Organization Name</p>
+                          </div>
+                        </div>
+
+                        <div class="col-lg-9">
+                          <div class="col-12 ">
+                              <fieldset [ngClass]="{ 'border-danger': formError.isInvalid(filterOrganizationBranchFrom, 'organizationName') }" class="border p-2">
+                                  
+                                  <legend  class="w-auto"> <span class="d-none d-lg-block" >Organization Name</span> </legend>                                
+                                  
+                                  <input formControlName="organizationName" maxlength="256" class="form-control form-control-md fieldset-input" placeholder="Name of the Employee">
+                                                                  
+                                </fieldset>
+
+                                <app-validator-error-message [form]="filterOrganizationBranchFrom" [field]="'organizationName'" ></app-validator-error-message>   
+
+                            </div>
+                        </div>
+                        
+                      </div>
+
+
+                      <!-- Department of the employee -->
+                      <div class="form-group row ">
+
+                        <div class="col-lg-3">
+                          <div class="col-12 ">
+                            <p class="modal-lbl">Accepted</p>
+                          </div>
+                        </div>
+
+                        <div class="col-lg-9">
+                          <div class="col-12 ">
+                              <fieldset [ngClass]="{ 'border-danger': formError.isInvalid(filterOrganizationBranchFrom, 'accepted') }" class="border p-2">
+                                  
+                                  <legend  class="w-auto"> <span class="d-none d-lg-block" >Accepted</span> </legend>                                
+                                  
+                                  <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="accepted" formControlName="accepted" [value]="true" id="acceptedYes" value="option1">
+                                    <label class="form-check-label" for="acceptedYes">Yes</label>
+                                  </div>
+
+                                  <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="accepted" formControlName="accepted" [value]="false" id="acceptedNo" value="option2">
+                                    <label class="form-check-label" for="acceptedNo">No</label>
+                                  </div>
+
+                                </fieldset>
+
+                            </div>
+                        </div>
+                        
+                      </div>
+
+
+                    </form>
+              </div>
+
+
+            </div>
+        </div>
+    </div>
+  </div>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-rounded btn-2" (click)="resetFilter()" >Reset filter</button>
+  <button type="button" (click)="updateFilter()" class="btn btn-rounded btn-1">Add filter
+  </button>
+</div>

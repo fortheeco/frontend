@@ -7,7 +7,8 @@
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "prod": "ng build --prod"
   },
   "private": true,
   "dependencies": {
@@ -56,6 +57,7 @@
     "ngx-quill": "^3.1.0",
     "ngx-toastr": "^8.7.3",
     "pace-js": "^1.0.2",
+    "popper.js": "^1.16.1",
     "rxjs": "^6.3.3",
     "rxjs-compat": "^6.2.0",
     "zone.js": "^0.8.26"

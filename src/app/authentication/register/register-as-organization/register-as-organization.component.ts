@@ -4,7 +4,7 @@ import { OrganizationService } from 'src/app/_services/organization/organization
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { GetViewLocationComponent } from 'src/app/shared/modals/get-view-location/get-view-location.component';
 import { IAppAddress } from 'src/app/_models/address/app-address';
-import { ApplicationConstant } from 'src/app/_models/app-constant';
+import { CustomApplicationConstant } from 'src/app/_models/app-constant';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { RegisterAsOrganizationFunctions } from './register-as-organization-functions';
 import { FormErrorService } from 'src/app/_services/form-error/form-error.service';
@@ -29,12 +29,14 @@ export class RegisterAsOrganizationComponent implements OnInit, OnDestroy {
   // Register as organization
   @Output() registerAsIndividual = new EventEmitter<any>();
 
-  organizationTypes = ApplicationConstant.organizationType;
+  organizationTypes = CustomApplicationConstant.organizationType;
   industries: string[] = [];
 
   registerOrganizationForm: FormGroup;
 
   loading = false;
+
+  showPassword = false;
 
   constructor(
     private organizationService: OrganizationService,

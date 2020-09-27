@@ -14,15 +14,15 @@ import { IAppAddress } from 'src/app/_models/address/app-address';
 })
 export class GetViewLocationComponent implements OnInit, OnDestroy {
 
-    @Input() address: IAppAddress;
+  @Input() address: IAppAddress;
 
-    @Output() addressChanged  = new EventEmitter<IAppAddress>();
+  @Output() addressChanged  = new EventEmitter<IAppAddress>();
 
-    // close all subscriptions
-    subscriptions: Subscription[] = [];
+  // close all subscriptions
+  subscriptions: Subscription[] = [];
 
-    countries: ICountry[] = [];
-    states: IState[] = [];
+  countries: ICountry[] = [];
+  states: IState[] = [];
 
   locationForm: FormGroup;
 

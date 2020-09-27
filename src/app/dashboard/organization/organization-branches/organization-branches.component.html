@@ -1,0 +1,65 @@
+<div class="card card-shadow">
+
+  <img *ngIf="loading" class="pl-2 general-loading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+
+  
+  <div class="card-body">
+    <h5 class="card-title border-bottom">Branches
+
+      <div class="dropdown edit-button dropleft">
+        <span class="pointer" id="moreOprion" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <i class="fa fa-ellipsis-v"></i>
+        </span>
+
+        <div class="dropdown-menu" aria-labelledby="moreOprion">
+          
+          <span *ngIf="currentUser?.user?.isOwner(organizationId)" >
+            <span *ngIf="isHeadQuarters" class="dropdown-item pointer" (click)="openJoinOrganization()" >Join Organization</span>
+            <span *ngIf="!isHeadQuarters" class="dropdown-item pointer" (click)="confirmLeaveOrganization()" >Leave Organization</span>
+          </span>
+
+          <span>
+            <span class="dropdown-item pointer" (click)="openFilterModal()" >Filter branch</span>
+          </span>
+
+        </div>
+
+      </div>
+
+    </h5>
+
+    <div class="row">
+
+      <div *ngIf="filters?.length > 0" class="col-md-12">
+
+        <div class="col-12 border-bottom mb-2">
+          <small class="text-primary pointer" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample" >view filters</small>
+        </div>
+  
+        <div class="collapse col-12 py-1 my-1 border" id="collapseExample">
+          <div class="col-12">
+            <h5 *ngFor="let filter of filters" class="d-inline mr-2"><span [class]="'badge-primary badge p-1'"><strong>{{filter.name}}:</strong> {{filter.value}}</span></h5>
+          </div>
+        </div>
+  
+  
+      </div>
+
+      <app-organization-branch 
+      [branches]="branches" 
+      [isHeadQuarters]="isHeadQuarters" 
+      (loading)="loading = $event" 
+      (reload)="branches=[]; getBranches()"
+      style="width: 100%;"
+       ></app-organization-branch>
+
+    </div>
+
+    <div >
+      <button *ngIf="isThereMoreEntities()" (click)="loadMoreEntities()" class="btn custom-bg-green btn-block mt-3">view more 
+        <img *ngIf="loading"  class="pl-2" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+      </button>
+    </div>
+
+  </div>
+</div>

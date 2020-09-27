@@ -1,0 +1,21 @@
+
+
+<div class="modal-header">
+  <h4 class="modal-title" id="modal-basic-title">{{ userName }}'s top skills</h4>
+  <button type="button" class="close" aria-label="Close" (click)="activeModal.close()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+
+<div class="modal-body">  
+  <div class="row">
+    <span *ngFor="let skill of skills" class="custom-text-green custom-border-green p-3 custom-rounded custom-bg-lighter-green mr-3 mb-3">
+      {{skill.name}} - level <small>{{ AppConstant.IndividualSkill.CalculateLevel(skill.level) }}</small>
+      <!-- <small class="d-block text-dark" >0 verification(s)</small> -->
+    </span>
+  </div>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-rounded btn-2" (click)="activeModal.close()" >Close</button>
+
+</div>
