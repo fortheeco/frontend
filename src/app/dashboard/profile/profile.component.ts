@@ -92,7 +92,7 @@ export class ProfileComponent implements OnInit {
   getUserEducation(){
     this.params.userId = this.authenticationService.currentUserValue.user.id;
     this.authenticationService.getUserEducation(this.params).subscribe(response => {
-        let u = response.json();
+        let u = response;
         this.educationList = u.entities; 
         // console.log(response.json())
     },
@@ -102,10 +102,10 @@ export class ProfileComponent implements OnInit {
 
   getUserSkills(){
     this.rest.getUserSkills().subscribe(response => {
-        let data = response.json();
+        let data = response;
         this.userSkills = data.entities;
         
-        console.log(response.json())
+        console.log(response)
     },
       error => {  
       });
@@ -114,7 +114,7 @@ export class ProfileComponent implements OnInit {
   getWorkExperience(){
     this.params.userId = this.authenticationService.currentUserValue.user.id;
     this.authenticationService.getWorkExperience(this.params).subscribe(response => {
-        let u = response.json();
+        let u = response;
         this.professions = u.entities;
         // console.log(response.json())
     },
@@ -157,7 +157,7 @@ export class ProfileComponent implements OnInit {
     // this.isLoading = true;
     this.authenticationService.getIndividualData().subscribe(response => {
         // this.isLoading = false;
-        this.profile = response.json();
+        this.profile = response;
         this.sharedService.updateProfile(this.profile);
         // this.temp = response.json().data;
         console.log(this.profile)
@@ -170,10 +170,10 @@ export class ProfileComponent implements OnInit {
     // this.isLoading = true;
     this.authenticationService.getUserContacts().subscribe(response => {
         // this.isLoading = false;
-        this.contact = response.json();
+        this.contact = response;
         this.sharedService.updateContact(this.contact);
         // this.temp = response.json().data;
-        console.log(response.json())
+        console.log(response)
     },
       error => {  
         // this.isLoading = false;
@@ -186,10 +186,10 @@ export class ProfileComponent implements OnInit {
     // this.isLoading = true;
     this.authenticationService.getUserAddresses(this.params).subscribe(response => {
         // this.isLoading = false;
-        this.contact = response.json();
+        this.contact = response;
         this.sharedService.updateContact(this.contact);
         // this.temp = response.json().data;
-        console.log(response.json())
+        console.log(response)
     },
       error => {  
         // this.isLoading = false;
@@ -211,12 +211,6 @@ export class ProfileComponent implements OnInit {
   
   editProblem(row) {
     this.sharedService.updatePassedProblem(row);
-
-    // const modalRef = this.modalService.open(EditProblemComponent, { size: 'lg',centered: true  });
-    // modalRef.componentInstance.inputData = 'row';
-    // modalRef.result.then((result) => {
-    //   // this._success.next("Successfully Deleted");
-    // })
     this.modalRef = this.modalService.open(EditProblemComponent, { size: 'lg' });
     this.modalRef.componentInstance.inputData = 'row';
     this.modalRef.result.then(
@@ -233,7 +227,7 @@ export class ProfileComponent implements OnInit {
     // this.isLoading = true;
     this.rest.getUserPosts(this.pageParams).subscribe(response => {
         // this.isLoading = false;
-        let d = response.json();
+        let d = response;
         this.problems = d.problems;
         this.tasks = d.tasks;
         console.log(this.tasks)

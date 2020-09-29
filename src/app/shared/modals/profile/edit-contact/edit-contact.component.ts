@@ -49,7 +49,7 @@ export class EditContactComponent implements OnInit {
     // this.isLoading = true;
     this.rest.getLocationsCountries().subscribe(response => {
         // this.isLoading = false;
-        this.countries = response.json();
+        this.countries = response;
         // console.log(response.json())
     },
       error => {  
@@ -61,7 +61,7 @@ export class EditContactComponent implements OnInit {
     // this.isLoading = true;
     this.rest.getStates(id).subscribe(response => {
         // this.isLoading = false;
-        this.states = response.json();
+        this.states = response;
         // console.log(response.json())
     },
       error => {  
@@ -75,7 +75,7 @@ export class EditContactComponent implements OnInit {
     this.rest.updateAddress(this.form).subscribe(response => {
         // this.isLoading = false;
         // this.states = response.json();
-        console.log(response.json())
+        console.log(response)
     },
       error => {  
         // this.isLoading = false;

@@ -49,7 +49,7 @@ export class EditGlobaladdressComponent implements OnInit {
     // this.isLoading = true;
     this.rest.getContacts().subscribe(response => {
         // this.isLoading = false;
-        let d = response.json();
+        let d = response;
         let addresses = d.addresses.entities;
         let i = 0;
         addresses.forEach(add=> {
@@ -88,7 +88,7 @@ export class EditGlobaladdressComponent implements OnInit {
     // this.isLoading = true;
     this.rest.getLocationsCountries().subscribe(response => {
         // this.isLoading = false;
-        this.countries = response.json();
+        this.countries = response;
         // console.log(response.json())
     },
       error => {  
@@ -100,7 +100,7 @@ export class EditGlobaladdressComponent implements OnInit {
     // this.isLoading = true;
     this.rest.getStates(id).subscribe(response => {
         // this.isLoading = false;
-        this.form[i].states = response.json();
+        this.form[i].states = response;
         // console.log(response.json())
     },
       error => {  
@@ -129,7 +129,7 @@ export class EditGlobaladdressComponent implements OnInit {
           this.close();
           this.utility.showToast('success', 'Address successfully added')
 
-          console.log(response.json())
+          console.log(response)
       },
         error => {  
           // this.isLoading = false;

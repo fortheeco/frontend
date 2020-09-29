@@ -125,7 +125,7 @@ export class ViewComponent implements OnInit {
     this.rest.taskPostComment(this.commentForm).subscribe(response => {
       this.utility.showToast('primary', 'comment posted')
         this.commenting = false;
-       let res = response.json();
+       let res = response;
         console.log(res)
         this.clearForm();
         this.getTaskComments();
@@ -171,7 +171,7 @@ export class ViewComponent implements OnInit {
     // this.isLoading = true;
     this.rest.getProblemComments(this.postDetails.problem.id?this.postDetails.problem.id:this.postDetails.task.id).subscribe(response => {
         // this.isLoading = false;
-       let res = response.json();
+       let res = response;
        this.comments = res.entities;
         console.log(res)
     },
@@ -184,7 +184,7 @@ export class ViewComponent implements OnInit {
     // this.isLoading = true;
     this.rest.getTaskComments(this.postDetails.task.id).subscribe(response => {
         // this.isLoading = false;
-       let res = response.json();
+       let res = response;
        this.comments = res.entities;
         console.log(res)
     },
@@ -198,7 +198,7 @@ export class ViewComponent implements OnInit {
     // this.isLoading = true;
     this.rest.getTaskIdeas(this.postDetails.task.id).subscribe(response => {
         // this.isLoading = false;
-       let res = response.json();
+       let res = response;
        this.ideas = res.entities;
         console.log(res)
     },
@@ -213,7 +213,7 @@ export class ViewComponent implements OnInit {
     // this.isLoading = true;
     this.rest.getProblemIdeas(this.postDetails.problem.id).subscribe(response => {
         // this.isLoading = false;
-       let res = response.json();
+       let res = response;
        this.ideas = res.entities;
         console.log(res)
     },
@@ -240,7 +240,7 @@ export class ViewComponent implements OnInit {
     // this.isLoading = true;
     this.rest.getTaskApplications(this.pageParams).subscribe(response => {
         // this.isLoading = false;
-       let posts = response.json();
+       let posts = response;
         this.applications = posts.entities; 
         console.log(this.applications)
     },
@@ -254,7 +254,7 @@ export class ViewComponent implements OnInit {
     this.submitting1 = true;
     this.rest.submitIdea(this.ideaForm).subscribe(response => {
         this.submitting1 = false;
-       let posts = response.json();
+       let posts = response;
        this.ideaForm = {
         message: "",
         taskId: "",
@@ -275,7 +275,7 @@ export class ViewComponent implements OnInit {
     this.submitting1 = true;
     this.rest.submitProblemIdea(this.ideaForm2).subscribe(response => {
         this.submitting1 = false;
-       let posts = response.json();
+       let posts = response;
        this.ideaForm2 = {
         message: "",
         problemId: "",
@@ -338,7 +338,7 @@ export class ViewComponent implements OnInit {
     this.rest.voteTaskPost(id).subscribe(response => {
       this.utility.showToast('primary', 'post voted')
         // this.isLoading = false;
-       let res = response.json();
+       let res = response;
       //  this.getGlobalPosts()
         console.log(res)
     },
@@ -352,7 +352,7 @@ export class ViewComponent implements OnInit {
     this.rest.votePost(id).subscribe(response => {
       this.utility.showToast('primary', 'post voted')
         // this.isLoading = false;
-       let res = response.json();
+       let res = response;
       //  this.getGlobalPosts()
         console.log(res)
     },

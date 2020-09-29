@@ -105,7 +105,7 @@ export class AddEducationComponent implements OnInit {
     // this.isLoading = true;
     this.rest.getUniversityLevels().subscribe(response => {
         // this.isLoading = false;
-        let d = response.json();
+        let d = response;
         this.levels = d;
         // console.log(response.json())
     },
@@ -119,7 +119,7 @@ export class AddEducationComponent implements OnInit {
     // this.isLoading = true;
     this.rest.getLocationsCountries().subscribe(response => {
         // this.isLoading = false;
-        this.countries = response.json();
+        this.countries = response;
         // console.log(response.json())
     },
       error => {  
@@ -133,7 +133,7 @@ export class AddEducationComponent implements OnInit {
     this.isLoading = true;
     this.authenticationService.getUserEducation(this.pageParams2).subscribe(response => {
         this.isLoading = false;
-        let u = response.json();
+        let u = response;
         this.educationList = u.entities; 
         if(this.educationList && this.educationList.length < 1){
           this.addingEducation = true;
@@ -185,7 +185,7 @@ export class AddEducationComponent implements OnInit {
 
     this.authenticationService.addWork(this.form).subscribe(response => {
         this.submitting = false;
-        console.log(response.json())
+        console.log(response)
         this.clearForm();
         let env = this;
         this.utility.showToast('success', 'Education added successfully')
@@ -195,7 +195,7 @@ export class AddEducationComponent implements OnInit {
     },
       error => {  
         // console.log(error.json())
-        let err = error.json();
+        let err = error;
         this.errors = err.errors;
         console.log(this.errors)
 

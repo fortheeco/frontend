@@ -56,10 +56,10 @@ export class EditSkillsComponent implements OnInit {
     this.rest.getUserSkills().subscribe(response => {
         // this.isLoading = false;
         // this.countries = response.json();
-        let data = response.json();
+        let data = response;
         this.userSkills = data.entities;
         
-        console.log(response.json())
+        console.log(response)
     },
       error => {  
         // this.isLoading = false;
@@ -85,7 +85,7 @@ export class EditSkillsComponent implements OnInit {
           this.form.skillName = "";
           this.utility.showToast('success', 'Skill successfully added')
 
-          console.log(response.json())
+          console.log(response)
       },
         error => {  
           // this.isLoading = false;

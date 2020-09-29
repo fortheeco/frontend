@@ -52,10 +52,10 @@ export class AddOrganizationServiceComponent implements OnInit, OnDestroy {
     const sub = this.organizationService.addNewOrganizationService(this.addOrganizationServiceForm.value)
       .pipe(finalize(() => this.loading = false))
       .subscribe(x => {
-        this.newOrganizationService.emit(x.json() as IAppOrganizationService);
+        this.newOrganizationService.emit(x as IAppOrganizationService);
         this.activeModal.close();
       },
-        error => this.formError.setFormErrors(error.json(), this.addOrganizationServiceForm)
+        error => this.formError.setFormErrors(error, this.addOrganizationServiceForm)
       );
 
       this.subscriptions.push(sub);

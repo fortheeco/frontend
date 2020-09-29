@@ -18,8 +18,8 @@ private headers: Headers = new Headers({'Content-Type': 'application/json'});
 private headers_formdata: Headers = new Headers({'Content-Type': undefined});
 
   constructor(
-		private httpc:Http,
-        private http: HttpClient,
+		// private httpc:Http,
+        private httpc: HttpClient,
 		private authenticationService: AuthenticationService
 		) { }
 
@@ -36,11 +36,8 @@ private headers_formdata: Headers = new Headers({'Content-Type': undefined});
       // console.log(this.currentUserValue)
       let id = this.authenticationService.currentUserValue.user.id;
         const userToken: string = 'Bearer ' + this.authenticationService.currentUserValue.token;
-      const url = `${this.BASE_URL}api/Location/countries`;
-  
-        this.headers = new Headers({'Content-Type': 'application/json'});
-        this.headers.append('Authorization', userToken);
-        return this.httpc.get(url,{headers: this.headers});
+        const url = `${this.BASE_URL}api/Location/countries`;
+        return this.httpc.get(url);
       }
 
 
@@ -55,11 +52,8 @@ private headers_formdata: Headers = new Headers({'Content-Type': undefined});
     getGlobalPosts(data): Observable<any> {
       // console.log(this.currentUserValue)
         const userToken: string = 'Bearer ' + this.authenticationService.currentUserValue.token;
-      const url = `${this.BASE_URL}api/Post/global`;
-  
-        this.headers = new Headers({'Content-Type': 'application/json'});
-        this.headers.append('Authorization', userToken);
-        return this.httpc.post(url, data ,{headers: this.headers});
+        const url = `${this.BASE_URL}api/Post/global`;
+        return this.httpc.post(url, data);
       }
 
 
@@ -75,9 +69,7 @@ private headers_formdata: Headers = new Headers({'Content-Type': undefined});
           const userToken: string = 'Bearer ' + this.authenticationService.currentUserValue.token;
           const url = `${this.BASE_URL}api/Task/applicants`;
     
-          this.headers = new Headers({'Content-Type': 'application/json'});
-          this.headers.append('Authorization', userToken);
-          return this.httpc.post(url, data ,{headers: this.headers});
+          return this.httpc.post(url, data );
         }
 
 
@@ -92,10 +84,7 @@ private headers_formdata: Headers = new Headers({'Content-Type': undefined});
         submitIdea(data): Observable<any> {
           const userToken: string = 'Bearer ' + this.authenticationService.currentUserValue.token;
           const url = `${this.BASE_URL}api/Task/idea`;
-    
-          this.headers = new Headers({'Content-Type': 'application/json'});
-          this.headers.append('Authorization', userToken);
-          return this.httpc.post(url, data ,{headers: this.headers});
+          return this.httpc.post(url, data );
         }
 
         /**
@@ -109,10 +98,7 @@ private headers_formdata: Headers = new Headers({'Content-Type': undefined});
         submitProblemIdea(data): Observable<any> {
             const userToken: string = 'Bearer ' + this.authenticationService.currentUserValue.token;
             const url = `${this.BASE_URL}api/Problem/idea`;
-      
-            this.headers = new Headers({'Content-Type': 'application/json'});
-            this.headers.append('Authorization', userToken);
-            return this.httpc.post(url, data ,{headers: this.headers});
+            return this.httpc.post(url, data );
           }
 
       /**
@@ -126,11 +112,9 @@ private headers_formdata: Headers = new Headers({'Content-Type': undefined});
       getUserPosts(data): Observable<any> {
         // console.log(this.currentUserValue)
           const userToken: string = 'Bearer ' + this.authenticationService.currentUserValue.token;
-        const url = `${this.BASE_URL}api/Post/personal`;
+          const url = `${this.BASE_URL}api/Post/personal`;
     
-          this.headers = new Headers({'Content-Type': 'application/json'});
-          this.headers.append('Authorization', userToken);
-          return this.httpc.post(url, data ,{headers: this.headers});
+          return this.httpc.post(url, data );
         }
 
 
@@ -146,11 +130,8 @@ private headers_formdata: Headers = new Headers({'Content-Type': undefined});
       // console.log(this.currentUserValue)
       let id = this.authenticationService.currentUserValue.user.id;
         const userToken: string = 'Bearer ' + this.authenticationService.currentUserValue.token;
-      const url = `${this.BASE_URL}api/User/contacts?id=${id}`;
-  
-        this.headers = new Headers({'Content-Type': 'application/json'});
-        this.headers.append('Authorization', userToken);
-        return this.httpc.get(url,{headers: this.headers});
+        const url = `${this.BASE_URL}api/User/contacts?id=${id}`;
+        return this.httpc.get(url);
       }
 
 
@@ -170,7 +151,7 @@ private headers_formdata: Headers = new Headers({'Content-Type': undefined});
   
         this.headers = new Headers({'Content-Type': 'application/json'});
         this.headers.append('Authorization', userToken);
-        return this.httpc.get(url,{headers: this.headers});
+        return this.httpc.get(url);
       }
 
     /**
@@ -187,17 +168,15 @@ private headers_formdata: Headers = new Headers({'Content-Type': undefined});
   
         this.headers = new Headers({'Content-Type': 'application/json'});
         this.headers.append('Authorization', userToken);
-        return this.httpc.get(url,{headers: this.headers});
+        return this.httpc.get(url);
       }
 
 
       updateAddress(data): Observable<any> {
         const userToken: string = 'Bearer ' + this.authenticationService.currentUserValue.token;
           const url = `${this.BASE_URL}api/User/free-address`;
-        this.headers = new Headers({'Content-Type': 'application/json'});
-        this.headers.append('Authorization', userToken);
-        return this.httpc.post(url, data ,{headers: this.headers});
-    }
+        return this.httpc.post(url, data );
+      }
 
 
     getUserSkills(): Observable<any> {
@@ -207,7 +186,7 @@ private headers_formdata: Headers = new Headers({'Content-Type': undefined});
       let data = {id:userId}
       this.headers = new Headers({'Content-Type': 'application/json'});
       this.headers.append('Authorization', userToken);
-      return this.httpc.post(url, data ,{headers: this.headers});
+      return this.httpc.post(url, data );
     }
 
     addSkill(data): Observable<any> {
@@ -215,8 +194,8 @@ private headers_formdata: Headers = new Headers({'Content-Type': undefined});
         const url = `${this.BASE_URL}api/Individual/skill`;
       this.headers = new Headers({'Content-Type': 'application/json'});
       this.headers.append('Authorization', userToken);
-      return this.httpc.post(url, data ,{headers: this.headers});
-  }
+      return this.httpc.post(url, data );
+    }
 
   deleteSkill(id): Observable<any> {
     let data = {skillId:id}
@@ -234,7 +213,7 @@ private headers_formdata: Headers = new Headers({'Content-Type': undefined});
 
     let req = new HttpRequest('DELETE', url);
       let newReq = req.clone({body: data});
-     return this.http.request(newReq);
+     return this.httpc.request(newReq);
 }
 
 
@@ -246,7 +225,7 @@ getUniversities(data): Observable<any> {
 
     this.headers = new Headers({'Content-Type': 'application/json'});
     this.headers.append('Authorization', userToken);
-    return this.httpc.get(url,{headers: this.headers});
+    return this.httpc.get(url);
   }
 
 
@@ -258,23 +237,21 @@ getUniversities(data): Observable<any> {
   
       this.headers = new Headers({'Content-Type': 'application/json'});
       this.headers.append('Authorization', userToken);
-      return this.httpc.get(url,{headers: this.headers});
-  }
+      return this.httpc.get(url);
+    }
 
   createProblem(data): Observable<any> {
     const userToken: string = 'Bearer ' + this.authenticationService.currentUserValue.token;
       const url = `${this.BASE_URL}api/Problem`;
     this.headers = new Headers({'Content-Type': 'application/json'});
     this.headers.append('Authorization', userToken);
-    return this.httpc.post(url, data ,{headers: this.headers});
+    return this.httpc.post(url, data );
   }
 
   applyForTask(data): Observable<any> {
     const userToken: string = 'Bearer ' + this.authenticationService.currentUserValue.token;
-      const url = `${this.BASE_URL}api/Individual/apply-task`;
-    this.headers = new Headers({'Content-Type': 'application/json'});
-    this.headers.append('Authorization', userToken);
-    return this.httpc.put(url, data ,{headers: this.headers});
+    const url = `${this.BASE_URL}api/Individual/apply-task`;
+    return this.httpc.put(url, data );
   }
 
   sendContract(data): Observable<any> {
@@ -282,7 +259,7 @@ getUniversities(data): Observable<any> {
       const url = `${this.BASE_URL}api/Task/send-contract`;
     this.headers = new Headers({'Content-Type': 'application/json'});
     this.headers.append('Authorization', userToken);
-    return this.httpc.post(url, data ,{headers: this.headers});
+    return this.httpc.post(url, data );
   }
 
   createTask(data): Observable<any> {
@@ -290,7 +267,7 @@ getUniversities(data): Observable<any> {
       const url = `${this.BASE_URL}api/Task`;
     this.headers = new Headers({'Content-Type': 'application/json'});
     this.headers.append('Authorization', userToken);
-    return this.httpc.post(url, data ,{headers: this.headers});
+    return this.httpc.post(url, data );
   }
 
   getTaskComments(tId="",cId=""): Observable<any> {
@@ -299,7 +276,7 @@ getUniversities(data): Observable<any> {
 
       this.headers = new Headers({'Content-Type': 'application/json'});
       this.headers.append('Authorization', userToken);
-      return this.httpc.get(url,{headers: this.headers});
+      return this.httpc.get(url);
     }
 
 
@@ -309,7 +286,7 @@ getUniversities(data): Observable<any> {
 
       this.headers = new Headers({'Content-Type': 'application/json'});
       this.headers.append('Authorization', userToken);
-      return this.httpc.get(url,{headers: this.headers});
+      return this.httpc.get(url);
     }
 
 
@@ -319,7 +296,7 @@ getUniversities(data): Observable<any> {
 
       this.headers = new Headers({'Content-Type': 'application/json'});
       this.headers.append('Authorization', userToken);
-      return this.httpc.get(url,{headers: this.headers});
+      return this.httpc.get(url);
     }
 
     getProblemComments(pId="",cId=""): Observable<any> {
@@ -328,7 +305,7 @@ getUniversities(data): Observable<any> {
   
         this.headers = new Headers({'Content-Type': 'application/json'});
         this.headers.append('Authorization', userToken);
-        return this.httpc.get(url,{headers: this.headers});
+        return this.httpc.get(url);
       }
 
     postComment(data): Observable<any> {
@@ -336,23 +313,21 @@ getUniversities(data): Observable<any> {
         const url = `${this.BASE_URL}api/Problem/comment`;
       this.headers = new Headers({'Content-Type': 'application/json'});
       this.headers.append('Authorization', userToken);
-      return this.httpc.post(url, data ,{headers: this.headers});
-  }
+      return this.httpc.post(url, data );
+    }
   taskPostComment(data): Observable<any> {
       const userToken: string = 'Bearer ' + this.authenticationService.currentUserValue.token;
         const url = `${this.BASE_URL}api/Task/comment`;
       this.headers = new Headers({'Content-Type': 'application/json'});
       this.headers.append('Authorization', userToken);
-      return this.httpc.post(url, data ,{headers: this.headers});
-  }
+      return this.httpc.post(url, data );
+    }
 
   voteTaskPost(id): Observable<any> {
     let data = {taskId:id}
       const userToken: string = 'Bearer ' + this.authenticationService.currentUserValue.token;
       const url = `${this.BASE_URL}api/Task/vote`;
-      this.headers = new Headers({'Content-Type': 'application/json'});
-      this.headers.append('Authorization', userToken);
-      return this.httpc.patch(url, data ,{headers: this.headers});
+      return this.httpc.patch(url, data);
   }
     
 
@@ -362,7 +337,7 @@ getUniversities(data): Observable<any> {
       const url = `${this.BASE_URL}api/Problem/vote`;
       this.headers = new Headers({'Content-Type': 'application/json'});
       this.headers.append('Authorization', userToken);
-      return this.httpc.patch(url, data ,{headers: this.headers});
+      return this.httpc.patch(url, data);
   }
     
 
@@ -383,7 +358,7 @@ getUniversities(data): Observable<any> {
 
     let req = new HttpRequest('DELETE', url);
       let newReq = req.clone({body: data});
-     return this.http.request(newReq);
+     return this.httpc.request(newReq);
 }
 
 

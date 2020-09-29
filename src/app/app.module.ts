@@ -54,6 +54,7 @@ import { SpinnerComponent } from './shared/spinner.component';
 import { JwtInterceptor } from './_helpers';
 import { StatusTranslators } from './_helpers/statusTranslators';
 import { httpRequestInterceptor } from './_interceptors/httpRequestInterceptor';
+import { ErrorInterceptor } from './_interceptors/error.interceptor';
 import { SharedServiceProvider } from './_providers/shared-provider';
 import { UtilityProvider } from './_providers/utility';
 import { UserService } from './_services';
@@ -174,7 +175,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     FormErrorService,
     UserService,
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
-    // { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: httpRequestInterceptor, multi: true },
     {
       provide: PERFECT_SCROLLBAR_CONFIG,

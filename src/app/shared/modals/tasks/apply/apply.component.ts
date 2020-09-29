@@ -79,8 +79,7 @@ export class ApplyComponent implements OnInit {
      // this.isLoading = true;
      this.authenticationService.getIndividualData().subscribe(response => {
          // this.isLoading = false;
-         this.profile = response.json();
-         // this.temp = response.json().data;
+         this.profile = response;
          console.log(this.profile.detail)
      },
        error => {  
@@ -99,11 +98,11 @@ export class ApplyComponent implements OnInit {
         this.closeModal()
         // this.router.navigate(['/dashboard/overview']);
 
-        console.log(response.json())
+        console.log(response)
     },
       error => {  
-        console.log(error.json())
-        let err = error.json();
+        console.log(error)
+        let err = error;
         this.errors = err.errors;
         this.utility.showToast('danger', err.error)
         this.submitting = false;

@@ -94,7 +94,7 @@ export class CreateProblemComponent implements OnInit {
     // this.isLoading = true;
     this.authenticationService.getIndividualData().subscribe(response => {
         // this.isLoading = false;
-        this.profile = response.json();
+        this.profile = response;
         // this.temp = response.json().data;
         console.log(this.profile.detail)
     },
@@ -131,7 +131,7 @@ export class CreateProblemComponent implements OnInit {
     // this.isLoading = true;
     this.authenticationService.getUserContacts().subscribe(response => {
         // this.isLoading = false;
-        let d = response.json();
+        let d = response;
         this.addresses = d.addresses.entities;
         console.log(this.addresses)
     },
@@ -205,7 +205,7 @@ export class CreateProblemComponent implements OnInit {
         this.utility.showToast('success', 'Post created successfully')
         this.router.navigate(['/dashboard/overview']);
 
-        console.log(response.json())
+        console.log(response)
     },
       error => {  
         console.log(error.json())
@@ -220,7 +220,7 @@ export class CreateProblemComponent implements OnInit {
     // this.isLoading = true;
     this.rest.getEcoDetails().subscribe(response => {
         // this.isLoading = false;
-        let d = response.json();
+        let d = response;
         this.ecoDetails = d;
 
         let un = d.ecoEntities.map(function (val) {

@@ -19,10 +19,10 @@ export class AuthenticationService {
         private headers_formdata: Headers = new Headers({'Content-Type': undefined});
 
     constructor(
-        private http: HttpClient,
+        private httpc: HttpClient,
         private httpClient: HttpClient,
         private route: ActivatedRoute,
-        private httpc: Http,
+        // private httpc: Http,
         private router: Router)
          {
         this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('ecoUser')));
@@ -37,7 +37,7 @@ export class AuthenticationService {
     login(emailAddress: string, password: string) {
         const url = `${this.BASE_URL}api/auth/signin`;
 
-        return this.http.post<any>(url, { emailAddress, password })
+        return this.httpc.post<any>(url, { emailAddress, password })
             .pipe(map(user => {
                 // login successful if there's a jwt token in the response
                 if (user && user.token) {
@@ -61,10 +61,7 @@ export class AuthenticationService {
      */
     signup(data: any) {
         const url = `${this.BASE_URL}api/auth/signup`;
-
-        this.headers = new Headers({'Content-Type': 'application/json'});
-
-        return this.httpc.post(url, data, {headers: this.headers});
+        return this.httpc.post(url, data);
     }
 
     /**
@@ -73,10 +70,7 @@ export class AuthenticationService {
      */
     signUpAsOrganization(data: any) {
         const url = `${this.BASE_URL}api/auth/signup-organization`;
-
-        this.headers = new Headers({'Content-Type': 'application/json'});
-
-        return this.httpc.post(url, data, {headers: this.headers});
+        return this.httpc.post(url, data);
     }
 
     /**
@@ -85,10 +79,7 @@ export class AuthenticationService {
      */
     verifyEmailAddress(data: any) {
         const url = `${this.BASE_URL}api/auth/verify-email`;
-
-        this.headers = new Headers({'Content-Type': 'application/json'});
-
-        return this.httpc.post(url, data, {headers: this.headers});
+        return this.httpc.post(url, data);
     }
 
     /**
@@ -97,10 +88,7 @@ export class AuthenticationService {
      */
     forgotPassword(data: any) {
         const url = `${this.BASE_URL}api/auth/forgot-password`;
-
-        this.headers = new Headers({'Content-Type': 'application/json'});
-
-        return this.httpc.post(url, data, {headers: this.headers});
+        return this.httpc.post(url, data);
     }
 
     /**
@@ -109,10 +97,7 @@ export class AuthenticationService {
      */
     changePassword(data: any) {
         const url = `${this.BASE_URL}api/auth/reset-password`;
-
-        this.headers = new Headers({'Content-Type': 'application/json'});
-
-        return this.httpc.put(url, data, {headers: this.headers});
+        return this.httpc.put(url, data);
     }
 
     /**
@@ -121,10 +106,7 @@ export class AuthenticationService {
      */
     requestEmailVerificationAgain(data: any) {
         const url = `${this.BASE_URL}api/auth/resend-confirm-email`;
-
-        this.headers = new Headers({'Content-Type': 'application/json'});
-
-        return this.httpc.post(url, data, {headers: this.headers});
+        return this.httpc.post(url, data);
     }
     
     
@@ -143,10 +125,7 @@ export class AuthenticationService {
 		let id = this.currentUserValue.user.id;
 	    const userToken: string = 'Bearer ' + this.currentUserValue.token;
 		const url = `${this.BASE_URL}api/Individual?IndividualId=${id}`;
-
-	    this.headers = new Headers({'Content-Type': 'application/json'});
-	    this.headers.append('Authorization', userToken);
-	    return this.httpc.get(url,{headers: this.headers});
+	    return this.httpc.get(url);
     }
 
 
@@ -159,7 +138,7 @@ export class AuthenticationService {
         const userToken: string = 'Bearer ' + this.currentUserValue.token;
         this.headers = new Headers({'Content-Type': 'application/json'});
         this.headers.append('Authorization', userToken);
-        return this.httpc.put(url, passedData ,{headers: this.headers});
+        return this.httpc.put(url, passedData);
     }
 
     /**
@@ -175,10 +154,7 @@ export class AuthenticationService {
 		let id = this.currentUserValue.user.id;
 	    const userToken: string = 'Bearer ' + this.currentUserValue.token;
 		const url = `${this.BASE_URL}api/User/contacts?Id=${id}`;
-
-	    this.headers = new Headers({'Content-Type': 'application/json'});
-	    this.headers.append('Authorization', userToken);
-	    return this.httpc.get(url,{headers: this.headers});
+	    return this.httpc.get(url);
     }
 
     /**
@@ -194,10 +170,7 @@ export class AuthenticationService {
 		let id = this.currentUserValue.user.id;
 	    const userToken: string = 'Bearer ' + this.currentUserValue.token;
 		const url = `${this.BASE_URL}api/User/more-address`;
-
-	    this.headers = new Headers({'Content-Type': 'application/json'});
-	    this.headers.append('Authorization', userToken);
-        return this.httpc.post(url, data ,{headers: this.headers});
+        return this.httpc.post(url, data);
     }
     
 
@@ -207,10 +180,7 @@ export class AuthenticationService {
 		let id = this.currentUserValue.user.id;
 	    const userToken: string = 'Bearer ' + this.currentUserValue.token;
         const url = `${this.BASE_URL}api/Education/education?IndividualId=${data.userId}&pageNumber=${data.pageNumber}&pageSize=${data.pageSize}`;
-
-	    this.headers = new Headers({'Content-Type': 'application/json'});
-	    this.headers.append('Authorization', userToken);
-	    return this.httpc.get(url,{headers: this.headers});
+	    return this.httpc.get(url);
     }
 
 	getWorkExperience(data): Observable<any> {
@@ -218,10 +188,7 @@ export class AuthenticationService {
 		let id = this.currentUserValue.user.id;
 	    const userToken: string = 'Bearer ' + this.currentUserValue.token;
         const url = `${this.BASE_URL}api/Individual/professions?IndividualId=${data.userId}&pageNumber=${data.pageNumber}&pageSize=${data.pageSize}`;
-
-	    this.headers = new Headers({'Content-Type': 'application/json'});
-	    this.headers.append('Authorization', userToken);
-	    return this.httpc.get(url,{headers: this.headers});
+	    return this.httpc.get(url);
     }
 
     deleteWorkExperience(id): Observable<any> {
@@ -241,7 +208,7 @@ export class AuthenticationService {
     
         let req = new HttpRequest('DELETE', url);
           let newReq = req.clone({body: data});
-         return this.http.request(newReq);
+         return this.httpc.request(newReq);
     }
   
     deleteEducation(id): Observable<any> {
@@ -261,7 +228,7 @@ export class AuthenticationService {
     
         let req = new HttpRequest('DELETE', url);
           let newReq = req.clone({body: data});
-         return this.http.request(newReq);
+         return this.httpc.request(newReq);
     }
       
     
@@ -273,7 +240,7 @@ export class AuthenticationService {
 
 	    this.headers = new Headers({'Content-Type': 'application/json'});
 	    this.headers.append('Authorization', userToken);
-        return this.httpc.post(url, data ,{headers: this.headers});
+        return this.httpc.post(url, data);
     }
     
 
@@ -282,7 +249,7 @@ export class AuthenticationService {
         const userToken: string = 'Bearer ' + this.currentUserValue.token;
         this.headers = new Headers({'Content-Type': 'application/json'});
         this.headers.append('Authorization', userToken);
-        return this.httpc.put(url, passedData ,{headers: this.headers});
+        return this.httpc.put(url, passedData);
     }
     
     logout() {

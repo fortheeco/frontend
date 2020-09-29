@@ -55,7 +55,7 @@ export class FilterOrganizationBranchesComponent implements OnInit {
     const sub = this.restService.getLocationsCountries()
       .pipe(finalize(() => this.loadingCountry = false))
       .subscribe(x => {
-        this.countries = x.json();
+        this.countries = x;
     });
 
     this.subscriptions.push(sub);
@@ -67,7 +67,7 @@ export class FilterOrganizationBranchesComponent implements OnInit {
       .pipe(finalize(() => this.loadingState = false))
       .subscribe(x => {
         // this.
-        this.states = x.json();
+        this.states = x;
         this.states = this.states.filter(s => s.name.toLowerCase() !== 'all regions');
       });
 

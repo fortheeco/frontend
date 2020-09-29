@@ -93,7 +93,7 @@ export class EditAboutComponent implements OnInit {
         // this.isLoading = true;
         this.rest.getLocationsCountries().subscribe(response => {
             // this.isLoading = false;
-            this.countries = response.json();
+            this.countries = response;
             // console.log(response.json())
         },
           error => {  
@@ -117,7 +117,7 @@ export class EditAboutComponent implements OnInit {
       // this.isLoading = true;
       this.authenticationService.getIndividualData().subscribe(response => {
           // this.isLoading = false;
-          this.profile = response.json();
+          this.profile = response;
           // this.temp = response.json().data;
           console.log(this.profile.detail)
       },
@@ -159,7 +159,7 @@ export class EditAboutComponent implements OnInit {
       },
         error => {  
           // console.log(error.json())
-          let err = error.json();
+          let err = error;
           this.errors = err.errors;
           console.log(this.errors)
   

@@ -114,7 +114,7 @@ export class AddWorkComponent implements OnInit {
         this.isLoading = true;
         this.authenticationService.getWorkExperience(this.pageParams).subscribe(response => {
             this.isLoading = false;
-            let u = response.json();
+            let u = response;
             this.professions = u.entities; 
             if(this.professions && this.professions.length < 1){
               this.addingWork = true;
@@ -157,7 +157,7 @@ export class AddWorkComponent implements OnInit {
         // this.isLoading = true;
         this.rest.getStates(id).subscribe(response => {
             // this.isLoading = false;
-            this.states = response.json();
+            this.states = response;
             // console.log(response.json())
         },
           error => {  
@@ -179,7 +179,7 @@ export class AddWorkComponent implements OnInit {
   
       this.authenticationService.addWork(this.form).subscribe(response => {
           this.submitting = false;
-          console.log(response.json())
+          console.log(response)
           this.clearForm();
           let env = this;
           this.utility.showToast('success', 'Profession added successfully')

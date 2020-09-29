@@ -41,7 +41,7 @@ export class SearchOrganizationAutocompleteComponent implements OnInit, OnDestro
       .subscribe(x => {
         this.organizations = x.json().map(y => new AppOrganizationBranch(y));
       },
-        error => this.formError.setFormErrors(error.json())
+        error => this.formError.setFormErrors(error)
       );
 
     this.subscription.push(sub);

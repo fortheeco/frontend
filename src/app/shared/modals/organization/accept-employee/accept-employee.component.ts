@@ -46,7 +46,7 @@ export class AcceptEmployeeComponent implements OnInit, OnDestroy {
     const sub = this.organizationService.acceptOrRejectEmployee(this.acceptEmployeeForm.value)
       .pipe(finalize(() => this.loading = false))
       .subscribe(x => {
-        console.log(x.json());
+        console.log(x.json);
         this.completed.emit();
         this.activeModal.close();
       },

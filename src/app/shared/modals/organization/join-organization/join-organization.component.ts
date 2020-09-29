@@ -81,7 +81,7 @@ export class JoinOrganizationComponent implements OnInit, OnDestroy {
         this.searchedOrganization.emit();
         this.activeModal.close();
       },
-        error => this.formError.setFormErrors(error.json(), this.searchOrganizationForm)
+        error => this.formError.setFormErrors(error, this.searchOrganizationForm)
       );
 
     this.subscriptions.push(sub);

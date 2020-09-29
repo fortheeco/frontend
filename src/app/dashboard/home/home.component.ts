@@ -63,7 +63,7 @@ export class HomeComponent implements OnInit {
       // this.isLoading = true;
       this.rest.getGlobalPosts(this.pageParams).subscribe(response => {
           // this.isLoading = false;
-         let posts = response.json();
+         let posts = response;
           this.problems = posts.problems;
           console.log(this.problems)
           this.posts = posts.tasks.concat(posts.problems);
