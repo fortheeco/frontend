@@ -30,6 +30,7 @@ export class ListComponent implements OnInit {
     "pageNumber": "0",
     "pageSize": "0"
   }
+  tasks: any;
 
   constructor(
     private modalService: NgbModal,
@@ -50,7 +51,7 @@ export class ListComponent implements OnInit {
       this.rest.getGlobalPosts(this.pageParams).subscribe(response => {
           // this.isLoading = false;
          let posts = response;
-          this.problems = posts.problems; 
+          this.tasks = posts.tasks; 
           console.log(this.problems)
       },
         error => {  

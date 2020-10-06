@@ -15,7 +15,6 @@ import {RestService} from "../../_services/rest.service";
 export class HomeComponent implements OnInit {
   posts: any;
   problems: any;
-	shownGroup = null;
   pageParams ={
     "filter": {
       "userId": "",
@@ -45,19 +44,6 @@ export class HomeComponent implements OnInit {
       // this.router.navigate(['/dashboard/tasks/view-user-profile']);
 
     }
-
-
-    toggleGroup(group) {
-      if (this.isGroupShown(group)) {
-          this.shownGroup = null;
-      } else {
-          this.shownGroup = group;
-      }
-    };
-
-    isGroupShown(group) {
-        return this.shownGroup === group;
-    };
     
     getGlobalPosts(){
       // this.isLoading = true;

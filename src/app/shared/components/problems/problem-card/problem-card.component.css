@@ -1,0 +1,55 @@
+.txt1{
+    font-weight: bold;
+    font-size: 0.7em;
+    margin-bottom: 0px;
+    padding-bottom: 5px;
+}
+
+.color-green{
+    color: #33DB60;
+}
+.color-darkgreen{
+    color: #517258;
+}
+
+
+.card-content{
+    color: #517258;
+    font-size: 0.7em;
+}
+
+.task-content-section{
+    margin-bottom: 10px; 
+}
+.txt-hd-1{
+    color: #33DB60;
+    font-weight: bold;
+    margin: 0px;
+}
+
+.txt-cn-1{
+    margin: 0px;
+}
+
+.active{
+    background-color: #EAFBEF;
+    padding: 8px;
+}
+
+.lbl-1{
+    font-size: 0.9em;
+}
+
+.h-span{
+    display: inline-block;
+    float: right;
+}
+
+.suggestion-box{
+    border-bottom: solid 1px #33DB60;
+    cursor: pointer;
+}
+
+.suggestion-box h4{
+    margin-bottom: 8px;
+}
