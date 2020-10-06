@@ -29,6 +29,7 @@ export class VerifyEmailComponent implements OnInit, OnDestroy {
     this.setValues();
   }
 
+  // ...
   setValues() {
     this.token = this.route.snapshot.queryParamMap.get('token');
     this.userId = this.route.snapshot.queryParamMap.get('userId');

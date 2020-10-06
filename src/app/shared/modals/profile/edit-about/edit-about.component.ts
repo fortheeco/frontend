@@ -141,13 +141,13 @@ export class EditAboutComponent implements OnInit {
           // this.utility.showToast('success', 'Post created successfully')
           // this.router.navigate(['/dashboard/overview']);
   
-          console.log(response.json())
+          // console.log(response.json())
       },
         error => {  
           // console.log(error.json())
-          let err = error.json();
+          let err = error;
           this.errors = err.errors;
-          console.log(this.errors)
+          // console.log(this.errors)
   
           this.submitting = false;
           // this.showSuccess()
