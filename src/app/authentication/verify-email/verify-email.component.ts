@@ -29,6 +29,7 @@ export class VerifyEmailComponent implements OnInit, OnDestroy {
     this.setValues();
   }
 
+  // ...
   setValues() {
     this.token = this.route.snapshot.queryParamMap.get('token');
     this.userId = this.route.snapshot.queryParamMap.get('userId');
@@ -43,10 +44,10 @@ export class VerifyEmailComponent implements OnInit, OnDestroy {
 
     const sub = this.auth.verifyEmailAddress({token: encodeURIComponent(this.token), userId: this.userId})
       .pipe(finalize(() => this.loading = false ))
-      .subscribe(x => {
+      .subscribe((x:any) => {
         this.loading = false;
 
-        const success = x.json().success;
+        const success = x.success;
         if (success) {
           this.verified = 'success';
         } else {
